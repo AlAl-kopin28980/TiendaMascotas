@@ -1,6 +1,6 @@
 package Graphics;
 
-public class Main {
+public class GraphicMain {
     public static void main(String[] args) {
         Ventana v = new Ventana();
     }
