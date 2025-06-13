@@ -1,6 +1,6 @@
-public class Gato extends MascotaExotica{
-    public Gato(){
-        super();
+public class Gato extends MascotaDomestica{
+    public Gato(TipoColor pelito){
+        super(pelito);
     }
     public void jugar(){
         if(felicidad<=93){

@@ -1,5 +1,5 @@
 public abstract class MascotaExotica extends Mascota{
-    public MascotaExotica(){
-        super();
+    public MascotaExotica(TipoColor color){
+        super(color);
     }
 }

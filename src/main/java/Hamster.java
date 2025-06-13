@@ -1,6 +1,6 @@
 public class Hamster extends MascotaExotica{
-    public Hamster(){
-        super();
+    public Hamster(TipoColor color){
+        super(color);
     }
     public void jugar(){
         if(felicidad<=90){

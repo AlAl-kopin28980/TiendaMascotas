@@ -1,11 +1,13 @@
 public abstract class Mascota {
    protected int salud;
-   protected float felicidad;
-   protected float hambre;
-   public Mascota(){
+   protected int felicidad;
+   protected int hambre;
+   protected TipoColor color;
+   public Mascota(TipoColor color){
         salud=0;
         felicidad=0;
         hambre=100;
+        this.color=color;
    }
    public abstract void jugar();
    public abstract void alimentar();
@@ -22,5 +24,21 @@ public abstract class Mascota {
             med.usar(salud - aux);
         }
 
+    }
+
+    public int getFelicidad() {
+        return felicidad;
+    }
+
+    public int getSalud() {
+        return salud;
+    }
+
+    public int getHambre() {
+        return hambre;
+    }
+
+    public TipoColor getColor(){
+        return color;
     }
 }

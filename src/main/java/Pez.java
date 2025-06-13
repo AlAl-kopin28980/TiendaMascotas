@@ -1,6 +1,6 @@
 public class Pez extends MascotaExotica{
-    public Pez(){
-        super();
+    public Pez(TipoColor color){
+        super(color);
     }
     public void jugar(){
         if(felicidad<=80){

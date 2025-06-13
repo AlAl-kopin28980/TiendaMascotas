@@ -1,6 +1,6 @@
 public class Perro extends MascotaDomestica{
-    public Perro(){
-        super();
+    public Perro(TipoColor pelito){
+        super(pelito);
     }
     public void jugar(){
         if(felicidad<=90){

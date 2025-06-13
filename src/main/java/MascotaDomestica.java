@@ -1,6 +1,6 @@
 public abstract class MascotaDomestica extends Mascota{
-    public MascotaDomestica(){
-        super();
+    public MascotaDomestica(TipoColor pelito){
+        super(pelito);
     }
 
 }

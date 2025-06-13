@@ -1,6 +1,6 @@
 public class Ave extends MascotaExotica{
-    public Ave(){
-        super();
+    public Ave(TipoColor color){
+        super(color);
     }
     public void jugar(){
         if(felicidad<=95){
