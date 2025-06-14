@@ -1,4 +1,6 @@
-public class Pez extends MascotaExotica{
+package Logica;
+
+public class Pez extends MascotaExotica {
     public Pez(TipoColor color){
         super(color);
     }

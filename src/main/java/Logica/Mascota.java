@@ -1,3 +1,5 @@
+package Logica;
+
 public abstract class Mascota {
    protected int salud;
    protected int felicidad;

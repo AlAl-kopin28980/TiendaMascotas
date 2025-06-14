@@ -1,3 +1,5 @@
+package Logica;
+
 public class Medicina {
     private int contenido;
     public Medicina(int miligramos){

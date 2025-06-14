@@ -1,3 +1,5 @@
+package Logica;
+
 public enum TipoColor {
     NARANJA,
     NEGRO,

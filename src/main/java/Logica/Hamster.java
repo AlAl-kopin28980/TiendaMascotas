@@ -1,4 +1,6 @@
-public class Hamster extends MascotaExotica{
+package Logica;
+
+public class Hamster extends MascotaExotica {
     public Hamster(TipoColor color){
         super(color);
     }

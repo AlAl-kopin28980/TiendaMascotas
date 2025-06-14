@@ -1,4 +1,6 @@
-public class Ave extends MascotaExotica{
+package Logica;
+
+public class Ave extends MascotaExotica {
     public Ave(TipoColor color){
         super(color);
     }

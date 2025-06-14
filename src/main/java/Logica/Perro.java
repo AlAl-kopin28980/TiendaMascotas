@@ -1,4 +1,6 @@
-public class Perro extends MascotaDomestica{
+package Logica;
+
+public class Perro extends MascotaDomestica {
     public Perro(TipoColor pelito){
         super(pelito);
     }
