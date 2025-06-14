@@ -9,12 +9,13 @@ public class Hamster extends MascotaExotica {
             felicidad=felicidad+10;}
         else{felicidad=100;}
     }
-    public void alimentar(){
+    public void alimentar(BolsaAlimento food){
         if (hambre>=10){
-            hambre=hambre-10;
+            hambre=hambre-food.sacarAlimento(10);
         }
         else{
-            hambre=0;
+            int minus=food.sacarAlimento(hambre);
+            hambre=hambre-minus;
         }
     }
 }

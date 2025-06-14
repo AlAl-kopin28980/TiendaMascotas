@@ -12,7 +12,7 @@ public abstract class Mascota {
         this.color=color;
    }
    public abstract void jugar();
-   public abstract void alimentar();
+   public abstract void alimentar(BolsaAlimento food);
    public Mascota vender(){return this;}
     public void darMedicina(Medicina med){
         if(salud<100 && med.getContenido()>0) {

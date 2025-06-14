@@ -9,12 +9,13 @@ public class Pez extends MascotaExotica {
             felicidad=felicidad+20;}
         else{felicidad=100;}
     }
-    public void alimentar(){
+    public void alimentar(BolsaAlimento food){
         if (hambre>=20){
-            hambre=hambre-20;
+            hambre=hambre-food.sacarAlimento(20);
         }
         else{
-            hambre=0;
+            int minus=food.sacarAlimento(hambre);
+            hambre=hambre-minus;
         }
     }
 }

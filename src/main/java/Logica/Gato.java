@@ -9,12 +9,13 @@ public class Gato extends MascotaDomestica {
             felicidad=felicidad+7;}
         else{felicidad=100;}
     }
-    public void alimentar(){
-        if (hambre>=8){
-            hambre=hambre-8;
+    public void alimentar(BolsaAlimento food){
+        if (hambre>=10){
+            hambre=hambre-food.sacarAlimento(10);
         }
         else{
-            hambre=0;
+            int minus=food.sacarAlimento(hambre);
+            hambre=hambre-minus;
         }
     }
 }
