@@ -1,24 +1,30 @@
 package Logica;
 
+import Logica.Insumos.ConsumoAlimento;
+import Logica.Insumos.ConsumoMedicina;
+import Logica.Insumos.Insumo;
+
 public class Main {
     public static void main(String[] args){
         Mascota perrito=new Perro(TipoColor.NEGRO);
-        Medicina med=new Medicina(150);
-        BolsaAlimento food=new BolsaAlimento(50,"perro");
+        Insumo med=new Insumo("medicina",1);
+        med.addDecorator(new ConsumoMedicina(70));
+        Insumo food=new Insumo("comida",2);
+        food.addDecorator(new ConsumoAlimento(33));
 
-        perrito.darMedicina(med);
-        System.out.println(med.getContenido());
-        System.out.println(perrito.getSalud());
-        System.out.println(perrito.getFelicidad());
+        perrito.consumir(med);
+        System.out.println("medicina contenido: "+med.getContenido());
+        System.out.println("perro salud: "+perrito.getSalud());
+        System.out.println("perro felicidad: "+perrito.getFelicidad());
         perrito.jugar();
-        System.out.println(perrito.getFelicidad());
-        System.out.println(perrito.getColor());
-        perrito.alimentar(food);
-        System.out.println(perrito.getHambre());
-        perrito.alimentar(food);
-        System.out.println(perrito.getHambre());
+        System.out.println("perro felicidad: "+perrito.getFelicidad());
+        System.out.println("perro color: "+perrito.getColor());
+        perrito.consumir(food);
+        System.out.println("perro hambre: "+perrito.getHambre());
+        perrito.consumir(food);
+        System.out.println("perro hambre: "+perrito.getHambre());
         System.out.println("comida restante: "+food.getContenido());
-        perrito.alimentar(food);
-        System.out.println(perrito.getHambre());
+        perrito.consumir(food);
+        System.out.println("perro hambre: "+perrito.getHambre());
     }
 }

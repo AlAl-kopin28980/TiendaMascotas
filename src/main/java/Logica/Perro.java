@@ -9,13 +9,4 @@ public class Perro extends MascotaDomestica {
             felicidad=felicidad+10;}
         else{felicidad=100;}
     }
-    public void alimentar(BolsaAlimento food){
-        if (hambre>=8){
-            hambre=hambre-food.sacarAlimento(8);
-        }
-        else{
-            int minus=food.sacarAlimento(hambre);
-            hambre=hambre-minus;
-        }
-    }
 }

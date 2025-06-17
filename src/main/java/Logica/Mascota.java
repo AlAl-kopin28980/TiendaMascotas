@@ -1,5 +1,7 @@
 package Logica;
 
+import Logica.Insumos.Insumo;
+
 public abstract class Mascota {
    protected int salud;
    protected int felicidad;
@@ -8,36 +10,36 @@ public abstract class Mascota {
    public Mascota(TipoColor color){
         salud=0;
         felicidad=0;
-        hambre=100;
+        hambre=0;
         this.color=color;
    }
    public abstract void jugar();
-   public abstract void alimentar(BolsaAlimento food);
-   public Mascota vender(){return this;}
-    public void darMedicina(Medicina med){
-        if(salud<100 && med.getContenido()>0) {
-            int aux=salud;
-            if((100-salud)<=med.getContenido()) {
-                salud =100;
-            }
-            else{
-                salud=salud+med.getContenido();
-            }
-            med.usar(salud - aux);
-        }
 
+   public Mascota vender(){return this;}
+    public void consumir(Insumo con){
+       con.consumir(this);
     }
 
     public int getFelicidad() {
         return felicidad;
     }
-
     public int getSalud() {
         return salud;
     }
-
     public int getHambre() {
         return hambre;
+    }
+
+    public void setSalud(int salud) {
+        this.salud = salud;
+    }
+
+    public void setFelicidad(int felicidad) {
+        this.felicidad = felicidad;
+    }
+
+    public void setHambre(int hambre) {
+        this.hambre = hambre;
     }
 
     public TipoColor getColor(){
