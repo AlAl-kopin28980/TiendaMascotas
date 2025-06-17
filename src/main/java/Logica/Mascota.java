@@ -5,15 +5,20 @@ public abstract class Mascota {
    protected int felicidad;
    protected int hambre;
    protected TipoColor color;
-   public Mascota(int salud,int felicidad,int hambre,TipoColor color){
+   protected int precio;
+   protected int tope;
+   public Mascota(int salud,int felicidad,int hambre,TipoColor color,int tope){
         this.salud=salud;
         this.felicidad=felicidad;
         this.hambre=hambre;
         this.color=color;
+        precio=(int)(tope*color.getPrecio())-hambre-200+felicidad+salud;
+        this.tope=tope;
    }
    public abstract void jugar();
    public abstract void alimentar(BolsaAlimento food);
-   public Mascota vender(){return this;}
+
+
     public void darMedicina(Medicina med){
         if(salud<100 && med.getContenido()>0) {
             int aux=salud;
@@ -43,4 +48,10 @@ public abstract class Mascota {
     public TipoColor getColor(){
         return color;
     }
+
+    public int getPrecio(){
+        precio=(int)(tope*color.getPrecio())-hambre-200+felicidad+salud;
+        return precio;}
+
+    public Mascota vender(){return this;}
 }

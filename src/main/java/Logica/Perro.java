@@ -2,7 +2,7 @@ package Logica;
 
 public class Perro extends MascotaDomestica {
     public Perro(int salud,int felicidad,int hambre,TipoColor color){
-        super(salud,felicidad,hambre,color);
+        super(salud,felicidad,hambre,color,2000);
     }
     public void jugar(){
         if(felicidad<=90){
