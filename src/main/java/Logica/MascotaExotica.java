@@ -1,7 +1,7 @@
 package Logica;
 
 public abstract class MascotaExotica extends Mascota {
-    public MascotaExotica(TipoColor color){
-        super(color);
+    public MascotaExotica(int salud,int felicidad,int hambre,TipoColor color){
+        super(salud,felicidad,hambre,color);
     }
 }

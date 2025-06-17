@@ -1,8 +1,8 @@
 package Logica;
 
 public class Hamster extends MascotaExotica {
-    public Hamster(TipoColor color){
-        super(color);
+    public Hamster(int salud,int felicidad,int hambre,TipoColor color){
+        super(salud,felicidad,hambre,color);
     }
     public void jugar(){
         if(felicidad<=90){
