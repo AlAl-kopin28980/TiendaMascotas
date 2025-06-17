@@ -5,5 +5,5 @@ public enum TipoColor {
     NEGRO,
     BLANCO,
     GRIS,
-    BANDW;
+    PATRON;
 }

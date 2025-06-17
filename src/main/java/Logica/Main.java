@@ -6,7 +6,10 @@ import Logica.Insumos.Insumo;
 
 public class Main {
     public static void main(String[] args){
-        Mascota perrito=new Perro(TipoColor.NEGRO);
+        MascotaFactory fabrica=new MascotaFactory();
+        Perro perrito=fabrica.createPerro();
+        System.out.println(String.format("hambre: %d felicidad: %d salud: %d",perrito.getHambre(),perrito.getFelicidad(),perrito.getSalud()));
+
         Insumo med=new Insumo("medicina",1);
         med.addDecorator(new ConsumoMedicina(70));
         Insumo food=new Insumo("comida",2);

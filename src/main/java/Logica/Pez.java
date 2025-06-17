@@ -1,8 +1,8 @@
 package Logica;
 
 public class Pez extends MascotaExotica {
-    public Pez(TipoColor color){
-        super(color);
+    public Pez(int salud,int felicidad,int hambre,TipoColor color){
+        super(salud,felicidad,hambre,color);
     }
     public void jugar(){
         if(felicidad<=80){

@@ -7,10 +7,10 @@ public abstract class Mascota {
    protected int felicidad;
    protected int hambre;
    protected TipoColor color;
-   public Mascota(TipoColor color){
-        salud=0;
-        felicidad=0;
-        hambre=0;
+   public Mascota(int salud,int felicidad,int hambre,TipoColor color){
+        this.salud=salud;
+        this.felicidad=felicidad;
+        this.hambre=hambre;
         this.color=color;
    }
    public abstract void jugar();
@@ -23,9 +23,11 @@ public abstract class Mascota {
     public int getFelicidad() {
         return felicidad;
     }
+
     public int getSalud() {
         return salud;
     }
+
     public int getHambre() {
         return hambre;
     }
