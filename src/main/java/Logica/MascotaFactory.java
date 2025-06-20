@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 public class MascotaFactory {
-    Random random = new Random();
-    ArrayList<TipoColor> colores=new ArrayList<TipoColor>(Arrays.asList(TipoColor.NARANJA,TipoColor.NEGRO,TipoColor.BLANCO,TipoColor.GRIS,TipoColor.PATRON));
+    private Random random = new Random();
+    private ArrayList<TipoColor> colores=new ArrayList<TipoColor>(Arrays.asList(TipoColor.NARANJA,TipoColor.NEGRO,TipoColor.BLANCO,TipoColor.GRIS,TipoColor.PATRON));
     public  MascotaFactory(){
 
     }
