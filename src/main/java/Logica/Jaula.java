@@ -2,6 +2,6 @@ package Logica;
 
 public class Jaula extends Habitat{
     public Jaula(){
-        super();
+        super(1000);
     }
 }

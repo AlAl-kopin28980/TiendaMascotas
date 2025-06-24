@@ -2,6 +2,6 @@ package Logica;
 
 public class Pecera extends Habitat{
     public Pecera(){
-        super();
+        super(750);
     }
 }
