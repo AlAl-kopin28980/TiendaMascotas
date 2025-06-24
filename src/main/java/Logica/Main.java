@@ -1,5 +1,6 @@
 package Logica;
 
+import Logica.Excepciones.DineroInsuficienteException;
 import Logica.Insumos.ConsumoAlimento;
 import Logica.Insumos.ConsumoMedicina;
 import Logica.Insumos.Insumo;
@@ -38,5 +39,18 @@ public class Main {
         j.addMascota(perrito);
         ArrayList<Mascota> list = j.getMacotaList();
         System.out.println(list);
+
+        //venta
+        Jugador player = new Jugador(10000);
+        try {
+            player.comprarMascota(perrito);
+        } catch (DineroInsuficienteException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(player.getMascotas()+","+player.getPresupuesto());
+        Cliente cliente = new Cliente(player);
+        cliente.elegirMascota();
+        cliente.Comprar();
+        System.out.println(player.getMascotas()+","+player.getPresupuesto());
     }
 }

@@ -36,4 +36,19 @@ public class Jugador {
     public void comprarInsumo(Insumo insumo){
         insumos.add(insumo);
     }
+
+    public ArrayList<Mascota> getMascotas() {
+        return mascotas;
+    }
+
+    public void Vender(Mascota mascota){
+        boolean vendido = mascotas.remove(mascota);
+        if (vendido){
+            dinero += mascota.getPrecio();
+        }
+    }
+
+    public int getPresupuesto() {
+        return dinero;
+    }
 }
