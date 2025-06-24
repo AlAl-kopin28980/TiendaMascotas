@@ -9,7 +9,12 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args){
         MascotaFactory fabrica=new MascotaFactory();
-        Perro perrito=fabrica.createPerro();
+        Mascota perrito=null;
+        try{
+            perrito=fabrica.createMascota("perro");}
+        catch (Exception w){
+            System.out.println(w.getMessage());
+        }
         System.out.println(String.format("hambre: %d felicidad: %d salud: %d precio: %d",perrito.getHambre(),perrito.getFelicidad(),perrito.getSalud(),perrito.getPrecio()));
 
         Insumo med=new Insumo("medicina",1,500);
