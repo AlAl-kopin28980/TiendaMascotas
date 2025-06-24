@@ -1,25 +1,68 @@
 package Logica;
-public abstract class Habitat {
-    protected Mascota mascota;
+
+import Logica.Excepciones.HabitatLlenoException;
+import Logica.Excepciones.TipoMascotaIncorrecto;
+
+import java.util.ArrayList;
+
+public abstract class Habitat<T extends Mascota> {
+    protected ArrayList<T> mascotas;
     protected int limpieza;
     protected int precio;
-    protected int tamaño;
-    public Habitat(int precio){
+    protected int size;
+    public Habitat(int precio, int size){
         limpieza=100;
         this.precio=precio;
+        this.size=size;
+
+        mascotas = new ArrayList<T>();
     }
     public void limpiarHabitat(){
         limpieza=100;
+        mascotas = new ArrayList<>();
     }
 
-    public void setMascota(Mascota mascota) {
-        this.mascota = mascota;
+    public void addMascota(Mascota mascota) throws HabitatLlenoException,TipoMascotaIncorrecto {
+        try{
+            if (mascotas.size()<size) {
+                mascotas.add((T) mascota);
+            }else{
+                throw new HabitatLlenoException();
+            }
+        } catch (ClassCastException e){
+            throw new TipoMascotaIncorrecto();
+        }
+    }
+    public Mascota getMascota(int i){
+        return mascotas.get(i);
+    }
+    public ArrayList<Mascota> getMacotaList(){
+        return (ArrayList<Mascota>) mascotas;
+    }
+
+    public Mascota sacarMascota(int i){
+        return mascotas.remove(i);
+    }
+    public Mascota sacarMascota(Mascota mascota) throws TipoMascotaIncorrecto{
+        try {
+            boolean succes = mascotas.remove((T)mascota);
+            if (succes) {
+                return mascota;
+            } else {
+                return null;
+            }
+        } catch (ClassCastException e){
+            throw new TipoMascotaIncorrecto();
+        }
     }
 
     public int getLimpieza(){
         return limpieza;
     }
-    public Mascota getMascota(){return mascota;}
+
+    public int getSize() {
+        return size;
+    }
 
     public int getPrecio() {
         return precio;

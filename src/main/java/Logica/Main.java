@@ -4,6 +4,8 @@ import Logica.Insumos.ConsumoAlimento;
 import Logica.Insumos.ConsumoMedicina;
 import Logica.Insumos.Insumo;
 
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args){
         MascotaFactory fabrica=new MascotaFactory();
@@ -30,5 +32,11 @@ public class Main {
         perrito.consumir(food);
         System.out.println("perro hambre: "+perrito.getHambre());
         System.out.println(String.format("hambre: %d felicidad: %d salud: %d precio: %d",perrito.getHambre(),perrito.getFelicidad(),perrito.getSalud(),perrito.getPrecio()));
+
+        //habitat
+        Jaula j = new Jaula(100,2);
+        j.addMascota(perrito);
+        ArrayList<Mascota> list = j.getMacotaList();
+        System.out.println(list);
     }
 }
