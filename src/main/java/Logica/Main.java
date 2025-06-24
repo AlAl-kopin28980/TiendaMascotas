@@ -10,12 +10,17 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args){
         MascotaFactory fabrica=new MascotaFactory();
-        Perro perrito=fabrica.createPerro();
+        Mascota perrito=null;
+        try{
+            perrito=fabrica.createMascota("perro");}
+        catch (Exception w){
+            System.out.println(w.getMessage());
+        }
         System.out.println(String.format("hambre: %d felicidad: %d salud: %d precio: %d",perrito.getHambre(),perrito.getFelicidad(),perrito.getSalud(),perrito.getPrecio()));
 
-        Insumo med=new Insumo("medicina",1);
+        Insumo med=new Insumo("medicina",1,500);
         med.addDecorator(new ConsumoMedicina(70));
-        Insumo food=new Insumo("comida",2);
+        Insumo food=new Insumo("comida",2,450);
         food.addDecorator(new ConsumoAlimento(33));
 
         perrito.consumir(med);
