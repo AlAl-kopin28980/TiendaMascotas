@@ -1,6 +1,6 @@
 package Logica;
 
-public class Hamster extends MascotaExotica {
+public class Hamster extends MascotaTerrestre {
     public Hamster(int salud,int felicidad,int hambre,TipoColor color){
         super(salud,felicidad,hambre,color,900);
     }
