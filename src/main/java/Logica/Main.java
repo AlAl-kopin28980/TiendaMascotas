@@ -41,14 +41,15 @@ public class Main {
         System.out.println(list);
 
         //venta
-        Jugador player = new Jugador(10000);
+        Jugador player = Jugador.getJugador();
+        player.darDinero(10000);
         try {
             player.comprarMascota(perrito);
         } catch (DineroInsuficienteException e) {
             throw new RuntimeException(e);
         }
         System.out.println(player.getMascotas()+","+player.getPresupuesto());
-        Cliente cliente = new Cliente(player);
+        Cliente cliente = new Cliente();
         cliente.elegirMascota();
         cliente.Comprar();
         System.out.println(player.getMascotas()+","+player.getPresupuesto());

@@ -8,8 +8,8 @@ public class Cliente {
     private Mascota mascotaelegida;
     private Random rng;
     private boolean dentro;
-    public Cliente(Jugador tienda){
-        this.tienda=tienda;
+    public Cliente(){
+        this.tienda=Jugador.getJugador();
         rng = new Random();
         dentro = true;
     }
