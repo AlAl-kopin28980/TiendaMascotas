@@ -33,7 +33,13 @@ public class Jugador {
             throw new DineroInsuficienteException();
         }
     }
-    public void comprarInsumo(Insumo insumo){
-        insumos.add(insumo);
+    public void comprarInsumo(Insumo insumo) throws DineroInsuficienteException{
+        if(dinero>=insumo.getPrecio()) {
+            insumos.add(insumo);
+            dinero = dinero - insumo.getPrecio();
+        }
+        else{
+            throw new DineroInsuficienteException();
+        }
     }
 }

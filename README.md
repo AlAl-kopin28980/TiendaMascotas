@@ -28,6 +28,8 @@
     Semana 1: Implementamos nuevos patrones de diseño que ayudan con la creación y complejidad de las mascotas y los elementos con los que se relacionan.
     Se establece un sistema de valor monetario para las mascotas, dependiente de sus atributos.
 
+    Semana 2: Creamos clase jugador que puede comprar insumos, mascotas y habitats. Habitats ahora tienen un tamaño que les permite agregar una cantidad limitada de mascotas.
+
 # Siguientes pasos
     Seguir con los elementos con los que se relacionan las mascotas y lograr una lógica firme.
     Crear una clase para el jugador y definir sus interacciones y habilidades.

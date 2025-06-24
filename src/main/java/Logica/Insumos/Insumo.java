@@ -7,12 +7,12 @@ import java.util.ArrayList;
 public class Insumo {
     private String nombre;
     private int porciones;
-
+    private int precio;
     ArrayList<ConsumoDecorator> decorators;
-    public Insumo(String nombre, int porciones){
+    public Insumo(String nombre, int porciones, int precio){
         this.nombre=nombre;
         this.porciones=porciones;
-
+        this.precio=precio;
         decorators = new ArrayList<>();
     }
 
@@ -34,5 +34,9 @@ public class Insumo {
     }
     public int getContenido(){
         return porciones;
+    }
+
+    public int getPrecio() {
+        return precio;
     }
 }

@@ -10,9 +10,9 @@ public class Main {
         Perro perrito=fabrica.createPerro();
         System.out.println(String.format("hambre: %d felicidad: %d salud: %d precio: %d",perrito.getHambre(),perrito.getFelicidad(),perrito.getSalud(),perrito.getPrecio()));
 
-        Insumo med=new Insumo("medicina",1);
+        Insumo med=new Insumo("medicina",1,500);
         med.addDecorator(new ConsumoMedicina(70));
-        Insumo food=new Insumo("comida",2);
+        Insumo food=new Insumo("comida",2,450);
         food.addDecorator(new ConsumoAlimento(33));
 
         perrito.consumir(med);
