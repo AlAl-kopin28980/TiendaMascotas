@@ -1,6 +1,7 @@
 package Graphics;
 
 
+import Logica.Habitat;
 import Logica.Mascota;
 
 import javax.imageio.ImageIO;
@@ -8,21 +9,27 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 
-public class DibujoMascota extends JComponent {
+public class DibujoHabitat extends JPanel {
     protected int h,w;
     protected BufferedImage image;
     private boolean active=true;
-    private Mascota me;
+    private Habitat me;
+    ArrayList<DibujoMascota> mascotas;
 
-    public DibujoMascota(int x, int y, int w, int h, Mascota me) {
+    public DibujoHabitat(int x, int y, int w, int h, Habitat me) {
         try {
-            image= ImageIO.read(new File("src/main/resources/Crash-Bandicoot-PNG-Image.png"));
+            image= ImageIO.read(new File("src/main/resources/jaula.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
         this.me=me;
+        mascotas=new ArrayList<>();
+
+        //this.setLayout(null);
+        this.setLayout(new GridLayout(1,me.getSize()));
+
         this.w=w;
         this.h=h;
         this.setBounds(x,y,w,h);
@@ -39,6 +46,13 @@ public class DibujoMascota extends JComponent {
             e.printStackTrace();
         }
     }*/
+    public void addMascota(Mascota mascota){
+        me.addMascota(mascota);
+        int wm = w/me.getSize();
+        DibujoMascota dibumascota = new DibujoMascota(10,10,wm-10,wm-10,mascota);
+        mascotas.add(dibumascota);
+        this.add(dibumascota);
+    }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
