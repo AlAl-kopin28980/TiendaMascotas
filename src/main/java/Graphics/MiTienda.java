@@ -9,10 +9,10 @@ public class MiTienda extends Scene{
     ArrayList<DibujoHabitat> habitats;
 
     Ventana window;
-    public MiTienda(Ventana window){
+    public MiTienda(){
         super(Color.DARK_GRAY);
         this.setLayout(null);
-        this.window=window;
+        this.window=Ventana.getInstance();
 
         habitats = new ArrayList<>();
         Jaula habitat = new Jaula(100,2);

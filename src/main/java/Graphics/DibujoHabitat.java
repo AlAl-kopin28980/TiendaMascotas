@@ -27,7 +27,7 @@ public class DibujoHabitat extends JPanel {
         this.me=me;
         mascotas=new ArrayList<>();
 
-        //this.setLayout(null);
+        this.setOpaque(false);
         this.setLayout(new GridLayout(1,me.getSize()));
 
         this.w=w;

@@ -3,18 +3,30 @@ package Graphics;
 import javax.swing.*;
 import java.awt.*;
 
-public class Ventana extends JFrame {
+public final class Ventana extends JFrame {
     public Scene currentScene;
 
-    public Ventana() {
+    private static Ventana instance = null;
+    public static Ventana getInstance(){
+        if (instance==null) {
+            return new Ventana();
+        }else {
+            return instance;
+        }
+    }
+
+    private Ventana() {
         super();
+
+        instance=this;
+        
         this.setTitle("Tienda De Mascotas");
         this.setLayout(new BorderLayout());
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(640, 640);
 
-        currentScene = new MiTienda(this);
+        currentScene = new MiTienda();
         currentScene.setActive(true);
         this.add(currentScene);
 
