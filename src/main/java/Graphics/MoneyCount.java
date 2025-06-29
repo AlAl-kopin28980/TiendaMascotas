@@ -1,16 +1,15 @@
 package Graphics;
 
+import Logica.Jugador;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class MoneyCount extends JComponent {
-    private int money;
     private JLabel texto=new JLabel("inicio");
     int x,y,w,h;
 
-    public MoneyCount(int x, int y, int w, int h, int money){
-        this.money=money;
-
+    public MoneyCount(int x, int y, int w, int h){
         this.setLayout(null);
         this.setBounds(x,y,w,h);
         this.add(texto);
@@ -27,7 +26,7 @@ public class MoneyCount extends JComponent {
 
         //g.setColor(Color.white);
         //g.fillRect(0,0,w,h);
-        texto.setText("$"+money);
+        texto.setText("$"+ Jugador.getJugador().getPresupuesto());
         texto.setBounds(0,0,w,h);
         texto.setForeground(Color.BLUE);
         texto.setOpaque(true);

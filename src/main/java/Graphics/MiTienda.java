@@ -23,7 +23,7 @@ public class MiTienda extends Scene{
         dibu.addMascota(p);
         dibu.addMascota(p);
 
-        this.add(new MoneyCount(10,10,100,50,100));
+        this.add(new MoneyCount(10,10,100,50));
     }
 
     @Override
