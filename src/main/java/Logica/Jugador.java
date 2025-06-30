@@ -5,12 +5,22 @@ import Logica.Insumos.Insumo;
 
 import java.util.ArrayList;
 
-public class Jugador {
+public final class Jugador {
     private ArrayList<Mascota> mascotas;
     private ArrayList<Habitat> habitats;
     private int dinero;
     private ArrayList<Insumo> insumos;
-    public Jugador(int presupuesto){
+
+    private static Jugador jugador = null;
+
+    public static Jugador getJugador(){
+        if (jugador==null){
+            jugador=new Jugador(0);
+        }
+        return jugador;
+    }
+
+    private Jugador(int presupuesto){
         dinero=presupuesto;
         mascotas=new ArrayList<>();
         habitats=new ArrayList<>();
@@ -42,5 +52,23 @@ public class Jugador {
         else{
             throw new DineroInsuficienteException();
         }
+    }
+
+    public ArrayList<Mascota> getMascotas() {
+        return mascotas;
+    }
+
+    public void Vender(Mascota mascota){
+        boolean vendido = mascotas.remove(mascota);
+        if (vendido){
+            dinero += mascota.getPrecio();
+        }
+    }
+
+    public void darDinero(int dinero){
+        this.dinero+=dinero;
+    }
+    public int getPresupuesto() {
+        return dinero;
     }
 }
