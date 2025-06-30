@@ -19,11 +19,8 @@ public class DibujoHabitat extends JPanel {
     ArrayList<DibujoMascota> mascotas;
 
     public DibujoHabitat(int x, int y, int w, int h, Habitat me) {
-        try {
-            image= ImageIO.read(new File("src/main/resources/jaula.png"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        image=Sprites.GetSprite("jaula");
+
         this.me=me;
         mascotas=new ArrayList<>();
 

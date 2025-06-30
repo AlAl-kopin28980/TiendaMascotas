@@ -17,11 +17,7 @@ public class DibujoMascota extends JComponent {
     private Mascota me;
 
     public DibujoMascota(int x, int y, int w, int h, Mascota me) {
-        try {
-            image= ImageIO.read(new File("src/main/resources/Crash-Bandicoot-PNG-Image.png"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        image=Sprites.GetSprite("Crash-Bandicoot-PNG-Image");
         this.me=me;
         this.w=w;
         this.h=h;
