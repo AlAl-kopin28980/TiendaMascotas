@@ -11,10 +11,8 @@ public class Tienda {
     private ArrayList<Habitat> peceras, jaulas, jaulaspajaro;
     private ArrayList<Insumo> comida, medicina, comidaenhanced;
     private Insumo food;
-    private Jugador jugador;
    // private int max;
-    public Tienda(int max,Jugador jugador){
-        this.jugador=jugador;
+    public Tienda(int max){
         perros=new ArrayList<>(); gatos=new ArrayList<>(); aves=new ArrayList<>(); hamsters=new ArrayList<>(); peces=new ArrayList<>();
         peceras=new ArrayList<>(); jaulaspajaro=new ArrayList<>(); jaulas= new ArrayList<>();
         comida=new ArrayList<>(); medicina=new ArrayList<>(); comidaenhanced=new ArrayList<>();
@@ -233,13 +231,13 @@ public class Tienda {
         if (index <= lista.size() & index > 0) {
             try {
                 if(tipo==1) {
-                    jugador.comprarInsumo((Insumo) lista.get(index - 1));
+                    Jugador.getJugador().comprarInsumo((Insumo) lista.get(index - 1));
                 }
                 else if (tipo==2){
-                    jugador.comprarHabitat((Habitat) lista.get(index - 1));
+                    Jugador.getJugador().comprarHabitat((Habitat) lista.get(index - 1));
                 }
                 else if(tipo==3){
-                    jugador.comprarMascota((Mascota) lista.get(index - 1));
+                    Jugador.getJugador().comprarMascota((Mascota) lista.get(index - 1));
                 }
                 lista.remove(lista.get(index - 1));
                 System.out.println("Compra ha sido exitosa");
