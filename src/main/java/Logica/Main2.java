@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 public class Main2 {
     public static void main(String[] args){
-        Jugador jugador=new Jugador(20000);
+        Jugador jugador=Jugador.getJugador();
+        jugador.darDinero(20000);
         Tienda tienda=new Tienda(3, jugador);
         tienda.comprarCosas();
     }

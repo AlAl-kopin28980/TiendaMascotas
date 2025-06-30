@@ -37,14 +37,13 @@ public class Tienda {
         int tipo=1;
         Scanner scanner = new Scanner(System.in);  // Scanner para ingresar indice
         while(tipo!=0) {  //cuando producto es cero indicamos que queremos salir del programa
-            System.out.println("¿Qué desea comprar? \n0.Salir \n1.Insumos\n2.Mascotas\n3.Habitats \n4.Solicitar relleno de stock");
+            System.out.println("¿Qué desea comprar? \n0.Salir \n1.Insumos\n2.Mascotas\n3.Habitats");
             System.out.println("Ingrese número de producto: ");
             tipo = scanner.nextInt();
-            if (tipo >= 1 & tipo <= 4) {  //nos aseguramos que el indice no esté fuera de limites
+            if (tipo >= 1 & tipo <= 3) {  //nos aseguramos que el indice no esté fuera de limites
                 if (tipo==1){this.comprarInsumo();}
                 else if (tipo==2){this.comprarMascota();}
-                else if (tipo==3){this.comprarHabitat();}
-                else{this.rellenarStock();}
+                else{this.comprarHabitat();}
             }
             else if(tipo!=0){
                 System.out.println("Número NO válido, intente de nuevo");
@@ -71,19 +70,25 @@ public class Tienda {
                         System.out.println(i+"."+comidita);
                         i++;
                     }
-                    intentarCompra(comida,1);
+                    index=intentarCompra(comida,1);
+                    if (index!=-1){
+                        comida.add(crearInsumo(1,index));}
                 } else if (tipo == 2) {
                     System.out.println("Medicina disponible: ");
                     for(Insumo meds: medicina){
                         System.out.println(i+"."+meds);
                         i++;}
-                    intentarCompra(medicina,1);
+                    index=intentarCompra(medicina,1);
+                    if (index!=-1){
+                        medicina.add(crearInsumo(2,index));}
                 } else {
                     System.out.println("Comida mejorada disponible: ");
                         for(Insumo power: comidaenhanced){
                             System.out.println(i+"."+power);
                             i++;}
-                    intentarCompra(comidaenhanced,1);
+                    index=intentarCompra(comidaenhanced,1);
+                    if (index!=-1){
+                        comidaenhanced.add(crearInsumo(3,index));}
                 }
             }
             else if (tipo!=0){
@@ -110,31 +115,41 @@ public class Tienda {
                         System.out.println(i+"."+perro);
                         i++;
                     }
-                    intentarCompra(perros,3);
+                    index=intentarCompra(perros,3);
+                    if (index!=-1){
+                        perros.add(MascotaFactory.createMascota("perro"));}
                 } else if (tipo == 2) {
                     System.out.println("Gatos disponibles: ");
                     for(Mascota gato: gatos){
                         System.out.println(i+"."+gato);
                         i++;}
-                    intentarCompra(gatos,3);
+                    index=intentarCompra(gatos,3);
+                    if (index!=-1){
+                        gatos.add(MascotaFactory.createMascota("gato"));}
                 } else if (tipo == 3) {
-                System.out.println("Hamsters disponibles: ");
-                for(Mascota hamster: hamsters){
-                    System.out.println(i+"."+hamster);
-                    i++;}
-                intentarCompra(hamsters,3);
+                    System.out.println("Hamsters disponibles: ");
+                    for(Mascota hamster: hamsters){
+                        System.out.println(i+"."+hamster);
+                        i++;}
+                    index=intentarCompra(hamsters,3);
+                    if (index!=-1){
+                        hamsters.add(MascotaFactory.createMascota("hamster"));}
                 } else if (tipo == 4) {
                     System.out.println("Aves disponibles: ");
                     for(Mascota ave: aves){
                         System.out.println(i+"."+ave);
                         i++;}
-                    intentarCompra(aves,3);
+                    index=intentarCompra(aves,3);
+                    if (index!=-1){
+                        aves.add(MascotaFactory.createMascota("ave"));}
                 } else {
                     System.out.println("Peces disponibles: ");
                     for(Mascota pez: peces){
                         System.out.println(i+"."+pez);
                         i++;}
-                    intentarCompra(peces,3);
+                    index=intentarCompra(peces,3);
+                    if (index!=-1){
+                        peces.add(MascotaFactory.createMascota("pez"));}
                 }
             }
             else if (tipo!=0){
@@ -161,19 +176,25 @@ public class Tienda {
                         System.out.println(i+"."+pecera);
                         i++;
                     }
-                    intentarCompra(peceras,2);
+                    index=intentarCompra(peceras,2);
+                    if (index!=-1){
+                        peceras.add(new Pecera(300*index,index));}
                 } else if (tipo == 2) {
                     System.out.println("Jaulas disponibles: ");
                     for(Habitat jaula: jaulas){
                         System.out.println(i+"."+jaula);
                         i++;}
-                    intentarCompra(jaulas,2);
+                    index=intentarCompra(jaulas,2);
+                    if (index!=-1){
+                        jaulas.add(new Jaula(500*index,index));}
                 } else {
                     System.out.println("Jaulas para pájaros disponibles: ");
                     for(Habitat caja: jaulaspajaro){
                         System.out.println(i+"."+caja);
                         i++;}
-                    intentarCompra(jaulaspajaro,2);
+                    index=intentarCompra(jaulaspajaro,2);
+                    if (index!=-1){
+                        jaulaspajaro.add(new JaulaPajaro(450*index,index));}
                 }
             }
             else if (tipo!=0){
@@ -203,8 +224,9 @@ public class Tienda {
         return food;
     }
 
-    private void intentarCompra(ArrayList lista,int tipo) {
+    private int intentarCompra(ArrayList lista,int tipo) {
         int index;
+        int check=-1;
         Scanner scan=new Scanner(System.in);
         System.out.println("Ingrese el número del producto deseado: ");
         index= scan.nextInt();
@@ -221,6 +243,7 @@ public class Tienda {
                 }
                 lista.remove(lista.get(index - 1));
                 System.out.println("Compra ha sido exitosa");
+                check=index;
             } catch (DineroInsuficienteException e) {
                 System.out.println(e.getMessage());
             }
@@ -228,9 +251,7 @@ public class Tienda {
             System.out.println("Número inválido, intente de nuevo");
             intentarCompra(lista,tipo);
         }
+        return check;
     }
 
-    private void rellenarStock(){
-        //lo ideal seria que rellene los i que se sacaron, para que siempre estén las mismas porciones/tamaños
-    }
 }
