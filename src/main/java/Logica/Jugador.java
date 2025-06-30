@@ -14,6 +14,7 @@ public class Jugador {
         dinero=presupuesto;
         mascotas=new ArrayList<>();
         habitats=new ArrayList<>();
+        insumos=new ArrayList<>();
     }
     public void comprarMascota(Mascota mascota) throws DineroInsuficienteException{
         if(dinero>=mascota.getPrecio()) {

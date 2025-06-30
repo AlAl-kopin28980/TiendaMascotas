@@ -30,9 +30,11 @@
 
     Semana 2: Creamos clase jugador que puede comprar insumos, mascotas y habitats. Habitats ahora tienen un tamaño que les permite agregar una cantidad limitada de mascotas.
 
+    Semana 3: Creación de clase Tienda, encargada de la creación de insumos, mascotas y habitats disponibles para jugador.
+
 # Siguientes pasos
     Seguir con los elementos con los que se relacionan las mascotas y lograr una lógica firme.
-    Crear una clase para el jugador y definir sus interacciones y habilidades.
+    Finalizar detalles de clase Tienda y continuar con clase Comprador
     Seguir evolucionando nuestros prototipos gráficos.
 
 # Ideas para (posible) futura implementación
