@@ -41,6 +41,30 @@ public class DibujoMascota extends JComponent {
                 case GRIS -> Sprites.GetSprite("gato/gris");
                 case PATRON -> Sprites.GetSprite("gato/nyan");
             };
+        } else if (tipo instanceof Pez) {
+            image = switch (tipo.getColor()) {
+                case NARANJA -> Sprites.GetSprite("pez/naranjo");
+                case BLANCO -> Sprites.GetSprite("pez/blanco");
+                case NEGRO -> Sprites.GetSprite("pez/negro");
+                case GRIS -> Sprites.GetSprite("pez/gris");
+                case PATRON -> Sprites.GetSprite("pez/tropical");
+            };
+        } else if (tipo instanceof Ave) {
+            image = switch (tipo.getColor()) {
+                case NARANJA -> Sprites.GetSprite("ave/naranjo");
+                case BLANCO -> Sprites.GetSprite("ave/blanco");
+                case NEGRO -> Sprites.GetSprite("ave/miedo");
+                case GRIS -> Sprites.GetSprite("ave/gris");
+                case PATRON -> Sprites.GetSprite("ave/loro");
+            };
+        } else if (tipo instanceof Hamster) {
+            image = switch (tipo.getColor()) {
+                case NARANJA -> Sprites.GetSprite("hamster/naranjo");
+                case BLANCO -> Sprites.GetSprite("hamster/blanco");
+                case NEGRO -> Sprites.GetSprite("hamster/negro");
+                case GRIS -> Sprites.GetSprite("hamster/gris");
+                case PATRON -> Sprites.GetSprite("hamster/kawaii");
+            };
         }
     }
 
