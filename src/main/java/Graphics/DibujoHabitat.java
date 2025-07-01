@@ -46,7 +46,7 @@ public class DibujoHabitat extends JPanel {
     public void addMascota(Mascota mascota){
         me.addMascota(mascota);
         int wm = w/me.getSize();
-        DibujoMascota dibumascota = new DibujoMascota(10,10,wm-10,wm-10,mascota);
+        DibujoMascota dibumascota = new DibujoMascota(0,0,wm,wm,mascota);
         mascotas.add(dibumascota);
         this.add(dibumascota);
     }

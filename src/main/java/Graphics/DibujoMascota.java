@@ -17,24 +17,22 @@ public class DibujoMascota extends JComponent {
     private Mascota me;
 
     public DibujoMascota(int x, int y, int w, int h, Mascota me) {
-        image=Sprites.GetSprite("Crash-Bandicoot-PNG-Image");
+        setImage(me);
         this.me=me;
         this.w=w;
         this.h=h;
         this.setBounds(x,y,w,h);
     }
-    /*
-    public void setImage(int type){
-        try {
-            if(type==1){image = ImageIO.read(new File("src/main/resources/Coca.png"));}
-            else if(type==2){image = ImageIO.read(new File("src/main/resources/Sprite.png"));}
-            else if(type==3){image = ImageIO.read(new File("src/main/resources/Fanta.png"));}
-            else if(type==4){image = ImageIO.read(new File("src/main/resources/Super8.png"));}
-            else if(type==5){image = ImageIO.read(new File("src/main/resources/Snickers.png"));}
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
+
+    public void setImage(Mascota tipo){
+        image = switch (tipo.getColor()){
+            case NARANJA -> Sprites.GetSprite("perro/naranjo");
+            case BLANCO -> Sprites.GetSprite("perro/blanco");
+            case NEGRO -> Sprites.GetSprite("perro/negro");
+            case GRIS -> Sprites.GetSprite("perro/gris");
+            case PATRON -> Sprites.GetSprite("perro/arcoiris");
+        };
+    }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
