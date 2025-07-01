@@ -25,14 +25,14 @@ public class MiTienda extends Scene{
         habitats.add(dibu3);
         this.add(dibu3);
         Perro p = new Perro(60,50,0, TipoColor.NARANJA);
-        Perro q = new Perro(60,50,0, TipoColor.BLANCO);
+        Gato q = new Gato(60,50,0, TipoColor.BLANCO);
         dibu1.addMascota(p);
         dibu1.addMascota(q);
         Perro p2 = new Perro(60,50,0, TipoColor.NEGRO);
-        Perro q2 = new Perro(60,50,0, TipoColor.GRIS);
+        Gato q2 = new Gato(60,50,0, TipoColor.GRIS);
         dibu2.addMascota(p2);
         dibu2.addMascota(q2);
-        Perro p3 = new Perro(60,50,0, TipoColor.PATRON);
+        Gato p3 = new Gato(60,50,0, TipoColor.PATRON);
         dibu3.addMascota(p3);
 
         this.add(new MoneyCount(10,10,100,50));

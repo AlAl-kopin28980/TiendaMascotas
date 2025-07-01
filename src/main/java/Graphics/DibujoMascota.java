@@ -1,7 +1,7 @@
 package Graphics;
 
 
-import Logica.Mascota;
+import Logica.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -25,13 +25,23 @@ public class DibujoMascota extends JComponent {
     }
 
     public void setImage(Mascota tipo){
-        image = switch (tipo.getColor()){
-            case NARANJA -> Sprites.GetSprite("perro/naranjo");
-            case BLANCO -> Sprites.GetSprite("perro/blanco");
-            case NEGRO -> Sprites.GetSprite("perro/negro");
-            case GRIS -> Sprites.GetSprite("perro/gris");
-            case PATRON -> Sprites.GetSprite("perro/arcoiris");
-        };
+        if (tipo instanceof Perro) {
+            image = switch (tipo.getColor()) {
+                case NARANJA -> Sprites.GetSprite("perro/naranjo");
+                case BLANCO -> Sprites.GetSprite("perro/blanco");
+                case NEGRO -> Sprites.GetSprite("perro/negro");
+                case GRIS -> Sprites.GetSprite("perro/gris");
+                case PATRON -> Sprites.GetSprite("perro/arcoiris");
+            };
+        } else if (tipo instanceof Gato) {
+            image = switch (tipo.getColor()) {
+                case NARANJA -> Sprites.GetSprite("gato/ramirez");
+                case BLANCO -> Sprites.GetSprite("gato/blanco");
+                case NEGRO -> Sprites.GetSprite("gato/negro");
+                case GRIS -> Sprites.GetSprite("gato/gris");
+                case PATRON -> Sprites.GetSprite("gato/nyan");
+            };
+        }
     }
 
     public void paintComponent(Graphics g) {
