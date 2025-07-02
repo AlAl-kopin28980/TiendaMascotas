@@ -11,13 +11,14 @@ import java.io.File;
 import java.io.IOException;
 
 public class DibujoMascota extends JComponent {
-    protected int h,w;
-    protected BufferedImage image;
+    private int h,w;
+    private BufferedImage image;
     private boolean active=true;
     private Mascota me;
 
     public DibujoMascota(int x, int y, int w, int h, Mascota me) {
-        setImage(me);
+        if (me!=null)
+            setImage(me);
         this.me=me;
         this.w=w;
         this.h=h;

@@ -16,7 +16,10 @@ public class Cliente {
 
     public Mascota elegirMascota(){
         ArrayList<Mascota> mascotas = tienda.getMascotas();
-        mascotaelegida=mascotas.get(rng.nextInt(mascotas.size()));
+        if (mascotas.size()>0)
+            mascotaelegida=mascotas.get(rng.nextInt(mascotas.size()));
+        else
+            return null;
 
         return mascotaelegida;
     }

@@ -1,6 +1,7 @@
 package Graphics;
 
 import Logica.*;
+import Logica.Excepciones.DineroInsuficienteException;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -34,6 +35,15 @@ public class MiTienda extends Scene{
         dibu2.addMascota(q2);
         Hamster p3 = new Hamster(60,50,0, TipoColor.PATRON);
         dibu3.addMascota(p3);
+        try {
+            Jugador.getJugador().comprarMascota(p);
+            Jugador.getJugador().comprarMascota(q);
+        } catch (DineroInsuficienteException e) {
+            throw new RuntimeException(e);
+        }
+
+        //jugador
+        this.add(new DibujoComprador(513,52,362,603));
 
         this.add(new MoneyCount(10,10,100,50));
     }
