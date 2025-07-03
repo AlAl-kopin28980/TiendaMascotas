@@ -45,7 +45,7 @@ public class MiTienda extends Scene{
         //jugador
         this.add(new DibujoComprador(513,52,362,603));
 
-        this.add(new MoneyCount(10,10,100,50));
+        this.add(new MoneyCount(679,10,193,50));
     }
 
     @Override
