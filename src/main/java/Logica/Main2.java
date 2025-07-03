@@ -10,5 +10,6 @@ public class Main2 {
         jugador.darDinero(20000);
         Tienda tienda=new Tienda(3, jugador);
         tienda.comprarCosas();
+        Jugador.getJugador().showInventario();
     }
 }

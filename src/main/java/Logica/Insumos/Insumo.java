@@ -40,7 +40,7 @@ public class Insumo {
         return precio;
     }
     public String toString(){
-        String string="Tipo: "+nombre+" Porciones: "+porciones+" Precio: $"+precio;
+        String string="Tipo de insumo: "+nombre+" - Porciones: "+porciones+" - Precio: $"+precio;
         return string;
     }
 }

@@ -71,4 +71,17 @@ public final class Jugador {
     public int getPresupuesto() {
         return dinero;
     }
+
+    public void showInventario(){
+        for (Mascota mascota: mascotas){
+            System.out.println(mascota.getClass().getSimpleName()+" - "+mascota);
+        }
+        for (Insumo insumo: insumos){
+            System.out.println(insumo);
+        }
+        for (Habitat habitat: habitats){
+            System.out.println(habitat.getClass().getSimpleName()+" - "+habitat);
+        }
+    }
+
 }

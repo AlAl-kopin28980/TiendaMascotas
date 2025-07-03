@@ -79,7 +79,7 @@ public abstract class Mascota {
     public Mascota vender(){return this;}
 
     public String toString(){
-        String string="Color: "+color+" Precio: $"+precio;
+        String string="Color: "+color+" - Precio: $"+precio;
         return string;
     }
 }
