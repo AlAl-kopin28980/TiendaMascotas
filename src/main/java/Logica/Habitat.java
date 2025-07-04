@@ -26,6 +26,7 @@ public abstract class Habitat<T extends Mascota> {
         try{
             if (mascotas.size()<size) {
                 mascotas.add((T) mascota);
+                mascota.EntrarEn(this);
             }else{
                 throw new HabitatLlenoException();
             }
@@ -41,12 +42,15 @@ public abstract class Habitat<T extends Mascota> {
     }
 
     public Mascota sacarMascota(int i){
-        return mascotas.remove(i);
+        Mascota m = mascotas.remove(i);
+        m.Salir();
+        return m;
     }
     public Mascota sacarMascota(Mascota mascota) throws TipoMascotaIncorrecto{
         try {
             boolean succes = mascotas.remove((T)mascota);
             if (succes) {
+                mascota.Salir();
                 return mascota;
             } else {
                 return null;
@@ -66,5 +70,10 @@ public abstract class Habitat<T extends Mascota> {
 
     public int getPrecio() {
         return precio;
+    }
+
+    public String toString() {
+        String string="Tamaño: apto para "+size+" mascota(s). Precio: $"+precio;
+        return string;
     }
 }

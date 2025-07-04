@@ -9,10 +9,9 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args){
-        MascotaFactory fabrica=new MascotaFactory();
         Mascota perrito=null;
         try{
-            perrito=fabrica.createMascota("perro");}
+            perrito=MascotaFactory.createMascota("perro");}
         catch (Exception w){
             System.out.println(w.getMessage());
         }

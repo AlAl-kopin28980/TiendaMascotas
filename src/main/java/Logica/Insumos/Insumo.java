@@ -39,4 +39,8 @@ public class Insumo {
     public int getPrecio() {
         return precio;
     }
+    public String toString(){
+        String string="Tipo de insumo: "+nombre+" - Porciones: "+porciones+" - Precio: $"+precio;
+        return string;
+    }
 }
