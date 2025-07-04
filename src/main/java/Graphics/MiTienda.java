@@ -61,22 +61,8 @@ public class MiTienda extends Scene{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        puerta.whenClick(e);
-    }
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-    @Override
-    public void mouseExited(MouseEvent e) {
-
+        if (active) {
+            puerta.whenClick(e);
+        }
     }
 }

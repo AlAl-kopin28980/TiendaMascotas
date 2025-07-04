@@ -11,7 +11,7 @@ public class MoneyCount extends JComponent {
     private BufferedImage image;
     private int x,y,w,h;
 
-    private static MoneyCount instance;
+    private static MoneyCount instance = null;
 
     public static MoneyCount getInstance() {
         if (instance != null){
