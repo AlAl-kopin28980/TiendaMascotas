@@ -2,13 +2,15 @@ package Graphics;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseListener;
 
-public abstract class Scene extends JPanel{
+public abstract class Scene extends JPanel implements MouseListener {
     private boolean active;
 
     public Scene(Color col){
         super();
         this.setBackground(col);
+        addMouseListener(this);
 
         active = false;
     }

@@ -2,13 +2,15 @@ package Graphics;
 
 import Logica.Cliente;
 import Logica.Jugador;
+import Logica.Mascota;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class DibujoComprador extends JPanel {
-    private int h,w;
+    private int x,y,h,w;
     private BufferedImage image;
     private BufferedImage globo;
     private Cliente me = null;
@@ -19,6 +21,9 @@ public class DibujoComprador extends JPanel {
         image = Sprites.GetSprite("puerta_cerrada");
         globo = Sprites.GetSprite("globo_texto");
         this.me=me;
+
+        this.x=x;
+        this.y=y;
         this.w=w;
         this.h=h;
 
@@ -28,15 +33,17 @@ public class DibujoComprador extends JPanel {
 
         mascotaelegida = new DibujoMascota(30,12,100,100,null);
         this.add(mascotaelegida);
-
-        EntrarCliente();
-        AceptarCompra();
     }
 
     public void EntrarCliente(){
         me = new Cliente();
-        image = Sprites.GetSprite("puerta_abierta_persona");
-        mascotaelegida.setMascota(me.elegirMascota());
+        Mascota elegida = me.elegirMascota();
+        if (elegida!=null) {
+            image = Sprites.GetSprite("puerta_abierta_persona");
+            mascotaelegida.setMascota(elegida);
+            this.revalidate();
+            this.repaint();
+        }else SalirCliente();
     }
 
     public void SalirCliente(){
@@ -44,12 +51,27 @@ public class DibujoComprador extends JPanel {
         image = Sprites.GetSprite("puerta_cerrada");
         mascotaelegida.setMascota(null);
         me = null;
+
+        this.revalidate();
+        this.repaint();
     }
 
     public void AceptarCompra(){
         me.Comprar();
         mascotaelegida.getMe().getDibujo().Salir();
         SalirCliente();
+    }
+
+    public void whenClick(MouseEvent e) {
+        int relx = e.getX()-x;
+        int rely = e.getY()-y;
+
+        if (relx>=0 && relx<=w && rely>=0 && rely<=h) {
+            if (me == null)
+                EntrarCliente();
+            else
+                AceptarCompra();
+        }
     }
 
     public void paintComponent(Graphics g) {

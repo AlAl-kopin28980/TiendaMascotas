@@ -4,10 +4,12 @@ import Logica.*;
 import Logica.Excepciones.DineroInsuficienteException;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class MiTienda extends Scene{
     ArrayList<DibujoHabitat> habitats;
+    DibujoComprador puerta;
 
     Ventana window;
     public MiTienda(){
@@ -43,7 +45,8 @@ public class MiTienda extends Scene{
         }
 
         //jugador
-        this.add(new DibujoComprador(513,52,362,603));
+        puerta = new DibujoComprador(513,52,362,603);
+        this.add(puerta);
 
         this.add(new MoneyCount(679,10,193,50));
     }
@@ -54,5 +57,26 @@ public class MiTienda extends Scene{
 
         g.setColor(Color.ORANGE);
         g.fillRect(0,320,window.getWidth(),window.getHeight());
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        puerta.whenClick(e);
+    }
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }
