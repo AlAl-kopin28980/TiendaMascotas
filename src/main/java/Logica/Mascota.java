@@ -13,6 +13,8 @@ public abstract class Mascota {
    protected int precio;
    protected int tope;
 
+   protected Habitat miHabitat = null;
+
    private Timer timer;
    public Mascota(int salud,int felicidad,int hambre,TipoColor color,int tope){
         this.salud=salud;
@@ -38,10 +40,17 @@ public abstract class Mascota {
        timer.scheduleAtFixedRate(task, 0, 2000);
    }
 
-   public abstract void jugar();
+    public abstract void jugar();
 
     public void consumir(Insumo con){
        con.consumir(this);
+    }
+
+    public void EntrarEn(Habitat hogar){
+        miHabitat = hogar;
+    }
+    public void Salir(){
+        miHabitat = null;
     }
 
     public int getFelicidad() {
