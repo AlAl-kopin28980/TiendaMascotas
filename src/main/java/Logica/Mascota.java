@@ -1,5 +1,6 @@
 package Logica;
 
+import Graphics.DibujoMascota;
 import Logica.Insumos.Insumo;
 
 import java.util.Timer;
@@ -14,6 +15,8 @@ public abstract class Mascota {
    protected int tope;
 
    protected Habitat miHabitat = null;
+
+   protected DibujoMascota miDibujo = null;
 
    private Timer timer;
    public Mascota(int salud,int felicidad,int hambre,TipoColor color,int tope){
@@ -90,5 +93,12 @@ public abstract class Mascota {
     public String toString(){
         String string="Color: "+color+" - Precio: $"+precio;
         return string;
+    }
+
+    public void setDibujo(DibujoMascota miDibujo) {
+        this.miDibujo = miDibujo;
+    }
+    public DibujoMascota getDibujo() {
+        return miDibujo;
     }
 }

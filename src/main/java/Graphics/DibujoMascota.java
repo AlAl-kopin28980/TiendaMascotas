@@ -16,15 +16,23 @@ public class DibujoMascota extends JComponent {
     private boolean active=true;
     private Mascota me;
 
+    private DibujoHabitat miHabitat = null;
+
     public DibujoMascota(int x, int y, int w, int h, Mascota me) {
-        if (me!=null)
+        if (me!=null) {
             setImage(me);
+            me.setDibujo(this);
+        }
         this.me=me;
         this.w=w;
         this.h=h;
         this.setBounds(x,y,w,h);
     }
 
+    public void setMascota(Mascota me){
+        this.me=me;
+        setImage(me);
+    }
     public void setImage(Mascota tipo){
         if (tipo instanceof Perro) {
             image = switch (tipo.getColor()) {
@@ -66,7 +74,17 @@ public class DibujoMascota extends JComponent {
                 case GRIS -> Sprites.GetSprite("hamster/gris");
                 case PATRON -> Sprites.GetSprite("hamster/kawaii");
             };
+        } else{
+            image = null;
         }
+    }
+
+    public void EntrarEn(DibujoHabitat hogar){
+        miHabitat = hogar;
+    }
+    public void Salir(){
+        miHabitat.sacarMascota(this);
+        miHabitat = null;
     }
 
     public void paintComponent(Graphics g) {
@@ -76,6 +94,10 @@ public class DibujoMascota extends JComponent {
         if (image != null && active) {
             g2d.drawImage(image, 0, 0, w, h, this);
         }
+    }
+
+    public Mascota getMe() {
+        return me;
     }
 
     /**

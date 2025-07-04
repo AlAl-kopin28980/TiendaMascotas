@@ -11,7 +11,7 @@ public class DibujoComprador extends JPanel {
     private int h,w;
     private BufferedImage image;
     private BufferedImage globo;
-    private Cliente me;
+    private Cliente me = null;
 
     private DibujoMascota mascotaelegida;
 
@@ -30,12 +30,26 @@ public class DibujoComprador extends JPanel {
         this.add(mascotaelegida);
 
         EntrarCliente();
+        AceptarCompra();
     }
 
     public void EntrarCliente(){
         me = new Cliente();
         image = Sprites.GetSprite("puerta_abierta_persona");
-        mascotaelegida.setImage(me.elegirMascota());
+        mascotaelegida.setMascota(me.elegirMascota());
+    }
+
+    public void SalirCliente(){
+        me.Salir();
+        image = Sprites.GetSprite("puerta_cerrada");
+        mascotaelegida.setMascota(null);
+        me = null;
+    }
+
+    public void AceptarCompra(){
+        me.Comprar();
+        mascotaelegida.getMe().getDibujo().Salir();
+        SalirCliente();
     }
 
     public void paintComponent(Graphics g) {
@@ -45,7 +59,7 @@ public class DibujoComprador extends JPanel {
         if (image != null) {
             g2d.drawImage(image, 0, 0, w, h, this);
         }
-        if (globo != null) {
+        if (globo != null && me!=null) {
             g2d.drawImage(globo, 0, 0, 166, 156, this);
         }
     }
