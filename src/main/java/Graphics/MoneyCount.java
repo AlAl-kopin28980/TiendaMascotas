@@ -11,7 +11,17 @@ public class MoneyCount extends JComponent {
     private BufferedImage image;
     private int x,y,w,h;
 
-    public MoneyCount(int x, int y, int w, int h){
+    private static MoneyCount instance;
+
+    public static MoneyCount getInstance() {
+        if (instance != null){
+            return instance;
+        }else{
+            instance = new MoneyCount(679,10,193,50);
+            return instance;
+        }
+    }
+    private MoneyCount(int x, int y, int w, int h){
         this.setLayout(null);
         this.setBounds(x,y,w,h);
         this.add(texto);

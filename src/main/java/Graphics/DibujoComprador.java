@@ -59,6 +59,8 @@ public class DibujoComprador extends JPanel {
     public void AceptarCompra(){
         me.Comprar();
         mascotaelegida.getMe().getDibujo().Salir();
+        MoneyCount.getInstance().revalidate();
+        MoneyCount.getInstance().repaint();
         SalirCliente();
     }
 
@@ -66,7 +68,7 @@ public class DibujoComprador extends JPanel {
         int relx = e.getX()-x;
         int rely = e.getY()-y;
 
-        if (relx>=0 && relx<=w && rely>=0 && rely<=h) {
+        if (e.getButton()==1 && relx>=0 && relx<=w && rely>=0 && rely<=h) {
             if (me == null)
                 EntrarCliente();
             else
