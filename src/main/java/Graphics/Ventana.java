@@ -26,7 +26,7 @@ public final class Ventana extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(872, 640);
 
-        currentScene = new MiTienda();
+        currentScene = MiTienda.getInstance();
         currentScene.setActive(true);
         this.add(currentScene);
 

@@ -7,12 +7,20 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class MiTienda extends Scene{
+public final class MiTienda extends Scene{
     ArrayList<DibujoHabitat> habitats;
     DibujoComprador puerta;
 
     Ventana window;
-    public MiTienda(){
+    static MiTienda instance = null;
+    public static MiTienda getInstance(){
+        if (instance!=null)
+            return instance;
+        else
+            instance = new MiTienda();
+        return instance;
+    }
+    private MiTienda(){
         super(Color.DARK_GRAY);
         this.setLayout(null);
         this.window=Ventana.getInstance();
@@ -59,10 +67,7 @@ public class MiTienda extends Scene{
         g.fillRect(0,320,window.getWidth(),window.getHeight());
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        if (active) {
-            puerta.whenClick(e);
-        }
+    public void whenClick(MouseEvent e) {
+        puerta.whenClick(e);
     }
 }

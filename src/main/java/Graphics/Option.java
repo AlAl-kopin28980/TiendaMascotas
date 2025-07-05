@@ -25,7 +25,8 @@ public class Option extends JLabel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        parent.CallBack(option);
+        if (e.getButton()==1)
+            parent.CallBack(option);
     }
 
     @Override

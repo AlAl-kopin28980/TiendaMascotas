@@ -48,6 +48,7 @@ public class DibujoComprador extends JPanel implements OptionCall {
 
             this.add(si);
             this.add(no);
+            MiTienda.getInstance().activeInput(false);
 
             this.revalidate();
             this.repaint();
@@ -104,5 +105,6 @@ public class DibujoComprador extends JPanel implements OptionCall {
         }else if (Objects.equals(option, "No")){
             SalirCliente();
         }
+        MiTienda.getInstance().activeInput(true);
     }
 }

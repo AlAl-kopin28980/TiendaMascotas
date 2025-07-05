@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class MoneyCount extends JComponent {
+public final class MoneyCount extends JComponent {
     private JLabel texto=new JLabel("inicio");
     private BufferedImage image;
     private int x,y,w,h;
