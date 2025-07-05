@@ -7,12 +7,13 @@ import Logica.Mascota;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 
 public class DibujoHabitat extends JPanel {
-    protected int h,w;
+    protected int x,y,h,w;
     protected BufferedImage image;
     private boolean active=true;
     private Habitat me;
@@ -27,22 +28,13 @@ public class DibujoHabitat extends JPanel {
         this.setOpaque(false);
         this.setLayout(new GridLayout(1,me.getSize()));
 
+        this.x=x;
+        this.y=y;
         this.w=w;
         this.h=h;
         this.setBounds(x,y,w,h);
     }
-    /*
-    public void setImage(int type){
-        try {
-            if(type==1){image = ImageIO.read(new File("src/main/resources/Coca.png"));}
-            else if(type==2){image = ImageIO.read(new File("src/main/resources/Sprite.png"));}
-            else if(type==3){image = ImageIO.read(new File("src/main/resources/Fanta.png"));}
-            else if(type==4){image = ImageIO.read(new File("src/main/resources/Super8.png"));}
-            else if(type==5){image = ImageIO.read(new File("src/main/resources/Snickers.png"));}
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
+
     public void addMascota(Mascota mascota){
         me.addMascota(mascota);
         int wm = w/me.getSize();
@@ -73,5 +65,14 @@ public class DibujoHabitat extends JPanel {
      */
     public void setActive(boolean active){
         this.active=active;
+    }
+
+    public void whenClick(MouseEvent e) {
+        int relx = e.getX()-x;
+        int rely = e.getY()-y;
+
+        if (e.getButton()==1 && relx>=0 && relx<=w && rely>=0 && rely<=h) {
+            MiTienda.getInstance().mostrarMenu(me);
+        }
     }
 }

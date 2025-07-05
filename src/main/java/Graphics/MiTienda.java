@@ -6,13 +6,20 @@ import Logica.Excepciones.DineroInsuficienteException;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Objects;
 
-public final class MiTienda extends Scene{
+public final class MiTienda extends Scene implements OptionCall{
     ArrayList<DibujoHabitat> habitats;
     DibujoComprador puerta;
 
     Ventana window;
     static MiTienda instance = null;
+
+    //OptionMenu
+    Habitat habitatselect;
+    Option jugar = new Option(this,"Jugar",0,0,100,50,Color.ORANGE);
+    Option alimentar = new Option(this,"Alimentar",0,50,100,50,Color.pink);
+    Option cancelar = new Option(this,"Cancelar",0,100,100,50,Color.red);
     public static MiTienda getInstance(){
         if (instance!=null)
             return instance;
@@ -69,5 +76,36 @@ public final class MiTienda extends Scene{
 
     public void whenClick(MouseEvent e) {
         puerta.whenClick(e);
+        for (DibujoHabitat habitat : habitats){
+            habitat.whenClick(e);
+        }
+    }
+
+    public void mostrarMenu(Habitat habitat){
+        habitatselect = habitat;
+
+        this.add(jugar);
+        this.add(alimentar);
+        this.add(cancelar);
+        this.revalidate();
+        this.repaint();
+        activeInput(false);
+    }
+    @Override
+    public void CallBack(String option) {
+        if (Objects.equals(option, "Jugar")){
+            ArrayList<Mascota> mascotas = habitatselect.getMacotaList();
+            for (Mascota mascota : mascotas){
+                mascota.jugar();
+            }
+        }
+        //implementar consumir
+
+        this.remove(jugar);
+        this.remove(alimentar);
+        this.remove(cancelar);
+        this.revalidate();
+        this.repaint();
+        activeInput(true);
     }
 }
