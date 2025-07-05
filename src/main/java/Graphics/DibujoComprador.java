@@ -8,12 +8,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.util.Objects;
 
-public class DibujoComprador extends JPanel {
+public class DibujoComprador extends JPanel implements OptionCall {
     private int x,y,h,w;
     private BufferedImage image;
     private BufferedImage globo;
     private Cliente me = null;
+
+    Option si = new Option(this,"Si",50,400,100,50,Color.green);
+    Option no = new Option(this,"No",150,400,100,50,Color.red);
 
     private DibujoMascota mascotaelegida;
 
@@ -41,6 +45,10 @@ public class DibujoComprador extends JPanel {
         if (elegida!=null) {
             image = Sprites.GetSprite("puerta_abierta_persona");
             mascotaelegida.setMascota(elegida);
+
+            this.add(si);
+            this.add(no);
+
             this.revalidate();
             this.repaint();
         }else SalirCliente();
@@ -51,6 +59,9 @@ public class DibujoComprador extends JPanel {
         image = Sprites.GetSprite("puerta_cerrada");
         mascotaelegida.setMascota(null);
         me = null;
+
+        this.remove(si);
+        this.remove(no);
 
         this.revalidate();
         this.repaint();
@@ -71,8 +82,6 @@ public class DibujoComprador extends JPanel {
         if (e.getButton()==1 && relx>=0 && relx<=w && rely>=0 && rely<=h) {
             if (me == null)
                 EntrarCliente();
-            else
-                AceptarCompra();
         }
     }
 
@@ -85,6 +94,15 @@ public class DibujoComprador extends JPanel {
         }
         if (globo != null && me!=null) {
             g2d.drawImage(globo, 0, 0, 166, 156, this);
+        }
+    }
+
+    @Override
+    public void CallBack(String option) {
+        if (Objects.equals(option, "Si")){
+            AceptarCompra();
+        }else if (Objects.equals(option, "No")){
+            SalirCliente();
         }
     }
 }
