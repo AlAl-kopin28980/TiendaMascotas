@@ -20,10 +20,9 @@ public class DibujoMascota extends JComponent {
 
     public DibujoMascota(int x, int y, int w, int h, Mascota me) {
         if (me!=null) {
-            setImage(me);
+            setMascota(me);
             me.setDibujo(this);
         }
-        this.me=me;
         this.w=w;
         this.h=h;
         this.setBounds(x,y,w,h);
@@ -31,11 +30,11 @@ public class DibujoMascota extends JComponent {
 
     public void setMascota(Mascota me){
         this.me=me;
-        setImage(me);
+        image = getImage(me);
     }
-    public void setImage(Mascota tipo){
+    public static BufferedImage getImage(Mascota tipo){
         if (tipo instanceof Perro) {
-            image = switch (tipo.getColor()) {
+            return switch (tipo.getColor()) {
                 case NARANJA -> Sprites.GetSprite("perro/naranjo");
                 case BLANCO -> Sprites.GetSprite("perro/blanco");
                 case NEGRO -> Sprites.GetSprite("perro/negro");
@@ -43,7 +42,7 @@ public class DibujoMascota extends JComponent {
                 case PATRON -> Sprites.GetSprite("perro/arcoiris");
             };
         } else if (tipo instanceof Gato) {
-            image = switch (tipo.getColor()) {
+            return switch (tipo.getColor()) {
                 case NARANJA -> Sprites.GetSprite("gato/ramirez");
                 case BLANCO -> Sprites.GetSprite("gato/blanco");
                 case NEGRO -> Sprites.GetSprite("gato/negro");
@@ -51,7 +50,7 @@ public class DibujoMascota extends JComponent {
                 case PATRON -> Sprites.GetSprite("gato/nyan");
             };
         } else if (tipo instanceof Pez) {
-            image = switch (tipo.getColor()) {
+            return switch (tipo.getColor()) {
                 case NARANJA -> Sprites.GetSprite("pez/naranjo");
                 case BLANCO -> Sprites.GetSprite("pez/blanco");
                 case NEGRO -> Sprites.GetSprite("pez/negro");
@@ -59,7 +58,7 @@ public class DibujoMascota extends JComponent {
                 case PATRON -> Sprites.GetSprite("pez/tropical");
             };
         } else if (tipo instanceof Ave) {
-            image = switch (tipo.getColor()) {
+            return switch (tipo.getColor()) {
                 case NARANJA -> Sprites.GetSprite("ave/naranjo");
                 case BLANCO -> Sprites.GetSprite("ave/blanco");
                 case NEGRO -> Sprites.GetSprite("ave/miedo");
@@ -67,7 +66,7 @@ public class DibujoMascota extends JComponent {
                 case PATRON -> Sprites.GetSprite("ave/loro");
             };
         } else if (tipo instanceof Hamster) {
-            image = switch (tipo.getColor()) {
+            return switch (tipo.getColor()) {
                 case NARANJA -> Sprites.GetSprite("hamster/naranjo");
                 case BLANCO -> Sprites.GetSprite("hamster/blanco");
                 case NEGRO -> Sprites.GetSprite("hamster/negro");
@@ -75,7 +74,7 @@ public class DibujoMascota extends JComponent {
                 case PATRON -> Sprites.GetSprite("hamster/kawaii");
             };
         } else{
-            image = null;
+            return null;
         }
     }
 

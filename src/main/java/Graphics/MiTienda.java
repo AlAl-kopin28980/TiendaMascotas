@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public final class MiTienda extends Scene implements OptionCall{
+public final class MiTienda extends Scene implements OptionCall, ElementMenuCall{
     ArrayList<DibujoHabitat> habitats;
     DibujoComprador puerta;
 
@@ -16,10 +16,12 @@ public final class MiTienda extends Scene implements OptionCall{
     static MiTienda instance = null;
 
     //OptionMenu
-    Habitat habitatselect;
-    Option jugar = new Option(this,"Jugar",0,0,100,50,Color.ORANGE);
-    Option alimentar = new Option(this,"Alimentar",0,50,100,50,Color.pink);
-    Option cancelar = new Option(this,"Cancelar",0,100,100,50,Color.red);
+    private Habitat habitatselect;
+    private Option jugar = new Option(this,"Jugar",0,0,100,50,Color.ORANGE);
+    private Option alimentar = new Option(this,"Alimentar",0,50,100,50,Color.pink);
+    private Option cancelar = new Option(this,"Cancelar",0,100,100,50,Color.red);
+    //ObjectMenu
+    private ElementMenu objectmenu;
     public static MiTienda getInstance(){
         if (instance!=null)
             return instance;
@@ -94,16 +96,31 @@ public final class MiTienda extends Scene implements OptionCall{
     @Override
     public void CallBack(String option) {
         if (Objects.equals(option, "Jugar")){
-            ArrayList<Mascota> mascotas = habitatselect.getMacotaList();
-            for (Mascota mascota : mascotas){
-                mascota.jugar();
-            }
+            ArrayList mascotas = habitatselect.getMacotaList();
+            objectmenu = new ElementMenu(this,mascotas,6);
+            this.add(objectmenu);
+        }else{
+            activeInput(true);
         }
+
         //implementar consumir
 
         this.remove(jugar);
         this.remove(alimentar);
         this.remove(cancelar);
+        this.revalidate();
+        this.repaint();
+    }
+
+    @Override
+    public void CallBackElement(Object option) {
+        if (option instanceof Mascota){
+            Mascota m = (Mascota) option;
+            m.jugar();
+            System.out.println("Jugamos con"+m);
+        }
+
+        this.remove(objectmenu);
         this.revalidate();
         this.repaint();
         activeInput(true);
