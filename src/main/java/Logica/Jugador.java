@@ -73,6 +73,7 @@ public final class Jugador {
         return habitats;
     }
     public ArrayList<Insumo> getInsumos() {
+        insumos.removeIf(in -> in.getContenido() <= 0);
         return insumos;
     }
 
