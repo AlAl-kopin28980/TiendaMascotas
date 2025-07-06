@@ -10,11 +10,14 @@ public final class Sprites {
     private static final ArrayList<BufferedImage> img = new ArrayList<>();
 
     public static BufferedImage GetSprite(String name){
+        return GetSprite(name,"png");
+    }
+    public static BufferedImage GetSprite(String name, String extension){
         int index = names.indexOf(name);
 
         if (index==-1){
             try {
-                BufferedImage image = ImageIO.read(new File("src/main/resources/"+name+".png"));
+                BufferedImage image = ImageIO.read(new File("src/main/resources/"+name+"."+extension));
 
                 names.add(name);
                 img.add(image);

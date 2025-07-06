@@ -1,6 +1,7 @@
 package Graphics;
 
 import Logica.Habitat;
+import Logica.Insumos.Insumo;
 import Logica.Mascota;
 
 import javax.swing.*;
@@ -54,6 +55,8 @@ public class ElementMenu extends JPanel implements MouseListener {
             return DibujoMascota.getImage((Mascota) obj);
         } else if (obj instanceof Habitat) {
             return Sprites.GetSprite("jaula");
+        }else if (obj instanceof Insumo){
+            return Sprites.GetSprite("comida","jpg");
         }else{
             return null;
         }

@@ -2,6 +2,9 @@ package Graphics;
 
 import Logica.*;
 import Logica.Excepciones.DineroInsuficienteException;
+import Logica.Insumos.ConsumoAlimento;
+import Logica.Insumos.ConsumoMedicina;
+import Logica.Insumos.Insumo;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -21,6 +24,8 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
     private Option alimentar = new Option(this,"Alimentar",0,50,100,50,Color.pink);
     private Option cancelar = new Option(this,"Cancelar",0,100,100,50,Color.red);
     //ObjectMenu
+    private String selectedOption;
+    private Mascota mascotaselect;
     private ElementMenu objectmenu;
     public static MiTienda getInstance(){
         if (instance!=null)
@@ -54,12 +59,18 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         dibu2.addMascota(q2);
         Hamster p3 = new Hamster(60,50,0, TipoColor.PATRON);
         dibu3.addMascota(p3);
-        try {
-            Jugador.getJugador().comprarMascota(p);
-            Jugador.getJugador().comprarMascota(q);
-        } catch (DineroInsuficienteException e) {
-            throw new RuntimeException(e);
-        }
+
+        Jugador player = Jugador.getJugador();
+        player.darMascota(p);
+        player.darMascota(q);
+        player.darMascota(p2);
+        player.darMascota(q2);
+        player.darMascota(p3);
+
+        Insumo hypercomida = new Insumo("hypercomida",2,100);
+        hypercomida.addDecorator(new ConsumoAlimento(100));
+        hypercomida.addDecorator(new ConsumoMedicina(100));
+        player.darInsumo(hypercomida);
 
         //jugador
         puerta = new DibujoComprador(513,52,362,603);
@@ -95,11 +106,16 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
     }
     @Override
     public void CallBack(String option) {
+        selectedOption = option;
         if (Objects.equals(option, "Jugar")){
             ArrayList mascotas = habitatselect.getMacotaList();
             objectmenu = new ElementMenu(this,mascotas,6,"Con quien quieres jugar?");
             this.add(objectmenu,0);
-        }else{
+        } else if (Objects.equals(option, "Alimentar")) {
+            ArrayList mascotas = habitatselect.getMacotaList();
+            objectmenu = new ElementMenu(this,mascotas,6,"A quien vas a alimentar?");
+            this.add(objectmenu,0);
+        } else{
             activeInput(true);
         }
 
@@ -114,15 +130,29 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
 
     @Override
     public void CallBackElement(Object option) {
+        this.remove(objectmenu);
+        activeInput(true);
         if (option instanceof Mascota){
-            Mascota m = (Mascota) option;
-            m.jugar();
-            System.out.println("Jugamos con"+m);
+            if (Objects.equals(selectedOption, "Jugar")) {
+                Mascota m = (Mascota) option;
+                m.jugar();
+                System.out.println("Jugamos con " + m);
+            } else if (Objects.equals(selectedOption, "Alimentar")) {
+                Mascota m = (Mascota) option;
+                mascotaselect = m;
+                ArrayList insumos = Jugador.getJugador().getInsumos();
+                objectmenu = new ElementMenu(this,insumos,6,"Con que lo vas a alimentar?");
+                activeInput(false);
+                this.add(objectmenu,0);
+                System.out.println("Alimentaremos a " + m);
+            }
+        } else if (option instanceof Insumo) {
+            Insumo in = (Insumo) option;
+            mascotaselect.consumir(in);
+            System.out.println("Alimentamos a " + mascotaselect + " con " + in);
         }
 
-        this.remove(objectmenu);
         this.revalidate();
         this.repaint();
-        activeInput(true);
     }
 }
