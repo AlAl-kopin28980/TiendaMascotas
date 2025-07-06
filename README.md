@@ -6,8 +6,8 @@
 # Casos de uso
 ![img.png](casos.png)
 
-# UML
-![img.png](UML.png)
+# UML de parte Gráfica
+![img.png](UMLG.png)
 
 # Prototipo de interfaz
 ![img.png](Prototipo.png)
@@ -20,6 +20,9 @@
     Decorator: En la vida real, hay insumos para mascotas que tienen distintos valores nutricionales, medicinales y son más gustados por mascotas.
     Esto lo replicamos con un insumo generico que luego es "decorado" con distintos atributos que mejoran la salud, hambre y felicidad de la mascota que los consume.
 
+    Singleton: Como hay solo un jugador, es lógico crearlo como un singleton, de forma similar, todas las tiendas son creadas de la misma forma, y se rellenan de forma automática, por lo que no es necesario tener múltiples.
+    En la parte gráfica, MiTienda es única, junto a MoneyCount (somos sólo un jugador, con una única tienda y un único presupuesto). Las ventana y Sprites también son definidos como singleton, ya que es mejor crear uno y tener acceso a este que accidentalmente crear más.
+
 
 # Avances 
     Semana 0: Creamos diagramas UML (de clase y uso), y en base a eso contruimos parte de la base, principalmente relacionado a mascotas.
@@ -30,20 +33,21 @@
 
     Semana 2: Creamos clase jugador que puede comprar insumos, mascotas y habitats. Habitats ahora tienen un tamaño que les permite agregar una cantidad limitada de mascotas.
 
-    Semana 3: Creación de clase Tienda, encargada de la creación de insumos, mascotas y habitats disponibles para jugador.
+    Semana 3: Creación de clase Tienda, encargada de la creación de insumos, mascotas y habitats disponibles para jugador. Implementación de escenas y componentes principales de la interfaz gráfica, comprador puede comprar mascotas y el Jugador puede alimentarlas y jugar con ellas.
 
 # Siguientes pasos
-    Seguir con los elementos con los que se relacionan las mascotas y lograr una lógica firme.
-    Finalizar detalles de clase Tienda y continuar con clase Comprador
-    Seguir evolucionando nuestros prototipos gráficos.
+    Crear interfaz gráfica para Tienda y los hábitats.
+    Seguir evolucionando nuestros gráficos. 
+    Mejorar el sistema de habitats. + Habitats se ensucian y se pueden limpiar.
+    JUnits.
 
 # Ideas para (posible) futura implementación
-    Cada cierto tiempo cosas como felicidad, limpieza del habitad y salud disminuyen. Hambre aumenta.
     Al jugar la felicidad aumenta, pero el hambre también.
+    Agregar un sistema de "upgrades" de habitats, donde se pueden agrandar por algún precio.
+    
+# Características de nuestra tienda de mascotas
+    Cada cierto tiempo cosas como felicidad, limpieza del habitad y salud disminuyen. Hambre aumenta.
     Si los atributos están en un rango negativo para la mascota, su precio disminuye.
     Medicinas y alimento pueden ser comprados en distintas cantidades, afectando su precio.
-    Habitats tienen un maximo de mascotas, depenidendo de su tamaño (futuramente se puede agregar un sistema de "upgrades").
-    Jugador puede rechazar la oferta de un comprador de comprar la mascota. Lo mismo va para el comprador.
-    
-
-    
+    Jugador puede rechazar la oferta de un comprador de comprar la mascota. 
+    Hay distintos tipos de insumo que mejoran ciertas "stats" de la mascota. 

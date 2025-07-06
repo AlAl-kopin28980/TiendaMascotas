@@ -6,13 +6,15 @@ import Logica.Insumos.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Tienda {
+public final class Tienda {
     private ArrayList<Mascota> perros, gatos, aves, hamsters, peces;
     private ArrayList<Habitat> peceras, jaulas, jaulaspajaro;
     private ArrayList<Insumo> comida, medicina, comidaenhanced;
     private Insumo food;
+    private static Tienda tienda = null;
+
    // private int max;
-    public Tienda(int max){
+    private Tienda(int max){
         perros=new ArrayList<>(); gatos=new ArrayList<>(); aves=new ArrayList<>(); hamsters=new ArrayList<>(); peces=new ArrayList<>();
         peceras=new ArrayList<>(); jaulaspajaro=new ArrayList<>(); jaulas= new ArrayList<>();
         comida=new ArrayList<>(); medicina=new ArrayList<>(); comidaenhanced=new ArrayList<>();
@@ -30,6 +32,13 @@ public class Tienda {
             medicina.add(this.crearInsumo(2,i));
             comidaenhanced.add(this.crearInsumo(3,i));
         }
+    }
+
+    public static Tienda getTienda(){
+        if (tienda==null){
+            tienda=new Tienda(3);
+        }
+        return tienda;
     }
     public void comprarCosas(){
         int tipo=1;

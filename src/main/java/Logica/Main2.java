@@ -8,8 +8,7 @@ public class Main2 {
     public static void main(String[] args){
         Jugador jugador=Jugador.getJugador();
         jugador.darDinero(20000);
-        Tienda tienda=new Tienda(3);
-        tienda.comprarCosas();
+        Tienda.getTienda().comprarCosas();
         Jugador.getJugador().showInventario();
     }
 }
