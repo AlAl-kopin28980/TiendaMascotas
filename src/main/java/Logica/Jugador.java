@@ -26,27 +26,39 @@ public final class Jugador {
         habitats=new ArrayList<>();
         insumos=new ArrayList<>();
     }
+
+    public void darMascota(Mascota mascota){
+        mascotas.add(mascota);
+    }
     public void comprarMascota(Mascota mascota) throws DineroInsuficienteException{
         if(dinero>=mascota.getPrecio()) {
-            mascotas.add(mascota);
+            darMascota(mascota);
             dinero = dinero - mascota.getPrecio();
         }
         else{
             throw new DineroInsuficienteException();
         }
     }
+
+    public void darHabitat(Habitat habitat){
+        habitats.add(habitat);
+    }
     public void comprarHabitat(Habitat habitat) throws DineroInsuficienteException{
         if(dinero>=habitat.getPrecio()) {
-            habitats.add(habitat);
+            darHabitat(habitat);
             dinero = dinero - habitat.getPrecio();
         }
         else{
             throw new DineroInsuficienteException();
         }
     }
+
+    public void darInsumo(Insumo insumo){
+        insumos.add(insumo);
+    }
     public void comprarInsumo(Insumo insumo) throws DineroInsuficienteException{
         if(dinero>=insumo.getPrecio()) {
-            insumos.add(insumo);
+            darInsumo(insumo);
             dinero = dinero - insumo.getPrecio();
         }
         else{
