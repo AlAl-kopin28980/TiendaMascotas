@@ -19,7 +19,7 @@ public class ElementMenu extends JPanel implements MouseListener {
     ArrayList options;
     ArrayList<BufferedImage> images;
 
-    public ElementMenu(ElementMenuCall parent, ArrayList options, int columns) {
+    public ElementMenu(ElementMenuCall parent, ArrayList options, int columns, String message) {
         super();
 
         x = 0;
@@ -29,6 +29,11 @@ public class ElementMenu extends JPanel implements MouseListener {
         this.setBounds(x, y, w, h);
         this.setOpaque(true);
         this.setBackground(Color.ORANGE);
+        //text
+        JLabel txt = new JLabel(message);
+        txt.setBounds(w/2,h/2,100,20);
+        txt.setBackground(Color.ORANGE);
+        this.add(txt);
 
         this.parent = parent;
         this.options = options;
@@ -66,7 +71,7 @@ public class ElementMenu extends JPanel implements MouseListener {
                 int row = i / columns;
 
                 int imgX = col * imageSize;
-                int imgY = row * imageSize;
+                int imgY = row * imageSize + 20;
 
                 if (mouseX >= imgX && mouseX < imgX + imageSize &&
                         mouseY >= imgY && mouseY < imgY + imageSize) {
@@ -94,7 +99,7 @@ public class ElementMenu extends JPanel implements MouseListener {
                 int row = i / columns;
 
                 int imgX = col * imageSize;
-                int imgY = row * imageSize;
+                int imgY = row * imageSize + 20;
 
                 g2d.drawImage(images.get(i), imgX, imgY, imageSize, imageSize, this);
             }
