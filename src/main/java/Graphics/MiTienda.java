@@ -98,7 +98,7 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         if (Objects.equals(option, "Jugar")){
             ArrayList mascotas = habitatselect.getMacotaList();
             objectmenu = new ElementMenu(this,mascotas,6);
-            this.add(objectmenu);
+            this.add(objectmenu,0);
         }else{
             activeInput(true);
         }
