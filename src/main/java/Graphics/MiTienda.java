@@ -107,12 +107,11 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
     @Override
     public void CallBack(String option) {
         selectedOption = option;
-        if (Objects.equals(option, "Jugar")){
-            ArrayList mascotas = habitatselect.getMacotaList();
+        ArrayList mascotas = habitatselect.getMacotaList();
+        if (Objects.equals(option, "Jugar") && !mascotas.isEmpty()){
             objectmenu = new ElementMenu(this,mascotas,6,"Con quien quieres jugar?");
             this.add(objectmenu,0);
-        } else if (Objects.equals(option, "Alimentar")) {
-            ArrayList mascotas = habitatselect.getMacotaList();
+        } else if (Objects.equals(option, "Alimentar") && !mascotas.isEmpty() && !Jugador.getJugador().getInsumos().isEmpty()) {
             objectmenu = new ElementMenu(this,mascotas,6,"A quien vas a alimentar?");
             this.add(objectmenu,0);
         } else{
