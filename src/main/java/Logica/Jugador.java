@@ -69,6 +69,13 @@ public final class Jugador {
     public ArrayList<Mascota> getMascotas() {
         return mascotas;
     }
+    public ArrayList<Habitat> getHabitats() {
+        return habitats;
+    }
+    public ArrayList<Insumo> getInsumos() {
+        insumos.removeIf(in -> in.getContenido() <= 0);
+        return insumos;
+    }
 
     public void Vender(Mascota mascota){
         boolean vendido = mascotas.remove(mascota);
