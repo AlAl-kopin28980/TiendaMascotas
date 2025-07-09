@@ -24,7 +24,8 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
     private Option alimentar = new Option(this,"Alimentar",0,50,100,50,Color.pink);
     private Option entrar = new Option(this,"Entrar",0,100,100,50,Color.ORANGE);
     private Option sacar = new Option(this,"Sacar",0,150,100,50,Color.pink);
-    private Option cancelar = new Option(this,"Cancelar",0,200,100,50,Color.red);
+    private Option limpiar = new Option(this,"Limpiar",0,200,100,50,Color.ORANGE);
+    private Option cancelar = new Option(this,"Cancelar",0,250,100,50,Color.red);
     //ObjectMenu
     private String selectedOption;
     private Mascota mascotaselect;
@@ -103,6 +104,7 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         this.add(alimentar);
         this.add(entrar);
         this.add(sacar);
+        this.add(limpiar);
         this.add(cancelar);
         this.revalidate();
         this.repaint();
@@ -124,6 +126,9 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         } else if (Objects.equals(option, "Sacar") && !mascotas.isEmpty()) {
             objectmenu = new ElementMenu(this, mascotas, 6, "Que mascota vas a sacar?");
             this.add(objectmenu, 0);
+        } else if (Objects.equals(option, "Limpiar")) {
+            habitatselect.limpiarHabitat();
+            activeInput(true);
         } else{
             activeInput(true);
         }
@@ -134,6 +139,7 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         this.remove(alimentar);
         this.remove(entrar);
         this.remove(sacar);
+        this.remove(limpiar);
         this.remove(cancelar);
         this.revalidate();
         this.repaint();

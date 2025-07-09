@@ -54,6 +54,10 @@ public class DibujoHabitat extends JPanel {
         this.remove(mascota);
     }
 
+    public void limpiarHabitat() {
+        me.limpiarHabitat();
+    }
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
