@@ -42,6 +42,10 @@ public class DibujoHabitat extends JPanel {
         dibumascota.EntrarEn(this);
         mascotas.add(dibumascota);
         this.add(dibumascota);
+
+        this.revalidate();
+        this.repaint();
+        System.out.println("dentro "+mascota);
     }
 
     public void sacarMascota(DibujoMascota mascota){
@@ -59,6 +63,10 @@ public class DibujoHabitat extends JPanel {
         }
     }
 
+    public Habitat getMe() {
+        return me;
+    }
+
     /**
      *
      * @param active si es activo el elemento se hace visible
@@ -72,7 +80,7 @@ public class DibujoHabitat extends JPanel {
         int rely = e.getY()-y;
 
         if (e.getButton()==1 && relx>=0 && relx<=w && rely>=0 && rely<=h) {
-            MiTienda.getInstance().mostrarMenu(me);
+            MiTienda.getInstance().mostrarMenu(this);
         }
     }
 }
