@@ -19,10 +19,13 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
     static MiTienda instance = null;
 
     //OptionMenu
-    private Habitat habitatselect;
+    private DibujoHabitat habitatselect;
     private Option jugar = new Option(this,"Jugar",0,0,100,50,Color.ORANGE);
     private Option alimentar = new Option(this,"Alimentar",0,50,100,50,Color.pink);
-    private Option cancelar = new Option(this,"Cancelar",0,100,100,50,Color.red);
+    private Option entrar = new Option(this,"Entrar",0,100,100,50,Color.ORANGE);
+    private Option sacar = new Option(this,"Sacar",0,150,100,50,Color.pink);
+    private Option limpiar = new Option(this,"Limpiar",0,200,100,50,Color.ORANGE);
+    private Option cancelar = new Option(this,"Cancelar",0,250,100,50,Color.red);
     //ObjectMenu
     private String selectedOption;
     private Mascota mascotaselect;
@@ -43,10 +46,10 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         DibujoHabitat dibu1=new DibujoHabitat(100,300,200,100,new Jaula(100,2));
         habitats.add(dibu1);
         this.add(dibu1);
-        DibujoHabitat dibu2=new DibujoHabitat(100,200,200,100,new Pecera(100,2));
+        DibujoHabitat dibu2=new DibujoHabitat(100,200,200,100,new Pecera(200,2));
         habitats.add(dibu2);
         this.add(dibu2);
-        DibujoHabitat dibu3=new DibujoHabitat(100,100,200,100,new JaulaPajaro(100,2));
+        DibujoHabitat dibu3=new DibujoHabitat(100,100,200,100,new JaulaPajaro(300,2));
         habitats.add(dibu3);
         this.add(dibu3);
         Hamster p = new Hamster(60,50,0, TipoColor.NARANJA);
@@ -94,11 +97,14 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         }
     }
 
-    public void mostrarMenu(Habitat habitat){
+    public void mostrarMenu(DibujoHabitat habitat){
         habitatselect = habitat;
 
         this.add(jugar);
         this.add(alimentar);
+        this.add(entrar);
+        this.add(sacar);
+        this.add(limpiar);
         this.add(cancelar);
         this.revalidate();
         this.repaint();
@@ -107,13 +113,22 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
     @Override
     public void CallBack(String option) {
         selectedOption = option;
-        ArrayList mascotas = habitatselect.getMacotaList();
+        ArrayList mascotas = habitatselect.getMe().getMacotaList();
         if (Objects.equals(option, "Jugar") && !mascotas.isEmpty()){
             objectmenu = new ElementMenu(this,mascotas,6,"Con quien quieres jugar?");
             this.add(objectmenu,0);
         } else if (Objects.equals(option, "Alimentar") && !mascotas.isEmpty() && !Jugador.getJugador().getInsumos().isEmpty()) {
-            objectmenu = new ElementMenu(this,mascotas,6,"A quien vas a alimentar?");
-            this.add(objectmenu,0);
+            objectmenu = new ElementMenu(this, mascotas, 6, "A quien vas a alimentar?");
+            this.add(objectmenu, 0);
+        } else if (Objects.equals(option, "Entrar") && mascotas.size()<habitatselect.getMe().getSize()) {
+            objectmenu = new ElementMenu(this, Jugador.getJugador().getMascotas(), 6, "Que mascota entraras al habitat?");
+            this.add(objectmenu, 0);
+        } else if (Objects.equals(option, "Sacar") && !mascotas.isEmpty()) {
+            objectmenu = new ElementMenu(this, mascotas, 6, "Que mascota vas a sacar?");
+            this.add(objectmenu, 0);
+        } else if (Objects.equals(option, "Limpiar")) {
+            habitatselect.limpiarHabitat();
+            activeInput(true);
         } else{
             activeInput(true);
         }
@@ -122,6 +137,9 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
 
         this.remove(jugar);
         this.remove(alimentar);
+        this.remove(entrar);
+        this.remove(sacar);
+        this.remove(limpiar);
         this.remove(cancelar);
         this.revalidate();
         this.repaint();
@@ -144,6 +162,15 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
                 activeInput(false);
                 this.add(objectmenu,0);
                 System.out.println("Alimentaremos a " + m);
+            } else if (Objects.equals(selectedOption, "Entrar")) {
+                Mascota m = (Mascota) option;
+                m.getDibujo().Salir();
+                habitatselect.addMascota(m);
+                System.out.println(m+" entra a "+habitatselect);
+            } else if (Objects.equals(selectedOption, "Sacar")) {
+                Mascota m = (Mascota) option;
+                m.getDibujo().Salir();
+                System.out.println("Sacamos a "+m+" de "+habitatselect);
             }
         } else if (option instanceof Insumo) {
             Insumo in = (Insumo) option;

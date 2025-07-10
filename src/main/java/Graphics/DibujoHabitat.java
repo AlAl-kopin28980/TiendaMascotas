@@ -42,12 +42,20 @@ public class DibujoHabitat extends JPanel {
         dibumascota.EntrarEn(this);
         mascotas.add(dibumascota);
         this.add(dibumascota);
+
+        this.revalidate();
+        this.repaint();
+        System.out.println("dentro "+mascota);
     }
 
     public void sacarMascota(DibujoMascota mascota){
         me.sacarMascota(mascota.getMe());
         mascotas.remove(mascota);
         this.remove(mascota);
+    }
+
+    public void limpiarHabitat() {
+        me.limpiarHabitat();
     }
 
     public void paintComponent(Graphics g) {
@@ -57,6 +65,10 @@ public class DibujoHabitat extends JPanel {
         if (image != null && active) {
             g2d.drawImage(image, 0, 0, w, h, this);
         }
+    }
+
+    public Habitat getMe() {
+        return me;
     }
 
     /**
@@ -72,7 +84,7 @@ public class DibujoHabitat extends JPanel {
         int rely = e.getY()-y;
 
         if (e.getButton()==1 && relx>=0 && relx<=w && rely>=0 && rely<=h) {
-            MiTienda.getInstance().mostrarMenu(me);
+            MiTienda.getInstance().mostrarMenu(this);
         }
     }
 }

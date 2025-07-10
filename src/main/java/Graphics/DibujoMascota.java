@@ -82,12 +82,14 @@ public class DibujoMascota extends JComponent {
         miHabitat = hogar;
     }
     public void Salir(){
-        miHabitat.sacarMascota(this);
+        if (miHabitat!=null) {
+            miHabitat.sacarMascota(this);
 
-        miHabitat.revalidate();
-        miHabitat.repaint();
+            miHabitat.revalidate();
+            miHabitat.repaint();
 
-        miHabitat = null;
+            miHabitat = null;
+        }
     }
 
     public void paintComponent(Graphics g) {
