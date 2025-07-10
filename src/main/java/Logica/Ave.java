@@ -9,4 +9,8 @@ public class Ave extends MascotaExotica {
         felicidad=felicidad+5;}
         else{felicidad=100;}
     }
+    @Override
+    public String toString(){
+        return "Ave "+super.toString();
+    }
 }

@@ -40,7 +40,7 @@ public abstract class Mascota {
            }
        };
 
-       timer.scheduleAtFixedRate(task, 0, 2000);
+       timer.scheduleAtFixedRate(task, 4000, 2000);
    }
 
     public abstract void jugar();
@@ -91,7 +91,7 @@ public abstract class Mascota {
     public Mascota vender(){return this;}
 
     public String toString(){
-        String string="Color: "+color+" - Precio: $"+precio;
+        String string="Color: "+color+" - Precio: $"+this.getPrecio();
         return string;
     }
 

@@ -13,6 +13,9 @@ public final class Tienda {
     private Insumo food;
     private static Tienda tienda = null;
 
+    private Scanner scanner=null;
+
+
    // private int max;
     private Tienda(int max){
         perros=new ArrayList<>(); gatos=new ArrayList<>(); aves=new ArrayList<>(); hamsters=new ArrayList<>(); peces=new ArrayList<>();
@@ -42,7 +45,7 @@ public final class Tienda {
     }
     public void comprarCosas(){
         int tipo=1;
-        Scanner scanner = new Scanner(System.in);  // Scanner para ingresar indice
+        scanner = new Scanner(System.in);  // Scanner para ingresar indice
         while(tipo!=0) {  //cuando producto es cero indicamos que queremos salir del programa
             System.out.println("¿Qué desea comprar? \n0.Salir \n1.Insumos\n2.Mascotas\n3.Habitats");
             System.out.println("Ingrese número de producto: ");
@@ -63,12 +66,14 @@ public final class Tienda {
 
     }
     public void comprarInsumo(){
-        Scanner scanner = new Scanner(System.in);
+        if (scanner==null){
+            scanner = new Scanner(System.in);}
         int tipo=1;
         int index;
         while (tipo!=0) {
             System.out.println("Tipos de insumos disponibles: \n0.Salir \n1.Comida\n2.Medicina\n3.Comida mejorada");
-            tipo = scanner.nextInt();
+            if (scanner.hasNextInt()){
+            tipo = scanner.nextInt();}
             if (tipo <= 3 & tipo >= 1) {
                 int i=1;
                 if (tipo == 1) {
@@ -108,7 +113,9 @@ public final class Tienda {
         }
     }
     public void comprarMascota(){
-        Scanner scanner = new Scanner(System.in);
+        if (scanner==null){
+        scanner = new Scanner(System.in);}
+
         int tipo=1;
         int index;
         while (tipo!=0) {
@@ -169,7 +176,9 @@ public final class Tienda {
         }
     }
     public void comprarHabitat(){
-        Scanner scanner = new Scanner(System.in);
+        if (scanner==null){
+            scanner = new Scanner(System.in);}
+
         int tipo=1;
         int index;
         while (tipo!=0) {
@@ -234,9 +243,9 @@ public final class Tienda {
     private int intentarCompra(ArrayList lista,int tipo) {
         int index;
         int check=-1;
-        Scanner scan=new Scanner(System.in);
+        //scanner=new Scanner(System.in);
         System.out.println("Ingrese el número del producto deseado: ");
-        index= scan.nextInt();
+        index= scanner.nextInt();
         if (index <= lista.size() & index > 0) {
             try {
                 if(tipo==1) {
@@ -261,4 +270,38 @@ public final class Tienda {
         return check;
     }
 
+    public ArrayList<Habitat> getPeceras(){
+        return peceras;
+    }
+    public ArrayList<Habitat> getJaulas() {
+        return jaulas;
+    }
+    public ArrayList<Habitat> getJaulaspajaro() {
+        return jaulaspajaro;
+    }
+    public ArrayList<Insumo> getComida() {
+        return comida;
+    }
+    public ArrayList<Insumo> getComidaenhanced() {
+        return comidaenhanced;
+    }
+    public ArrayList<Insumo> getMedicina() {
+        return medicina;
+    }
+    public ArrayList<Mascota> getAves() {
+        return aves;
+    }
+    public ArrayList<Mascota> getGatos() {
+        return gatos;
+    }
+    public ArrayList<Mascota> getHamsters() {
+        return hamsters;
+    }
+    public ArrayList<Mascota> getPeces() {
+        return peces;
+    }
+
+    public ArrayList<Mascota> getPerros() {
+        return perros;
+    }
 }

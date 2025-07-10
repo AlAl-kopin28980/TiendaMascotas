@@ -13,6 +13,8 @@ public final class Jugador {
 
     private static Jugador jugador = null;
 
+    public void resetJugador(){jugador=null;}  //para facilitar test unitarios
+
     public static Jugador getJugador(){
         if (jugador==null){
             jugador=new Jugador(0);
@@ -93,7 +95,8 @@ public final class Jugador {
 
     public void showInventario(){
         for (Mascota mascota: mascotas){
-            System.out.println(mascota.getClass().getSimpleName()+" - "+mascota);
+            //System.out.println(mascota.getClass().getSimpleName()+" - "+mascota);
+            System.out.println(mascota);
         }
         for (Insumo insumo: insumos){
             System.out.println(insumo);

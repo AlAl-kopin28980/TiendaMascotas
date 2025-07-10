@@ -9,4 +9,8 @@ public class Perro extends MascotaTerrestre {
             felicidad=felicidad+10;}
         else{felicidad=100;}
     }
+    @Override
+    public String toString(){
+        return "Perro "+super.toString();
+    }
 }
