@@ -57,6 +57,28 @@ public class ElementMenu extends JPanel implements MouseListener {
             return Sprites.GetSprite("jaula");
         }else if (obj instanceof Insumo){
             return Sprites.GetSprite("comida","jpg");
+        }else if (obj instanceof String){
+           if(obj.equals("Perros")) {return Sprites.GetSprite("perros","jpeg");}
+           else if(obj.equals("Gatos")) {return Sprites.GetSprite("gatos","jpg");}
+           else if(obj.equals("Peces")) {return Sprites.GetSprite("peces","jpeg");}
+           else if(obj.equals("Aves")) {return Sprites.GetSprite("aves","jpeg");}
+           else if(obj.equals("Hamsters")) {return Sprites.GetSprite("hamsters","jpeg");}
+
+           else if(obj.equals("Mascotas")) {return Sprites.GetSprite("mascotas","jpg");}
+           else if(obj.equals("Insumos")) {return Sprites.GetSprite("insumos");}
+           else if(obj.equals("Habitats")) {return Sprites.GetSprite("habitats","jpg");}
+
+           else if(obj.equals("Peceras")) {return Sprites.GetSprite("pecera","jpg");}
+           else if(obj.equals("Jaulas")) {return Sprites.GetSprite("jaula","jpg");}
+           else if(obj.equals("JaulasPajaro")) {return Sprites.GetSprite("birdcage","jpg");}
+
+           else if(obj.equals("Medicina")) {return Sprites.GetSprite("medicina");}
+           else if(obj.equals("Comida")) {return Sprites.GetSprite("comida","jpg");}
+           else if(obj.equals("HyperComida")) {return Sprites.GetSprite("supercomida","jpg");}
+
+           else{return null;}
+
+
         }else{
             return null;
         }

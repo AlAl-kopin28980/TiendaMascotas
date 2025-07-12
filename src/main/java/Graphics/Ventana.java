@@ -26,6 +26,8 @@ public final class Ventana extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(872, 640);
 
+
+
         MiTienda mitienda = MiTienda.getInstance();
         Comprar comprar = Comprar.getInstance();
 
@@ -33,6 +35,12 @@ public final class Ventana extends JFrame {
         currentScene.setActive(true);
 
         goToScene(comprar);
+
+
+        TiendaStock tienda= TiendaStock.getTiendaStock();
+        //currentScene=tienda;
+        //currentScene.setActive(true);
+        goToScene(tienda);
 
         //this.pack();
         this.setVisible(true);
