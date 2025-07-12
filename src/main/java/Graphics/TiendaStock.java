@@ -3,7 +3,10 @@ package Graphics;
 import Logica.*;
 import Logica.Insumos.Insumo;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,6 +54,19 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
 
 
         menu1=new ElementMenu(this,tipos,3,"¿Qué desea comprar?"); //arreglar tipos
+        //go back
+        JButton goBack = new JButton("A casa");
+        goBack.setBounds(0,490,100,100);
+        goBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Ventana.getInstance().goToScene(MiTienda.getInstance());
+                Ventana.getInstance().revalidate();
+                Ventana.getInstance().repaint();
+            }
+        });
+        menu1.add(goBack,0);
+
         menu=menu1;
         this.add(menu,0);
     }

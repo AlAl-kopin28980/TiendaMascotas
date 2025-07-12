@@ -29,17 +29,11 @@ public final class Ventana extends JFrame {
 
 
         MiTienda mitienda = MiTienda.getInstance();
-        Comprar comprar = Comprar.getInstance();
+        TiendaStock tienda= TiendaStock.getTiendaStock();
 
         currentScene = mitienda;
         currentScene.setActive(true);
 
-        goToScene(comprar);
-
-
-        TiendaStock tienda= TiendaStock.getTiendaStock();
-        //currentScene=tienda;
-        //currentScene.setActive(true);
         goToScene(tienda);
 
         //this.pack();

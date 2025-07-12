@@ -6,7 +6,10 @@ import Logica.Insumos.ConsumoAlimento;
 import Logica.Insumos.ConsumoMedicina;
 import Logica.Insumos.Insumo;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -80,6 +83,19 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         this.add(puerta);
 
         this.add(MoneyCount.getInstance());
+
+        //a tienda
+        JButton goBack = new JButton("Tienda");
+        goBack.setBounds(0,490,100,100);
+        goBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Ventana.getInstance().goToScene(TiendaStock.getTiendaStock());
+                Ventana.getInstance().revalidate();
+                Ventana.getInstance().repaint();
+            }
+        });
+        this.add(goBack,0);
     }
 
     @Override
