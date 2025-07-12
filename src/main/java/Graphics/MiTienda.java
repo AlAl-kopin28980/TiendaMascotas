@@ -64,6 +64,7 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         dibu2.addMascota(p2);
         dibu2.addMascota(q2);
         Hamster p3 = new Hamster(60,50,0, TipoColor.PATRON);
+        new DibujoMascota(0,0,100,100,p3);
         //dibu3.addMascota(p3);
 
         Jugador player = Jugador.getJugador();
@@ -181,16 +182,16 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
             } else if (Objects.equals(selectedOption, "Entrar")) {
                 Mascota m = (Mascota) option;
                 try {
-                    habitatselect.addMascota(m);
                     m.getDibujo().Salir();
-                    System.out.println(m + " entra a " + habitatselect);
+                    habitatselect.addMascota(m);
+                    System.out.println(m + " entra a " + habitatselect.getMe());
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, e, "Excepción", JOptionPane.INFORMATION_MESSAGE);
                 }
             } else if (Objects.equals(selectedOption, "Sacar")) {
                 Mascota m = (Mascota) option;
                 m.getDibujo().Salir();
-                System.out.println("Sacamos a "+m+" de "+habitatselect);
+                System.out.println("Sacamos a "+m+" de "+habitatselect.getMe());
             }
         } else if (option instanceof Insumo) {
             Insumo in = (Insumo) option;
