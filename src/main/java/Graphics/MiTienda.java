@@ -73,6 +73,10 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         player.darMascota(q2);
         player.darMascota(p3);
 
+        player.darHabitat(dibu1.getMe());
+        player.darHabitat(dibu2.getMe());
+        player.darHabitat(dibu3.getMe());
+
         Insumo hypercomida = new Insumo("hypercomida",2,100);
         hypercomida.addDecorator(new ConsumoAlimento(100));
         hypercomida.addDecorator(new ConsumoMedicina(100));
