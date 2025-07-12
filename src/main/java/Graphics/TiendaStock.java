@@ -20,7 +20,9 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
     private ArrayList<Insumo> comida, medicina, comidaenhanced;
     private ElementMenu menu;
     private ElementMenu menu1;
+
     JButton goBack;
+    JButton cancel;
 
     Ventana window;
 
@@ -67,8 +69,22 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
                 Ventana.getInstance().repaint();
             }
         });
-        menu1.add(goBack,0);
+        //cancel
+        cancel = new JButton("Cancelar");
+        cancel.setBounds(0,490,100,100);
+        cancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TiendaStock.getTiendaStock().remove(menu);
+                menu=menu1;
+                menu.add(goBack,0);
+                TiendaStock.getTiendaStock().add(menu);
+                TiendaStock.getTiendaStock().revalidate();
+                TiendaStock.getTiendaStock().repaint();
+            }
+        });
 
+        menu1.add(goBack,0);
         menu=menu1;
         this.add(menu,0);
     }
@@ -191,6 +207,9 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
         }
         //Jugador.getJugador().showInventario();
         //System.out.println("   ");
+        if (menu!=menu1) {
+            menu.add(cancel, 0);
+        }
 
         menu.add(goBack,0);
         this.add(menu,0);
