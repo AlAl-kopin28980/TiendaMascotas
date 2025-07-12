@@ -309,7 +309,7 @@ public final class Tienda {
         try {
             Jugador.getJugador().comprarMascota(mascota);
             gatos.remove(mascota);
-            gatos.add(MascotaFactory.createMascota("perro"));
+            gatos.add(MascotaFactory.createMascota("gato"));
 
         } catch (DineroInsuficienteException e) {
             throw new RuntimeException(e);
@@ -319,7 +319,7 @@ public final class Tienda {
         try {
             Jugador.getJugador().comprarMascota(mascota);
             aves.remove(mascota);
-            aves.add(MascotaFactory.createMascota("perro"));
+            aves.add(MascotaFactory.createMascota("ave"));
 
         } catch (DineroInsuficienteException e) {
             throw new RuntimeException(e);
@@ -329,7 +329,7 @@ public final class Tienda {
         try {
             Jugador.getJugador().comprarMascota(mascota);
             hamsters.remove(mascota);
-            hamsters.add(MascotaFactory.createMascota("perro"));
+            hamsters.add(MascotaFactory.createMascota("hamster"));
 
         } catch (DineroInsuficienteException e) {
             throw new RuntimeException(e);
@@ -339,7 +339,7 @@ public final class Tienda {
         try {
             Jugador.getJugador().comprarMascota(mascota);
             peces.remove(mascota);
-            peces.add(MascotaFactory.createMascota("perro"));
+            peces.add(MascotaFactory.createMascota("pez"));
 
         } catch (DineroInsuficienteException e) {
             throw new RuntimeException(e);

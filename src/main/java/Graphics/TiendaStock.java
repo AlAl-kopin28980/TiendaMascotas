@@ -15,6 +15,7 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
     private ArrayList<Habitat> peceras, jaulas, jaulaspajaro;
     private ArrayList<Insumo> comida, medicina, comidaenhanced;
     private ElementMenu menu;
+    private ElementMenu menu1;
 
     Ventana window;
 
@@ -49,7 +50,8 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
         comidaenhanced=inventario.getComidaenhanced();
 
 
-        menu=new ElementMenu(this,tipos,3,"¿Qué desea comprar?"); //arreglar tipos
+        menu1=new ElementMenu(this,tipos,3,"¿Qué desea comprar?"); //arreglar tipos
+        menu=menu1;
         this.add(menu,0);
     }
 
@@ -77,18 +79,21 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
         }
         if ((option instanceof Insumo) && ((Insumo) option).getNombre()=="medicina"){
             inventario.ComprarMedicina((Insumo)option);
+            menu=menu1;
         }
         if (option=="Comida"){
             menu=new ElementMenu(this,comida,3,"¿Qué tipo de comida desea?");
         }
         if ((option instanceof Insumo) && ((Insumo) option).getNombre()=="comida"){
             inventario.ComprarComida((Insumo)option);
+            menu=menu1;
         }
         if (option=="HyperComida"){
             menu=new ElementMenu(this,comidaenhanced,3,"¿Qué tipo de hypercomida desea?");
         }
         if ((option instanceof Insumo) && ((Insumo) option).getNombre().equals("comida-mejorada")){
             inventario.ComprarSuperComida((Insumo)option);
+            menu=menu1;
         }
 
 
@@ -100,30 +105,35 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
         }
         if ((option instanceof Perro)){
             inventario.ComprarPerro((Mascota)option);
+            menu=menu1;
         }
         if (option=="Gatos"){
             menu=new ElementMenu(this,gatos,3,"¿Qué tipo de gato desea?");
         }
         if ((option instanceof Gato)){
             inventario.ComprarGato((Mascota)option);
+            menu=menu1;
         }
         if (option=="Hamsters"){
             menu=new ElementMenu(this,hamsters,3,"¿Qué tipo de hamster desea?");
         }
         if ((option instanceof Hamster)){
             inventario.ComprarHamster((Mascota)option);
+            menu=menu1;
         }
         if (option=="Aves"){
             menu=new ElementMenu(this,aves,3,"¿Qué tipo de ave desea?");
         }
         if ((option instanceof Ave)){
             inventario.ComprarAves((Mascota)option);
+            menu=menu1;
         }
         if (option=="Peces"){
             menu=new ElementMenu(this,peces,3,"¿Qué tipo de pez desea?");
         }
         if ((option instanceof Pez)){
             inventario.ComprarPeces((Mascota)option);
+            menu=menu1;
         }
 
 
@@ -135,18 +145,21 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
         }
         if ((option instanceof Pecera)){
             inventario.ComprarPecera((Habitat)option);
+            menu=menu1;
         }
         if (option=="Jaulas"){
             menu=new ElementMenu(this,jaulas,3,"¿Qué tipo de jaula desea?");
         }
         if ((option instanceof Jaula)){
             inventario.ComprarJaula((Habitat)option);
+            menu=menu1;
         }
         if (option=="JaulasPajaro"){
             menu=new ElementMenu(this,jaulaspajaro,3,"¿Qué tipo de jaula para pájaros desea?");
         }
         if ((option instanceof JaulaPajaro)){
             inventario.ComprarJaulaPajaro((Habitat)option);
+            menu=menu1;
         }
         //Jugador.getJugador().showInventario();
         //System.out.println("   ");
