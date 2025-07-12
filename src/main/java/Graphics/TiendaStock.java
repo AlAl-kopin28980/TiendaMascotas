@@ -121,6 +121,7 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
         }
         if ((option instanceof Perro)){
             inventario.ComprarPerro((Mascota)option);
+            new DibujoMascota(0,0,100,100,(Mascota)option);
             menu=menu1;
         }
         if (option=="Gatos"){
@@ -128,6 +129,7 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
         }
         if ((option instanceof Gato)){
             inventario.ComprarGato((Mascota)option);
+            new DibujoMascota(0,0,100,100,(Mascota)option);
             menu=menu1;
         }
         if (option=="Hamsters"){
@@ -135,6 +137,7 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
         }
         if ((option instanceof Hamster)){
             inventario.ComprarHamster((Mascota)option);
+            new DibujoMascota(0,0,100,100,(Mascota)option);
             menu=menu1;
         }
         if (option=="Aves"){
@@ -142,6 +145,7 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
         }
         if ((option instanceof Ave)){
             inventario.ComprarAves((Mascota)option);
+            new DibujoMascota(0,0,100,100,(Mascota)option);
             menu=menu1;
         }
         if (option=="Peces"){
@@ -149,6 +153,7 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
         }
         if ((option instanceof Pez)){
             inventario.ComprarPeces((Mascota)option);
+            new DibujoMascota(0,0,100,100,(Mascota)option);
             menu=menu1;
         }
 
