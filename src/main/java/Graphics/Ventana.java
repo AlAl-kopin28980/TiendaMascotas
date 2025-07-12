@@ -34,7 +34,7 @@ public final class Ventana extends JFrame {
         currentScene = mitienda;
         currentScene.setActive(true);
 
-        goToScene(tienda);
+        goToScene(mitienda);
 
         //this.pack();
         this.setVisible(true);

@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ElementMenu extends JPanel implements MouseListener {
     ElementMenuCall parent;
@@ -42,7 +43,6 @@ public class ElementMenu extends JPanel implements MouseListener {
 
         this.images = new ArrayList<>();
 
-        // Aquí deberías cargar la imagen de cada objeto.
         for (Object obj : options) {
             images.add(getImage(obj));
         }
@@ -56,7 +56,14 @@ public class ElementMenu extends JPanel implements MouseListener {
         } else if (obj instanceof Habitat) {
             return Sprites.GetSprite("jaula");
         }else if (obj instanceof Insumo){
-            return Sprites.GetSprite("comida","jpg");
+            String name = ((Insumo) obj).getNombre();
+            if (Objects.equals(name, "medicina")) {
+                return Sprites.GetSprite("medicina");
+            } else if (Objects.equals(name, "comida-mejorada")) {
+                return Sprites.GetSprite("supercomida", "jpg");
+            } else {
+                return Sprites.GetSprite("comida", "jpg");
+            }
         }else if (obj instanceof String){
            if(obj.equals("Perros")) {return Sprites.GetSprite("perros","jpeg");}
            else if(obj.equals("Gatos")) {return Sprites.GetSprite("gatos","jpg");}
@@ -118,6 +125,9 @@ public class ElementMenu extends JPanel implements MouseListener {
         Graphics2D g2d = (Graphics2D) g;
 
         int imageSize = w / columns;
+        //g2d.setFont(new Font("arial",Font.PLAIN,8));
+        FontMetrics fm = g2d.getFontMetrics();
+
         for (int i = 0; i < images.size(); i++) {
             if (images.get(i) != null) {
                 int col = i % columns;
@@ -126,7 +136,21 @@ public class ElementMenu extends JPanel implements MouseListener {
                 int imgX = col * imageSize;
                 int imgY = row * imageSize + 20;
 
+                // Dibuja la imagen
                 g2d.drawImage(images.get(i), imgX, imgY, imageSize, imageSize, this);
+
+                // Obtiene el texto
+                String text = options.get(i).toString();
+
+                // Calcula el ancho del texto para centrarlo
+                int textWidth = fm.stringWidth(text);
+                g2d.setFont(new Font("arial",Font.PLAIN,(11*imageSize/textWidth)));
+                int textX = imgX; //+ (imageSize - textWidth) / 2;
+                int textY = imgY + imageSize + fm.getAscent(); // Justo debajo de la imagen
+
+                // Dibuja el texto
+                g2d.setColor(Color.BLACK);
+                g2d.drawString(text, textX, textY);
             }
         }
     }
