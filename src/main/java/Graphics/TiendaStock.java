@@ -19,6 +19,7 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
     private ArrayList<Insumo> comida, medicina, comidaenhanced;
     private ElementMenu menu;
     private ElementMenu menu1;
+    JButton goBack;
 
     Ventana window;
 
@@ -55,7 +56,7 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
 
         menu1=new ElementMenu(this,tipos,3,"¿Qué desea comprar?"); //arreglar tipos
         //go back
-        JButton goBack = new JButton("A casa");
+        goBack = new JButton("A casa");
         goBack.setBounds(0,490,100,100);
         goBack.addActionListener(new ActionListener() {
             @Override
@@ -184,6 +185,8 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
         }
         //Jugador.getJugador().showInventario();
         //System.out.println("   ");
+
+        menu.add(goBack,0);
         this.add(menu,0);
         this.revalidate();
         this.repaint();
