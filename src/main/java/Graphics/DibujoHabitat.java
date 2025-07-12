@@ -1,8 +1,7 @@
 package Graphics;
 
 
-import Logica.Habitat;
-import Logica.Mascota;
+import Logica.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -20,7 +19,7 @@ public class DibujoHabitat extends JPanel {
     ArrayList<DibujoMascota> mascotas;
 
     public DibujoHabitat(int x, int y, int w, int h, Habitat me) {
-        image=Sprites.GetSprite("jaula");
+        image=getImage(me);
 
         this.me=me;
         mascotas=new ArrayList<>();
@@ -33,6 +32,17 @@ public class DibujoHabitat extends JPanel {
         this.w=w;
         this.h=h;
         this.setBounds(x,y,w,h);
+    }
+
+    public static BufferedImage getImage(Habitat tipo) {
+        if (tipo instanceof Jaula) {
+            return Sprites.GetSprite("jaula");
+        } else if (tipo instanceof JaulaPajaro) {
+            return Sprites.GetSprite("birdcage", "jpg");
+        } else if (tipo instanceof Pecera) {
+            return Sprites.GetSprite("pecera", "jpg");
+        }
+        return null;
     }
 
     public void addMascota(Mascota mascota){

@@ -54,7 +54,7 @@ public class ElementMenu extends JPanel implements MouseListener {
         if (obj instanceof Mascota){
             return DibujoMascota.getImage((Mascota) obj);
         } else if (obj instanceof Habitat) {
-            return Sprites.GetSprite("jaula");
+            return DibujoHabitat.getImage((Habitat) obj);
         }else if (obj instanceof Insumo){
             String name = ((Insumo) obj).getNombre();
             if (Objects.equals(name, "medicina")) {
