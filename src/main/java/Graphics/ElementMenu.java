@@ -143,18 +143,32 @@ public class ElementMenu extends JPanel implements MouseListener {
                 String text;
                 if (!(options.get(i) instanceof Mascota)) {
                      text = options.get(i).toString();
+                    // Calcula el ancho del texto para centrarlo
+                    int textWidth = fm.stringWidth(text);
+                    g2d.setFont(new Font("arial",Font.PLAIN,(11*imageSize/textWidth)));
+                    int textX = imgX; //+ (imageSize - textWidth) / 2;
+                    int textY = imgY + imageSize + fm.getAscent(); // Justo debajo de la imagen
+
+                    // Dibuja el texto
+                    g2d.setColor(Color.BLACK);
+                    g2d.drawString(text, textX, textY);
                 }
-                else{text = ((Mascota) options.get(i)).toStringExtended();}
+                else{
+                    text = ((Mascota) options.get(i)).toStringExtended();
+                    String[] lines = text.split("\n");
 
-                // Calcula el ancho del texto para centrarlo
-                int textWidth = fm.stringWidth(text);
-                g2d.setFont(new Font("arial",Font.PLAIN,(11*imageSize/textWidth)));
-                int textX = imgX; //+ (imageSize - textWidth) / 2;
-                int textY = imgY + imageSize + fm.getAscent(); // Justo debajo de la imagen
+                    int textWidth = fm.stringWidth(text);
+                    g2d.setFont(new Font("arial",Font.PLAIN,(16*imageSize/textWidth)));
+                    int textX = imgX; //+ (imageSize - textWidth) / 2;
+                    int textY = imgY + imageSize + fm.getAscent();
+                    int lineHeight = g2d.getFontMetrics().getHeight(); // Line height based on font
+                    g2d.setColor(Color.BLACK);
+                    for (String line : lines) {
+                        g2d.drawString(line, textX, textY);
+                        textY += lineHeight; // Move to the next line
+                    }}
 
-                // Dibuja el texto
-                g2d.setColor(Color.BLACK);
-                g2d.drawString(text, textX, textY);
+
             }
         }
     }
