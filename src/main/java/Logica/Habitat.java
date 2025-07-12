@@ -13,13 +13,17 @@ public abstract class Habitat<T extends Mascota> {
     protected int precio;
     protected int size;
 
+    Class<T> tipoMascotaPermitido;
+
     private Timer timer;
-    public Habitat(int precio, int size){
+    public Habitat(int precio, int size, Class<T> tipoMascotaPermitido){
         limpieza=100;
         this.precio=precio;
         this.size=size;
 
         mascotas = new ArrayList<T>();
+
+        this.tipoMascotaPermitido=tipoMascotaPermitido;
 
         this.startTimer();
     }
@@ -52,15 +56,14 @@ public abstract class Habitat<T extends Mascota> {
     }
 
     public void addMascota(Mascota mascota) throws HabitatLlenoException,TipoMascotaIncorrecto {
-        try{
-            if (mascotas.size()<size) {
-                mascotas.add((T) mascota);
-                mascota.EntrarEn(this);
-            }else{
-                throw new HabitatLlenoException();
-            }
-        } catch (ClassCastException e){
+        if (!tipoMascotaPermitido.isInstance(mascota)) {
             throw new TipoMascotaIncorrecto();
+        }
+        if (mascotas.size()<size) {
+            mascotas.add((T) mascota);
+            mascota.EntrarEn(this);
+        }else{
+            throw new HabitatLlenoException();
         }
     }
     public Mascota getMascota(int i){
@@ -76,16 +79,15 @@ public abstract class Habitat<T extends Mascota> {
         return m;
     }
     public Mascota sacarMascota(Mascota mascota) throws TipoMascotaIncorrecto{
-        try {
-            boolean succes = mascotas.remove((T)mascota);
-            if (succes) {
-                mascota.Salir();
-                return mascota;
-            } else {
-                return null;
-            }
-        } catch (ClassCastException e){
+        if (!tipoMascotaPermitido.isInstance(mascota)) {
             throw new TipoMascotaIncorrecto();
+        }
+        boolean succes = mascotas.remove((T)mascota);
+        if (succes) {
+            mascota.Salir();
+            return mascota;
+        } else {
+            return null;
         }
     }
 

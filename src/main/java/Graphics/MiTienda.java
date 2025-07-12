@@ -64,7 +64,7 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         dibu2.addMascota(p2);
         dibu2.addMascota(q2);
         Hamster p3 = new Hamster(60,50,0, TipoColor.PATRON);
-        dibu3.addMascota(p3);
+        //dibu3.addMascota(p3);
 
         Jugador player = Jugador.getJugador();
         player.darMascota(p);
@@ -180,9 +180,13 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
                 System.out.println("Alimentaremos a " + m);
             } else if (Objects.equals(selectedOption, "Entrar")) {
                 Mascota m = (Mascota) option;
-                m.getDibujo().Salir();
-                habitatselect.addMascota(m);
-                System.out.println(m+" entra a "+habitatselect);
+                try {
+                    habitatselect.addMascota(m);
+                    m.getDibujo().Salir();
+                    System.out.println(m + " entra a " + habitatselect);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e, "Excepción", JOptionPane.INFORMATION_MESSAGE);
+                }
             } else if (Objects.equals(selectedOption, "Sacar")) {
                 Mascota m = (Mascota) option;
                 m.getDibujo().Salir();
