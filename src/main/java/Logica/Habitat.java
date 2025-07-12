@@ -33,7 +33,7 @@ public abstract class Habitat<T extends Mascota> {
             @Override
             public void run() {
                 if(!mascotas.isEmpty()) {
-                    limpieza -= 5;
+                    if(limpieza>=5)limpieza -= 5;
                     if (limpieza < 70) {
                         for (Mascota mascota : mascotas) {
                             if (mascota.getFelicidad() >= 3) {

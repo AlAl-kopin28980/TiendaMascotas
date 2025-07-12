@@ -85,6 +85,7 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
         });
 
         menu1.add(goBack,0);
+
         menu=menu1;
         this.add(menu,0);
     }
