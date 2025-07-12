@@ -295,7 +295,7 @@ public final class Tienda {
     public ArrayList<Mascota> getPeces () {return peces;}
 
 
-    public void ComprarPerro(Mascota mascota){
+    public void ComprarPerro(Mascota mascota) throws RuntimeException{
         try {
             Jugador.getJugador().comprarMascota(mascota);
             perros.remove(mascota);
@@ -305,7 +305,7 @@ public final class Tienda {
             throw new RuntimeException(e);
         }
     }
-    public void ComprarGato(Mascota mascota){
+    public void ComprarGato(Mascota mascota) throws RuntimeException{
         try {
             Jugador.getJugador().comprarMascota(mascota);
             gatos.remove(mascota);
@@ -315,7 +315,7 @@ public final class Tienda {
             throw new RuntimeException(e);
         }
     }
-    public void ComprarAves(Mascota mascota){
+    public void ComprarAves(Mascota mascota) throws RuntimeException{
         try {
             Jugador.getJugador().comprarMascota(mascota);
             aves.remove(mascota);
@@ -325,7 +325,7 @@ public final class Tienda {
             throw new RuntimeException(e);
         }
     }
-    public void ComprarHamster(Mascota mascota){
+    public void ComprarHamster(Mascota mascota) throws RuntimeException{
         try {
             Jugador.getJugador().comprarMascota(mascota);
             hamsters.remove(mascota);
@@ -335,7 +335,7 @@ public final class Tienda {
             throw new RuntimeException(e);
         }
     }
-    public void ComprarPeces(Mascota mascota){
+    public void ComprarPeces(Mascota mascota) throws RuntimeException{
         try {
             Jugador.getJugador().comprarMascota(mascota);
             peces.remove(mascota);
@@ -346,7 +346,7 @@ public final class Tienda {
         }
     }
 
-    public void ComprarJaula(Habitat jaula){
+    public void ComprarJaula(Habitat jaula) throws RuntimeException{
         try {
             Jugador.getJugador().comprarHabitat(jaula);
             int i = jaulas.indexOf(jaula);
@@ -357,7 +357,7 @@ public final class Tienda {
             throw new RuntimeException(e);
         }
     }
-    public void ComprarJaulaPajaro(Habitat jaula){
+    public void ComprarJaulaPajaro(Habitat jaula) throws RuntimeException{
         try {
             Jugador.getJugador().comprarHabitat(jaula);
             int i = jaulaspajaro.indexOf(jaula);
@@ -368,7 +368,7 @@ public final class Tienda {
             throw new RuntimeException(e);
         }
     }
-    public void ComprarPecera(Habitat jaula){
+    public void ComprarPecera(Habitat jaula) throws RuntimeException{
         try {
             Jugador.getJugador().comprarHabitat(jaula);
             int i = peceras.indexOf(jaula);
@@ -380,7 +380,7 @@ public final class Tienda {
         }
     }
 
-    public void ComprarComida(Insumo insumo){
+    public void ComprarComida(Insumo insumo) throws RuntimeException{
         try {
             Jugador.getJugador().comprarInsumo(insumo);
             int i = comida.indexOf(insumo);
@@ -391,7 +391,7 @@ public final class Tienda {
             throw new RuntimeException(e);
         }
     }
-    public void ComprarMedicina(Insumo insumo) {
+    public void ComprarMedicina(Insumo insumo) throws RuntimeException {
         try {
             Jugador.getJugador().comprarInsumo(insumo);
             int i = medicina.indexOf(insumo);
@@ -402,7 +402,7 @@ public final class Tienda {
             throw new RuntimeException(e);
         }}
 
-        public void ComprarSuperComida (Insumo insumo){
+        public void ComprarSuperComida (Insumo insumo) throws RuntimeException{
             try {
                 Jugador.getJugador().comprarInsumo(insumo);
                 int i = comidaenhanced.indexOf(insumo);

@@ -33,9 +33,9 @@ public abstract class Mascota {
        TimerTask task = new TimerTask() {
            @Override
            public void run() {
-               felicidad--;
-               salud--;
-               hambre++;
+               if(felicidad>=1)felicidad--;
+               if(salud>=1)salud--;
+               if(hambre<=99)hambre++;
 
            }
        };
@@ -94,6 +94,10 @@ public abstract class Mascota {
         String string="Color: "+color+" - Precio: $"+this.getPrecio();
         return string;
     }
+    public String toStringExtended(){
+        String string=this.toString()+"\nHambre: "+hambre+"\nFelicidad: "+felicidad+"\nSalud: "+salud;
+        return string;
+    }
 
     public void setDibujo(DibujoMascota miDibujo) {
         this.miDibujo = miDibujo;
@@ -101,4 +105,6 @@ public abstract class Mascota {
     public DibujoMascota getDibujo() {
         return miDibujo;
     }
+
+    public Habitat getHabitat() {return miHabitat;}
 }

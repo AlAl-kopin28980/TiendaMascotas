@@ -140,7 +140,11 @@ public class ElementMenu extends JPanel implements MouseListener {
                 g2d.drawImage(images.get(i), imgX, imgY, imageSize, imageSize, this);
 
                 // Obtiene el texto
-                String text = options.get(i).toString();
+                String text;
+                if (!(options.get(i) instanceof Mascota)) {
+                     text = options.get(i).toString();
+                }
+                else{text = ((Mascota) options.get(i)).toStringExtended();}
 
                 // Calcula el ancho del texto para centrarlo
                 int textWidth = fm.stringWidth(text);
