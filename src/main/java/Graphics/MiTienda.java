@@ -64,7 +64,7 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         dibu2.addMascota(p2);
         dibu2.addMascota(q2);
         Hamster p3 = new Hamster(60,50,0, TipoColor.PATRON);
-        dibu3.addMascota(p3);
+        //dibu3.addMascota(p3);
 
         Jugador player = Jugador.getJugador();
         player.darMascota(p);
@@ -131,16 +131,16 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         selectedOption = option;
         ArrayList mascotas = habitatselect.getMe().getMacotaList();
         if (Objects.equals(option, "Jugar") && !mascotas.isEmpty()){
-            objectmenu = new ElementMenu(this,mascotas,3,"Con quien quieres jugar?");
+            objectmenu = new ElementMenu(this,mascotas,6,"Con quien quieres jugar?");
             this.add(objectmenu,0);
         } else if (Objects.equals(option, "Alimentar") && !mascotas.isEmpty() && !Jugador.getJugador().getInsumos().isEmpty()) {
-            objectmenu = new ElementMenu(this, mascotas, 3, "A quien vas a alimentar?");
+            objectmenu = new ElementMenu(this, mascotas, 6, "A quien vas a alimentar?");
             this.add(objectmenu, 0);
         } else if (Objects.equals(option, "Entrar") && mascotas.size()<habitatselect.getMe().getSize()) {
             objectmenu = new ElementMenu(this, Jugador.getJugador().getMascotas(), 6, "Que mascota entraras al habitat?");
             this.add(objectmenu, 0);
         } else if (Objects.equals(option, "Sacar") && !mascotas.isEmpty()) {
-            objectmenu = new ElementMenu(this, mascotas, 3, "Que mascota vas a sacar?");
+            objectmenu = new ElementMenu(this, mascotas, 6, "Que mascota vas a sacar?");
             this.add(objectmenu, 0);
         } else if (Objects.equals(option, "Limpiar")) {
             habitatselect.limpiarHabitat();
@@ -180,13 +180,17 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
                 System.out.println("Alimentaremos a " + m);
             } else if (Objects.equals(selectedOption, "Entrar")) {
                 Mascota m = (Mascota) option;
-                m.getDibujo().Salir();
-                habitatselect.addMascota(m);
-                System.out.println(m+" entra a "+habitatselect.getMe());
+                try {
+                    m.getDibujo().Salir();
+                    habitatselect.addMascota(m);
+                    System.out.println(m + " entra a " + habitatselect.getMe());
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e, "Excepción", JOptionPane.INFORMATION_MESSAGE);
+                }
             } else if (Objects.equals(selectedOption, "Sacar")) {
                 Mascota m = (Mascota) option;
                 m.getDibujo().Salir();
-                System.out.println("Sacamos a "+m+" de "+habitatselect.getMe());
+                System.out.println("Sacamos a "+m+" de "+habitatselect);
             }
         } else if (option instanceof Insumo) {
             Insumo in = (Insumo) option;

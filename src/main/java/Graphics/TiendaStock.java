@@ -21,6 +21,9 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
     private ElementMenu menu;
     private ElementMenu menu1;
 
+    JButton goBack;
+    JButton cancel;
+
     Ventana window;
 
     private final ArrayList<String> tipos=new ArrayList<String>(Arrays.asList("Insumos","Mascotas","Habitats"));  //tengo que arreglar los tipos para el getImage
@@ -56,7 +59,7 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
 
         menu1=new ElementMenu(this,tipos,3,"¿Qué desea comprar?"); //arreglar tipos
         //go back
-        JButton goBack = new JButton("A casa");
+        goBack = new JButton("A casa");
         goBack.setBounds(0,490,100,100);
         goBack.addActionListener(new ActionListener() {
             @Override
@@ -66,6 +69,21 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
                 Ventana.getInstance().repaint();
             }
         });
+        //cancel
+        cancel = new JButton("Cancelar");
+        cancel.setBounds(0,490,100,100);
+        cancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TiendaStock.getTiendaStock().remove(menu);
+                menu=menu1;
+                menu.add(goBack,0);
+                TiendaStock.getTiendaStock().add(menu);
+                TiendaStock.getTiendaStock().revalidate();
+                TiendaStock.getTiendaStock().repaint();
+            }
+        });
+
         menu1.add(goBack,0);
 
         menu=menu1;
@@ -87,6 +105,7 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
     public void CallBackElement(Object option) {
         this.remove(menu);
         activeInput(true);
+
         try {
             if (option == "Insumos") {
                 menu = new ElementMenu(this, insumos, 3, "¿Qué tipo de insumo desea?");
@@ -183,21 +202,19 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
                 inventario.ComprarJaulaPajaro((Habitat) option);
                 menu = menu1;
             }
-        }
-        catch (RuntimeException w) {
-            JOptionPane.showMessageDialog(null, w, "Excepción", JOptionPane.INFORMATION_MESSAGE);
-            this.revalidate();
-            this.repaint();
-            Ventana.getInstance().goToScene(MiTienda.getInstance());
-            Ventana.getInstance().revalidate();
-            Ventana.getInstance().repaint();
+        } catch (DineroInsuficienteException e) {
+            JOptionPane.showMessageDialog(null, e, "Excepción", JOptionPane.INFORMATION_MESSAGE);
+            menu=menu1;
         }
         //Jugador.getJugador().showInventario();
         //System.out.println("   ");
+        if (menu!=menu1) {
+            menu.add(cancel, 0);
+        }
+
+        menu.add(goBack,0);
         this.add(menu,0);
         this.revalidate();
         this.repaint();
     }
-
-
 }

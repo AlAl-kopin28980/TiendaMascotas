@@ -8,6 +8,8 @@ public class Cliente {
     private Mascota mascotaelegida;
     private Random rng;
     private boolean dentro;
+
+    private ArrayList<Mascota> opciones;
     public Cliente(){
         this.tienda=Jugador.getJugador();
         rng = new Random();
@@ -15,16 +17,18 @@ public class Cliente {
     }
 
     public Mascota elegirMascota(){
-        int contador=0;
-        ArrayList<Mascota> mascotas = tienda.getMascotas();
-        for (Mascota mascota: mascotas){
-            if (mascota.getHabitat()!=null){contador++;}
+        opciones = new ArrayList<>();
+        for (Habitat habitat: tienda.getHabitats()){
+            for (Object mascota: habitat.getMacotaList()){
+                opciones.add((Mascota) mascota);
+            }
         }
-        if (mascotas.size()>0 && contador!=0){
-            mascotaelegida=mascotas.get(rng.nextInt(mascotas.size()));
-            if(mascotaelegida.getHabitat()==null){this.elegirMascota();}}
 
-        else{return null;}
+        if (opciones.size()>0) {
+            mascotaelegida = opciones.get(rng.nextInt(opciones.size()));
+        } else {
+            mascotaelegida = null;
+        }
 
         return mascotaelegida;
     }

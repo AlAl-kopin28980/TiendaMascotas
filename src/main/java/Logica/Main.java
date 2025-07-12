@@ -10,8 +10,11 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args){
         Mascota perrito=null;
+        Mascota ave=null;
         try{
-            perrito=MascotaFactory.createMascota("perro");}
+            perrito=MascotaFactory.createMascota("perro");
+            ave=MascotaFactory.createMascota("ave");
+        }
         catch (Exception w){
             System.out.println(w.getMessage());
         }
