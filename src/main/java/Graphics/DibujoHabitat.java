@@ -64,6 +64,10 @@ public class DibujoHabitat extends JPanel {
         this.remove(mascota);
     }
 
+    public ArrayList<DibujoMascota> getMascotas(){
+        return mascotas;
+    }
+
     public void limpiarHabitat() {
         me.limpiarHabitat();
     }

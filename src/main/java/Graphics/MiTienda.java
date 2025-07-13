@@ -28,7 +28,8 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
     private Option entrar = new Option(this,"Entrar",0,100,100,50,Color.ORANGE);
     private Option sacar = new Option(this,"Sacar",0,150,100,50,Color.pink);
     private Option limpiar = new Option(this,"Limpiar",0,200,100,50,Color.ORANGE);
-    private Option cancelar = new Option(this,"Cancelar",0,250,100,50,Color.red);
+    private Option cambiar = new Option(this,"Cambiar",0,250,100,50,Color.pink);
+    private Option cancelar = new Option(this,"Cancelar",0,300,100,50,Color.red);
     //ObjectMenu
     private String selectedOption;
     private Mascota mascotaselect;
@@ -93,16 +94,26 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         this.add(goBack,0);
     }
 
-    public DibujoHabitat addHabitat(Habitat habitat) {
-        DibujoHabitat dibu=new DibujoHabitat(73+250*(habitats.size()/4),350-100*(habitats.size()%4),100*habitat.getSize(),100,habitat);
-        Jugador.getJugador().darHabitat(habitat);
-
-        if (habitats.size()<8) {
-            habitats.add(dibu);
-            this.add(dibu);
+    public DibujoHabitat addHabitat(Habitat habitat){
+        return addHabitat(habitat,habitats.size());
+    }
+    public DibujoHabitat addHabitat(Habitat habitat, int i) {
+        for (DibujoHabitat existente : habitats) {
+            if (existente.getMe() == habitat) {
+                return null; //no crea un dibujo nuevo si ya existe uno
+            }
         }
 
-        return dibu;
+        DibujoHabitat dibu=new DibujoHabitat(73+250*(i/4),350-100*(i%4),100*habitat.getSize(),100,habitat);
+        Jugador.getJugador().darHabitat(habitat);
+
+        if (i<8) {
+            habitats.add(i,dibu);
+            this.add(dibu);
+            return dibu;
+        }
+
+        return null;
     }
 
     @Override
@@ -128,6 +139,7 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         this.add(entrar);
         this.add(sacar);
         this.add(limpiar);
+        this.add(cambiar);
         this.add(cancelar);
         this.revalidate();
         this.repaint();
@@ -152,6 +164,9 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         } else if (Objects.equals(option, "Limpiar")) {
             habitatselect.limpiarHabitat();
             activeInput(true);
+        }else if (Objects.equals(option, "Cambiar")) {
+            objectmenu = new ElementMenu(this, Jugador.getJugador().getHabitats(), 6, "Que mascota vas a sacar?");
+            this.add(objectmenu, 0);
         } else{
             activeInput(true);
         }
@@ -163,6 +178,7 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         this.remove(entrar);
         this.remove(sacar);
         this.remove(limpiar);
+        this.remove(cambiar);
         this.remove(cancelar);
         this.revalidate();
         this.repaint();
@@ -203,6 +219,17 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
             Insumo in = (Insumo) option;
             mascotaselect.consumir(in);
             System.out.println("Alimentamos a " + mascotaselect + " con " + in);
+        } else if (option instanceof Habitat) {
+            int i = habitats.indexOf(habitatselect);
+            DibujoHabitat thenew = addHabitat((Habitat) option, i);
+            if (thenew!=null) { //si se creo un dibujo nuevo, quita el anterior
+                System.out.println("cambiamos a "+habitatselect+" con "+thenew);
+                for (DibujoMascota dibu : habitatselect.getMascotas()) {
+                    dibu.Salir();
+                }
+                this.remove(habitatselect);
+                habitats.remove(habitatselect);
+            }
         }
 
         this.revalidate();
