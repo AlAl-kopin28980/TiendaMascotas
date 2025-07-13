@@ -43,7 +43,9 @@ public final class Jugador {
     }
 
     public void darHabitat(Habitat habitat){
-        habitats.add(habitat);
+        if (!habitats.contains(habitat)) {
+            habitats.add(habitat);
+        }
     }
     public void comprarHabitat(Habitat habitat) throws DineroInsuficienteException{
         if(dinero>=habitat.getPrecio()) {
