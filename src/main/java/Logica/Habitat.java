@@ -59,11 +59,15 @@ public abstract class Habitat<T extends Mascota> {
         if (!tipoMascotaPermitido.isInstance(mascota)) {
             throw new TipoMascotaIncorrecto();
         }
-        if (mascotas.size()<size) {
-            mascotas.add((T) mascota);
-            mascota.EntrarEn(this);
+        if (!mascotas.contains(mascota)){
+            if (mascotas.size()<size) {
+                mascotas.add((T) mascota);
+                mascota.EntrarEn(this);
+            }
+            else{
+                throw new HabitatLlenoException();}
         }else{
-            throw new HabitatLlenoException();
+            System.out.println("Mascota ya estaba en el habitat");
         }
     }
     public Mascota getMascota(int i){

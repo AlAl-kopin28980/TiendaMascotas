@@ -45,6 +45,7 @@ public class Main {
         Jaula j = new Jaula(100,2);
         Jaula jj = new Jaula(100,2);
         j.addMascota(perrito);
+        j.addMascota(perrito);
         ArrayList<Mascota> list = j.getMacotaList();
         System.out.println(list);
 
