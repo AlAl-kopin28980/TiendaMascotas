@@ -8,6 +8,8 @@ public class Hamster extends MascotaTerrestre {
         if(felicidad<=90){
             felicidad=felicidad+10;}
         else{felicidad=100;}
+        if (hambre<=95){hambre+=5;}
+        else{hambre=100;}
     }
     @Override
     public String toString(){

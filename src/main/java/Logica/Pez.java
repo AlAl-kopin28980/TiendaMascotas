@@ -8,6 +8,8 @@ public class Pez extends MascotaExotica {
         if(felicidad<=80){
             felicidad=felicidad+20;}
         else{felicidad=100;}
+        if (hambre<=92){hambre+=8;}
+        else{hambre=100;}
     }
     @Override
     public String toString(){

@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestJugador {
     private Jugador jugador;
@@ -42,5 +41,22 @@ public class TestJugador {
         jugador.darDinero(10000);
         jugador.comprarMascota(mascota);
         assertEquals(mascota,jugador.getMascotas().getFirst());
+    }
+
+    @Test
+    @DisplayName("Test: se da mascota de forma exitosa")
+    public void testDarMascota() throws Exception{
+        jugador.darMascota(mascota);
+        assertEquals(mascota,jugador.getMascotas().getFirst());
+    }
+
+    @Test
+    @DisplayName("Test: Venta exitosa de mascota")
+    public void testVentaMascota() throws Exception{
+        jugador.darDinero(10000);
+        jugador.comprarMascota(mascota);
+        jugador.Vender(mascota);
+        assertTrue(jugador.getMascotas().isEmpty());
+        assertEquals(10000,jugador.getPresupuesto());  //(presupuesto original porque se recuperó el precio de la mascota)
     }
 }

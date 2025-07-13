@@ -296,74 +296,96 @@ public final class Tienda {
 
 
     public void ComprarPerro(Mascota mascota) throws DineroInsuficienteException {
-        Jugador.getJugador().comprarMascota(mascota);
-        perros.remove(mascota);
-        perros.add(MascotaFactory.createMascota("perro"));
+        if(perros.contains(mascota)) {
+            Jugador.getJugador().comprarMascota(mascota);
+            perros.remove(mascota);
+            perros.add(MascotaFactory.createMascota("perro"));
+        }else{System.out.println("Mascota no está a la venta");}
     }
 
     public void ComprarGato(Mascota mascota) throws DineroInsuficienteException {
-        Jugador.getJugador().comprarMascota(mascota);
-        gatos.remove(mascota);
-        gatos.add(MascotaFactory.createMascota("gato"));
+        if(gatos.contains(mascota)) {
+            Jugador.getJugador().comprarMascota(mascota);
+            gatos.remove(mascota);
+            gatos.add(MascotaFactory.createMascota("gato"));
+        }else{System.out.println("Mascota no está a la venta");}
     }
 
     public void ComprarAves(Mascota mascota) throws DineroInsuficienteException {
-        Jugador.getJugador().comprarMascota(mascota);
-        aves.remove(mascota);
-        aves.add(MascotaFactory.createMascota("ave"));
+        if(aves.contains(mascota)) {
+            Jugador.getJugador().comprarMascota(mascota);
+            aves.remove(mascota);
+            aves.add(MascotaFactory.createMascota("ave"));
+        }else{System.out.println("Mascota no está a la venta");}
     }
 
     public void ComprarHamster(Mascota mascota) throws DineroInsuficienteException {
-        Jugador.getJugador().comprarMascota(mascota);
-        hamsters.remove(mascota);
-        hamsters.add(MascotaFactory.createMascota("hamster"));
+        if(hamsters.contains(mascota)) {
+            Jugador.getJugador().comprarMascota(mascota);
+            hamsters.remove(mascota);
+            hamsters.add(MascotaFactory.createMascota("hamster"));
+        }else{System.out.println("Mascota no está a la venta");}
     }
 
     public void ComprarPeces(Mascota mascota) throws DineroInsuficienteException {
-        Jugador.getJugador().comprarMascota(mascota);
-        peces.remove(mascota);
-        peces.add(MascotaFactory.createMascota("pez"));
+        if(peces.contains(mascota)) {
+            Jugador.getJugador().comprarMascota(mascota);
+            peces.remove(mascota);
+            peces.add(MascotaFactory.createMascota("pez"));
+        }else{System.out.println("Mascota no está a la venta");}
     }
 
     public void ComprarJaula(Habitat jaula) throws DineroInsuficienteException {
+        if (jaulas.contains(jaula)){
         Jugador.getJugador().comprarHabitat(jaula);
         int i = jaulas.indexOf(jaula)+1;
         jaulas.remove(jaula);
         jaulas.add(new Jaula(500 * i, i));
+        }else{System.out.println("Habitat no está a la venta");}
     }
 
     public void ComprarJaulaPajaro(Habitat jaula) throws DineroInsuficienteException {
+        if (jaulaspajaro.contains(jaula)){
         Jugador.getJugador().comprarHabitat(jaula);
         int i = jaulaspajaro.indexOf(jaula)+1;
         jaulaspajaro.remove(jaula);
         jaulaspajaro.add(new JaulaPajaro(450 * i, i));
+        }else{System.out.println("Habitat no está a la venta");}
     }
 
     public void ComprarPecera(Habitat jaula) throws DineroInsuficienteException {
+        if (peceras.contains(jaula)){
         Jugador.getJugador().comprarHabitat(jaula);
         int i = peceras.indexOf(jaula)+1;
         peceras.remove(jaula);
         peceras.add(new Pecera(300 * i, i));
+        }else{System.out.println("Habitat no está a la venta");}
     }
 
     public void ComprarComida(Insumo insumo) throws DineroInsuficienteException {
+        if (comida.contains(insumo)){
         Jugador.getJugador().comprarInsumo(insumo);
         int i = comida.indexOf(insumo)+1;
         comida.remove(insumo);
         comida.add(crearInsumo(1, i));
+        }else{System.out.println("Insumo no está a la venta");}
     }
 
     public void ComprarMedicina(Insumo insumo) throws DineroInsuficienteException {
+        if (medicina.contains(insumo)){
         Jugador.getJugador().comprarInsumo(insumo);
         int i = medicina.indexOf(insumo)+1;
         medicina.remove(insumo);
         medicina.add(crearInsumo(2, i));
+        }else{System.out.println("Insumo no está a la venta");}
     }
 
     public void ComprarSuperComida(Insumo insumo) throws DineroInsuficienteException {
+        if (comidaenhanced.contains(insumo)){
         Jugador.getJugador().comprarInsumo(insumo);
         int i = comidaenhanced.indexOf(insumo)+1;
         comidaenhanced.remove(insumo);
         comidaenhanced.add(crearInsumo(3, i));
+        }else{System.out.println("Insumo no está a la venta");}
     }
 }

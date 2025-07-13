@@ -1,6 +1,8 @@
 package Logica;
 
 import Graphics.DibujoMascota;
+import Logica.Excepciones.HabitatLlenoException;
+import Logica.Excepciones.TipoMascotaIncorrecto;
 import Logica.Insumos.Insumo;
 
 import java.util.Timer;
@@ -50,10 +52,19 @@ public abstract class Mascota {
     }
 
     public void EntrarEn(Habitat hogar){
-        miHabitat = hogar;
+        try{
+            hogar.addMascota(this);
+            miHabitat = hogar;
+        }
+        catch(TipoMascotaIncorrecto | HabitatLlenoException w){
+            System.out.println(w.getMessage());
+        }
     }
     public void Salir(){
-        miHabitat = null;
+        if (miHabitat!=null){
+            miHabitat.sacarMascota(this);
+            miHabitat = null;
+        }
     }
 
     public int getFelicidad() {

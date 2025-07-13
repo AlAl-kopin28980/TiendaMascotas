@@ -55,7 +55,14 @@ public class TestTienda {
         System.setIn(in);
         tienda.comprarCosas();
         assertTrue(jugador.getInsumos().isEmpty());
+    }
 
-
+    @Test
+    @DisplayName("Test: Se trata de comprar objeto incorrecto")
+    public void testParametroIncorrecto() throws Exception{
+        jugador.darDinero(5000);
+        Mascota perro=MascotaFactory.createMascota("perro");
+        tienda.ComprarPerro(perro);
+        assertTrue(jugador.getMascotas().isEmpty());
     }
 }

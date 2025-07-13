@@ -27,6 +27,10 @@ public class TestHabitat {
 
     @AfterEach
     void tearDown() {
+        pecera=null;
+        jaula=null;
+        perrito=null;
+        extra=null;
     }
 
     @Test

@@ -42,7 +42,6 @@
     JUnits.
 
 # Ideas para (posible) futura implementación
-    Al jugar la felicidad aumenta, pero el hambre también.
     Agregar un sistema de "upgrades" de habitats, donde se pueden agrandar por algún precio.
     
 # Características de nuestra tienda de mascotas
@@ -51,3 +50,4 @@
     Medicinas y alimento pueden ser comprados en distintas cantidades, afectando su precio.
     Jugador puede rechazar la oferta de un comprador de comprar la mascota. 
     Hay distintos tipos de insumo que mejoran ciertas "stats" de la mascota. 
+    Al jugar la felicidad aumenta, pero el hambre también.
