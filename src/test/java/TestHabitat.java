@@ -17,6 +17,10 @@ public class TestHabitat {
     private Habitat jaula;
     private Mascota perrito;
     private Mascota extra;
+
+    /**probamos todo con perro y jaula porque es igual para toda mascota y su habitat adecuado
+     * de forma similar, el comportamiento es igual para todo habitat y mascota imcompatibles
+     */
     @BeforeEach
     void setUp() {
         pecera=new Pecera(100,1);
@@ -80,6 +84,14 @@ public class TestHabitat {
     @DisplayName("Test: Se trata de sacar mascota no en habitat")
     public void testSacarMascotaNoDentro() throws Exception{
         Mascota mascota=jaula.sacarMascota(perrito);
+        assertNull(mascota);
+    }
+
+    @Test
+    @DisplayName("Test: Se trata de sacar mascota con indice incorrecto")
+    public void testSacarMascotaMalIndex() throws Exception{
+        jaula.addMascota(perrito);
+        Mascota mascota=jaula.sacarMascota(1); //debería ser 0
         assertNull(mascota);
     }
 

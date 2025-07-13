@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestInsumo {
-    private Mascota perro;
+    private Mascota perro; /**probamos con perro porque todas las mascotas interactúan con insumos de la misma forma*/
     private Insumo insumo;
     @BeforeEach
     void setUp() {
