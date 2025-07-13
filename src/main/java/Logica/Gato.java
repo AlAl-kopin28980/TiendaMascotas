@@ -8,5 +8,12 @@ public class Gato extends MascotaTerrestre {
         if(felicidad<=93){
             felicidad=felicidad+7;}
         else{felicidad=100;}
+        if (hambre<=97){hambre+=3;}
+        else{hambre=100;}
+    }
+
+    @Override
+    public String toString(){
+       return "Gato "+super.toString();
     }
 }

@@ -1,5 +1,8 @@
 package Logica;
 
+import Graphics.DibujoMascota;
+import Logica.Excepciones.HabitatLlenoException;
+import Logica.Excepciones.TipoMascotaIncorrecto;
 import Logica.Insumos.Insumo;
 
 import java.util.Timer;
@@ -14,6 +17,8 @@ public abstract class Mascota {
    protected int tope;
 
    protected Habitat miHabitat = null;
+
+   protected DibujoMascota miDibujo = null;
 
    private Timer timer;
    public Mascota(int salud,int felicidad,int hambre,TipoColor color,int tope){
@@ -30,14 +35,14 @@ public abstract class Mascota {
        TimerTask task = new TimerTask() {
            @Override
            public void run() {
-               felicidad--;
-               salud--;
-               hambre++;
+               if(felicidad>=1)felicidad--;
+               if(salud>=1)salud--;
+               if(hambre<=99)hambre++;
 
            }
        };
 
-       timer.scheduleAtFixedRate(task, 0, 2000);
+       timer.scheduleAtFixedRate(task, 4000, 2000);
    }
 
     public abstract void jugar();
@@ -47,10 +52,19 @@ public abstract class Mascota {
     }
 
     public void EntrarEn(Habitat hogar){
-        miHabitat = hogar;
+        try{
+            hogar.addMascota(this);
+            miHabitat = hogar;
+        }
+        catch(TipoMascotaIncorrecto | HabitatLlenoException w){
+            System.out.println(w.getMessage());
+        }
     }
     public void Salir(){
-        miHabitat = null;
+        if (miHabitat!=null){
+            miHabitat.sacarMascota(this);
+            miHabitat = null;
+        }
     }
 
     public int getFelicidad() {
@@ -88,7 +102,20 @@ public abstract class Mascota {
     public Mascota vender(){return this;}
 
     public String toString(){
-        String string="Color: "+color+" - Precio: $"+precio;
+        String string="Color: "+color+" - Precio: $"+this.getPrecio();
         return string;
     }
+    public String toStringExtended(){
+        String string=this.toString()+"\nHambre: "+hambre+"\nFelicidad: "+felicidad+"\nSalud: "+salud;
+        return string;
+    }
+
+    public void setDibujo(DibujoMascota miDibujo) {
+        this.miDibujo = miDibujo;
+    }
+    public DibujoMascota getDibujo() {
+        return miDibujo;
+    }
+
+    public Habitat getHabitat() {return miHabitat;}
 }

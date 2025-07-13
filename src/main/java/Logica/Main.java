@@ -10,8 +10,11 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args){
         Mascota perrito=null;
+        Mascota ave=null;
         try{
-            perrito=MascotaFactory.createMascota("perro");}
+            perrito=MascotaFactory.createMascota("perro");
+            ave=MascotaFactory.createMascota("ave");
+        }
         catch (Exception w){
             System.out.println(w.getMessage());
         }
@@ -40,9 +43,20 @@ public class Main {
 
         //habitat
         Jaula j = new Jaula(100,2);
+        Jaula jj = new Jaula(100,2);
+        j.addMascota(perrito);
         j.addMascota(perrito);
         ArrayList<Mascota> list = j.getMacotaList();
         System.out.println(list);
+
+        try {
+            Thread.sleep(35000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(String.format("hambre: %d felicidad: %d salud: %d precio: %d",perrito.getHambre(),perrito.getFelicidad(),perrito.getSalud(),perrito.getPrecio()));
+        System.out.println(j.getLimpieza());
+        System.out.println(jj.getLimpieza());
 
         //venta
         Jugador player = Jugador.getJugador();

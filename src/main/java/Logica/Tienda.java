@@ -6,13 +6,18 @@ import Logica.Insumos.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Tienda {
+public final class Tienda {
     private ArrayList<Mascota> perros, gatos, aves, hamsters, peces;
     private ArrayList<Habitat> peceras, jaulas, jaulaspajaro;
     private ArrayList<Insumo> comida, medicina, comidaenhanced;
     private Insumo food;
+    private static Tienda tienda = null;
+
+    private Scanner scanner=null;
+
+
    // private int max;
-    public Tienda(int max){
+    private Tienda(int max){
         perros=new ArrayList<>(); gatos=new ArrayList<>(); aves=new ArrayList<>(); hamsters=new ArrayList<>(); peces=new ArrayList<>();
         peceras=new ArrayList<>(); jaulaspajaro=new ArrayList<>(); jaulas= new ArrayList<>();
         comida=new ArrayList<>(); medicina=new ArrayList<>(); comidaenhanced=new ArrayList<>();
@@ -31,9 +36,16 @@ public class Tienda {
             comidaenhanced.add(this.crearInsumo(3,i));
         }
     }
+
+    public static Tienda getTienda(){
+        if (tienda==null){
+            tienda=new Tienda(3);
+        }
+        return tienda;
+    }
     public void comprarCosas(){
         int tipo=1;
-        Scanner scanner = new Scanner(System.in);  // Scanner para ingresar indice
+        scanner = new Scanner(System.in);  // Scanner para ingresar indice
         while(tipo!=0) {  //cuando producto es cero indicamos que queremos salir del programa
             System.out.println("¿Qué desea comprar? \n0.Salir \n1.Insumos\n2.Mascotas\n3.Habitats");
             System.out.println("Ingrese número de producto: ");
@@ -54,12 +66,14 @@ public class Tienda {
 
     }
     public void comprarInsumo(){
-        Scanner scanner = new Scanner(System.in);
+        if (scanner==null){
+            scanner = new Scanner(System.in);}
         int tipo=1;
         int index;
         while (tipo!=0) {
             System.out.println("Tipos de insumos disponibles: \n0.Salir \n1.Comida\n2.Medicina\n3.Comida mejorada");
-            tipo = scanner.nextInt();
+            if (scanner.hasNextInt()){
+            tipo = scanner.nextInt();}
             if (tipo <= 3 & tipo >= 1) {
                 int i=1;
                 if (tipo == 1) {
@@ -99,7 +113,9 @@ public class Tienda {
         }
     }
     public void comprarMascota(){
-        Scanner scanner = new Scanner(System.in);
+        if (scanner==null){
+        scanner = new Scanner(System.in);}
+
         int tipo=1;
         int index;
         while (tipo!=0) {
@@ -160,7 +176,9 @@ public class Tienda {
         }
     }
     public void comprarHabitat(){
-        Scanner scanner = new Scanner(System.in);
+        if (scanner==null){
+            scanner = new Scanner(System.in);}
+
         int tipo=1;
         int index;
         while (tipo!=0) {
@@ -225,9 +243,9 @@ public class Tienda {
     private int intentarCompra(ArrayList lista,int tipo) {
         int index;
         int check=-1;
-        Scanner scan=new Scanner(System.in);
+        //scanner=new Scanner(System.in);
         System.out.println("Ingrese el número del producto deseado: ");
-        index= scan.nextInt();
+        index= scanner.nextInt();
         if (index <= lista.size() & index > 0) {
             try {
                 if(tipo==1) {
@@ -252,159 +270,122 @@ public class Tienda {
         return check;
     }
 
-    public void ComprarPerro(Mascota mascota){
-        try {
-            Jugador.getJugador().comprarMascota(mascota);
-            perros.remove(mascota);
-            perros.add(MascotaFactory.createMascota("perro"));
-
-        } catch (DineroInsuficienteException e) {
-            throw new RuntimeException(e);
-        }
+    public ArrayList<Habitat> getPeceras(){
+        return peceras;
     }
-    public void ComprarGato(Mascota mascota){
-        try {
-            Jugador.getJugador().comprarMascota(mascota);
-            gatos.remove(mascota);
-            gatos.add(MascotaFactory.createMascota("perro"));
-
-        } catch (DineroInsuficienteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public void ComprarAves(Mascota mascota){
-        try {
-            Jugador.getJugador().comprarMascota(mascota);
-            aves.remove(mascota);
-            aves.add(MascotaFactory.createMascota("perro"));
-
-        } catch (DineroInsuficienteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public void ComprarHamster(Mascota mascota){
-        try {
-            Jugador.getJugador().comprarMascota(mascota);
-            hamsters.remove(mascota);
-            hamsters.add(MascotaFactory.createMascota("perro"));
-
-        } catch (DineroInsuficienteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public void ComprarPeces(Mascota mascota){
-        try {
-            Jugador.getJugador().comprarMascota(mascota);
-            peces.remove(mascota);
-            peces.add(MascotaFactory.createMascota("perro"));
-
-        } catch (DineroInsuficienteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void ComprarJaula(Habitat jaula){
-        try {
-            Jugador.getJugador().comprarHabitat(jaula);
-            int i = jaulas.indexOf(jaula);
-            jaulas.remove(jaula);
-            jaulas.add(new Jaula(500*i,i));
-
-        } catch (DineroInsuficienteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public void ComprarJaulaPajaro(Habitat jaula){
-        try {
-            Jugador.getJugador().comprarHabitat(jaula);
-            int i = jaulaspajaro.indexOf(jaula);
-            jaulaspajaro.remove(jaula);
-            jaulaspajaro.add(new Jaula(450*i,i));
-
-        } catch (DineroInsuficienteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public void ComprarPecera(Habitat jaula){
-        try {
-            Jugador.getJugador().comprarHabitat(jaula);
-            int i = peceras.indexOf(jaula);
-            peceras.remove(jaula);
-            peceras.add(new Jaula(300*i,i));
-
-        } catch (DineroInsuficienteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void ComprarComida(Insumo insumo){
-        try {
-            Jugador.getJugador().comprarInsumo(insumo);
-            int i = comida.indexOf(insumo);
-            comida.remove(insumo);
-            comida.add(crearInsumo(1,i));
-
-        } catch (DineroInsuficienteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public void ComprarMedicina(Insumo insumo){
-        try {
-            Jugador.getJugador().comprarInsumo(insumo);
-            int i = medicina.indexOf(insumo);
-            medicina.remove(insumo);
-            medicina.add(crearInsumo(2,i));
-
-        } catch (DineroInsuficienteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public void ComprarSuperComida(Insumo insumo){
-        try {
-            Jugador.getJugador().comprarInsumo(insumo);
-            int i = comidaenhanced.indexOf(insumo);
-            comidaenhanced.remove(insumo);
-            comidaenhanced.add(crearInsumo(3,i));
-
-        } catch (DineroInsuficienteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    //mascotas
-    public ArrayList<Mascota> getPerros() {
-        return perros;
-    }
-    public ArrayList<Mascota> getGatos() {
-        return gatos;
-    }
-    public ArrayList<Mascota> getAves() {
-        return aves;
-    }
-    public ArrayList<Mascota> getHamsters() {
-        return hamsters;
-    }
-    public ArrayList<Mascota> getPeces() {
-        return peces;
-    }
-    //habitats
     public ArrayList<Habitat> getJaulas() {
         return jaulas;
     }
-    public ArrayList<Habitat> getJaulaspajaro() {
-        return jaulaspajaro;
-    }
-    public ArrayList<Habitat> getPeceras() {
-        return peceras;
-    }
-    //insumos
+    public ArrayList<Habitat> getJaulaspajaro() {return jaulaspajaro;}
+
     public ArrayList<Insumo> getComida() {
         return comida;
+    }
+    public ArrayList<Insumo> getComidaenhanced() {
+        return comidaenhanced;
     }
     public ArrayList<Insumo> getMedicina() {
         return medicina;
     }
-    public ArrayList<Insumo> getComidaenhanced() {
-        return comidaenhanced;
+
+    public ArrayList<Mascota> getPerros () {return perros;}
+    public ArrayList<Mascota> getGatos () {return gatos;}
+    public ArrayList<Mascota> getAves () {return aves;}
+    public ArrayList<Mascota> getHamsters () {return hamsters;}
+    public ArrayList<Mascota> getPeces () {return peces;}
+
+
+    public void ComprarPerro(Mascota mascota) throws DineroInsuficienteException {
+        if(perros.contains(mascota)) {
+            Jugador.getJugador().comprarMascota(mascota);
+            perros.remove(mascota);
+            perros.add(MascotaFactory.createMascota("perro"));
+        }else{System.out.println("Mascota no está a la venta");}
+    }
+
+    public void ComprarGato(Mascota mascota) throws DineroInsuficienteException {
+        if(gatos.contains(mascota)) {
+            Jugador.getJugador().comprarMascota(mascota);
+            gatos.remove(mascota);
+            gatos.add(MascotaFactory.createMascota("gato"));
+        }else{System.out.println("Mascota no está a la venta");}
+    }
+
+    public void ComprarAves(Mascota mascota) throws DineroInsuficienteException {
+        if(aves.contains(mascota)) {
+            Jugador.getJugador().comprarMascota(mascota);
+            aves.remove(mascota);
+            aves.add(MascotaFactory.createMascota("ave"));
+        }else{System.out.println("Mascota no está a la venta");}
+    }
+
+    public void ComprarHamster(Mascota mascota) throws DineroInsuficienteException {
+        if(hamsters.contains(mascota)) {
+            Jugador.getJugador().comprarMascota(mascota);
+            hamsters.remove(mascota);
+            hamsters.add(MascotaFactory.createMascota("hamster"));
+        }else{System.out.println("Mascota no está a la venta");}
+    }
+
+    public void ComprarPeces(Mascota mascota) throws DineroInsuficienteException {
+        if(peces.contains(mascota)) {
+            Jugador.getJugador().comprarMascota(mascota);
+            peces.remove(mascota);
+            peces.add(MascotaFactory.createMascota("pez"));
+        }else{System.out.println("Mascota no está a la venta");}
+    }
+
+    public void ComprarJaula(Habitat jaula) throws DineroInsuficienteException {
+        if (jaulas.contains(jaula)){
+        Jugador.getJugador().comprarHabitat(jaula);
+        int i = jaula.getSize();
+        jaulas.remove(jaula);
+        jaulas.add(new Jaula(500 * i, i));
+        }else{System.out.println("Habitat no está a la venta");}
+    }
+
+    public void ComprarJaulaPajaro(Habitat jaula) throws DineroInsuficienteException {
+        if (jaulaspajaro.contains(jaula)){
+        Jugador.getJugador().comprarHabitat(jaula);
+        int i = jaula.getSize();
+        jaulaspajaro.remove(jaula);
+        jaulaspajaro.add(new JaulaPajaro(450 * i, i));
+        }else{System.out.println("Habitat no está a la venta");}
+    }
+
+    public void ComprarPecera(Habitat jaula) throws DineroInsuficienteException {
+        if (peceras.contains(jaula)){
+        Jugador.getJugador().comprarHabitat(jaula);
+        int i = jaula.getSize();
+        peceras.remove(jaula);
+        peceras.add(new Pecera(300 * i, i));
+        }else{System.out.println("Habitat no está a la venta");}
+    }
+
+    public void ComprarComida(Insumo insumo) throws DineroInsuficienteException {
+        if (comida.contains(insumo)){
+        Jugador.getJugador().comprarInsumo(insumo);
+        int i = insumo.getContenido()-2;
+        comida.remove(insumo);
+        comida.add(crearInsumo(1, i));
+        }else{System.out.println("Insumo no está a la venta");}
+    }
+
+    public void ComprarMedicina(Insumo insumo) throws DineroInsuficienteException {
+        if (medicina.contains(insumo)){
+        Jugador.getJugador().comprarInsumo(insumo);
+        int i = insumo.getContenido()-2;
+        medicina.remove(insumo);
+        medicina.add(crearInsumo(2, i));
+        }else{System.out.println("Insumo no está a la venta");}
+    }
+
+    public void ComprarSuperComida(Insumo insumo) throws DineroInsuficienteException {
+        if (comidaenhanced.contains(insumo)){
+        Jugador.getJugador().comprarInsumo(insumo);
+        int i = insumo.getContenido()-2;
+        comidaenhanced.remove(insumo);
+        comidaenhanced.add(crearInsumo(3, i));
+        }else{System.out.println("Insumo no está a la venta");}
     }
 }

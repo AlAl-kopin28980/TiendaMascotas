@@ -9,9 +9,9 @@ public class MascotaFactory {
         switch (tipo) {
             case "perro": return new Perro(random.nextInt(101), random.nextInt(101), random.nextInt(101),colores.get(random.nextInt(5)));
             case "gato": return new Gato( random.nextInt(101), random.nextInt(101), random.nextInt(101),colores.get(random.nextInt(5)));
-            case "ave": return new Ave( random.nextInt(101), random.nextInt(101), random.nextInt(101),colores.get(random.nextInt(3)+2));
+            case "ave": return new Ave( random.nextInt(101), random.nextInt(101), random.nextInt(101),colores.get(random.nextInt(5)));
             case "pez": return new Pez( random.nextInt(101), random.nextInt(101), random.nextInt(101),colores.get(random.nextInt(5)));
-            case "hamster": return new Hamster( random.nextInt(101), random.nextInt(101), random.nextInt(101),colores.get(random.nextInt(2)+2));
+            case "hamster": return new Hamster( random.nextInt(101), random.nextInt(101), random.nextInt(101),colores.get(random.nextInt(5)));
             default:
                 return null;
         }

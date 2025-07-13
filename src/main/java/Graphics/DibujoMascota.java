@@ -1,6 +1,8 @@
 package Graphics;
 
 
+import Logica.*;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -9,32 +11,86 @@ import java.io.File;
 import java.io.IOException;
 
 public class DibujoMascota extends JComponent {
-    protected int h,w;
-    protected BufferedImage image;
+    private int h,w;
+    private BufferedImage image;
     private boolean active=true;
+    private Mascota me;
 
-    public DibujoMascota(int x, int y, int w, int h, int type) {
-        try {
-            image= ImageIO.read(new File("src/main/resources/Crash-Bandicoot-PNG-Image.png"));
-        } catch (Exception e) {
-            e.printStackTrace();
+    private DibujoHabitat miHabitat = null;
+
+    public DibujoMascota(int x, int y, int w, int h, Mascota me) {
+        if (me!=null) {
+            setMascota(me);
+            me.setDibujo(this);
         }
         this.w=w;
         this.h=h;
         this.setBounds(x,y,w,h);
     }
-    /*
-    public void setImage(int type){
-        try {
-            if(type==1){image = ImageIO.read(new File("src/main/resources/Coca.png"));}
-            else if(type==2){image = ImageIO.read(new File("src/main/resources/Sprite.png"));}
-            else if(type==3){image = ImageIO.read(new File("src/main/resources/Fanta.png"));}
-            else if(type==4){image = ImageIO.read(new File("src/main/resources/Super8.png"));}
-            else if(type==5){image = ImageIO.read(new File("src/main/resources/Snickers.png"));}
-        } catch (Exception e) {
-            e.printStackTrace();
+
+    public void setMascota(Mascota me){
+        this.me=me;
+        image = getImage(me);
+    }
+    public static BufferedImage getImage(Mascota tipo){
+        if (tipo instanceof Perro) {
+            return switch (tipo.getColor()) {
+                case NARANJA -> Sprites.GetSprite("perro/naranjo");
+                case BLANCO -> Sprites.GetSprite("perro/blanco");
+                case NEGRO -> Sprites.GetSprite("perro/negro");
+                case GRIS -> Sprites.GetSprite("perro/gris");
+                case PATRON -> Sprites.GetSprite("perro/arcoiris");
+            };
+        } else if (tipo instanceof Gato) {
+            return switch (tipo.getColor()) {
+                case NARANJA -> Sprites.GetSprite("gato/ramirez");
+                case BLANCO -> Sprites.GetSprite("gato/blanco");
+                case NEGRO -> Sprites.GetSprite("gato/negro");
+                case GRIS -> Sprites.GetSprite("gato/gris");
+                case PATRON -> Sprites.GetSprite("gato/nyan");
+            };
+        } else if (tipo instanceof Pez) {
+            return switch (tipo.getColor()) {
+                case NARANJA -> Sprites.GetSprite("pez/naranjo");
+                case BLANCO -> Sprites.GetSprite("pez/blanco");
+                case NEGRO -> Sprites.GetSprite("pez/negro");
+                case GRIS -> Sprites.GetSprite("pez/gris");
+                case PATRON -> Sprites.GetSprite("pez/tropical");
+            };
+        } else if (tipo instanceof Ave) {
+            return switch (tipo.getColor()) {
+                case NARANJA -> Sprites.GetSprite("ave/naranjo");
+                case BLANCO -> Sprites.GetSprite("ave/blanco");
+                case NEGRO -> Sprites.GetSprite("ave/miedo");
+                case GRIS -> Sprites.GetSprite("ave/gris");
+                case PATRON -> Sprites.GetSprite("ave/loro");
+            };
+        } else if (tipo instanceof Hamster) {
+            return switch (tipo.getColor()) {
+                case NARANJA -> Sprites.GetSprite("hamster/naranjo");
+                case BLANCO -> Sprites.GetSprite("hamster/blanco");
+                case NEGRO -> Sprites.GetSprite("hamster/negro");
+                case GRIS -> Sprites.GetSprite("hamster/gris");
+                case PATRON -> Sprites.GetSprite("hamster/kawaii");
+            };
+        } else{
+            return null;
         }
-    }*/
+    }
+
+    public void EntrarEn(DibujoHabitat hogar){
+        miHabitat = hogar;
+    }
+    public void Salir(){
+        if (miHabitat!=null) {
+            miHabitat.sacarMascota(this);
+
+            miHabitat.revalidate();
+            miHabitat.repaint();
+
+            miHabitat = null;
+        }
+    }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -43,6 +99,10 @@ public class DibujoMascota extends JComponent {
         if (image != null && active) {
             g2d.drawImage(image, 0, 0, w, h, this);
         }
+    }
+
+    public Mascota getMe() {
+        return me;
     }
 
     /**
