@@ -327,42 +327,42 @@ public final class Tienda {
 
     public void ComprarJaula(Habitat jaula) throws DineroInsuficienteException {
         Jugador.getJugador().comprarHabitat(jaula);
-        int i = jaulas.indexOf(jaula);
+        int i = jaulas.indexOf(jaula)+1;
         jaulas.remove(jaula);
         jaulas.add(new Jaula(500 * i, i));
     }
 
     public void ComprarJaulaPajaro(Habitat jaula) throws DineroInsuficienteException {
         Jugador.getJugador().comprarHabitat(jaula);
-        int i = jaulaspajaro.indexOf(jaula);
+        int i = jaulaspajaro.indexOf(jaula)+1;
         jaulaspajaro.remove(jaula);
-        jaulaspajaro.add(new Jaula(450 * i, i));
+        jaulaspajaro.add(new JaulaPajaro(450 * i, i));
     }
 
     public void ComprarPecera(Habitat jaula) throws DineroInsuficienteException {
         Jugador.getJugador().comprarHabitat(jaula);
-        int i = peceras.indexOf(jaula);
+        int i = peceras.indexOf(jaula)+1;
         peceras.remove(jaula);
-        peceras.add(new Jaula(300 * i, i));
+        peceras.add(new Pecera(300 * i, i));
     }
 
     public void ComprarComida(Insumo insumo) throws DineroInsuficienteException {
         Jugador.getJugador().comprarInsumo(insumo);
-        int i = comida.indexOf(insumo);
+        int i = comida.indexOf(insumo)+1;
         comida.remove(insumo);
         comida.add(crearInsumo(1, i));
     }
 
     public void ComprarMedicina(Insumo insumo) throws DineroInsuficienteException {
         Jugador.getJugador().comprarInsumo(insumo);
-        int i = medicina.indexOf(insumo);
+        int i = medicina.indexOf(insumo)+1;
         medicina.remove(insumo);
         medicina.add(crearInsumo(2, i));
     }
 
     public void ComprarSuperComida(Insumo insumo) throws DineroInsuficienteException {
         Jugador.getJugador().comprarInsumo(insumo);
-        int i = comidaenhanced.indexOf(insumo);
+        int i = comidaenhanced.indexOf(insumo)+1;
         comidaenhanced.remove(insumo);
         comidaenhanced.add(crearInsumo(3, i));
     }

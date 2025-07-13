@@ -46,15 +46,10 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         this.window=Ventana.getInstance();
 
         habitats = new ArrayList<>();
-        DibujoHabitat dibu1=new DibujoHabitat(100,300,200,100,new Jaula(100,2));
-        habitats.add(dibu1);
-        this.add(dibu1);
-        DibujoHabitat dibu2=new DibujoHabitat(100,200,200,100,new Pecera(200,2));
-        habitats.add(dibu2);
-        this.add(dibu2);
-        DibujoHabitat dibu3=new DibujoHabitat(100,100,200,100,new JaulaPajaro(300,2));
-        habitats.add(dibu3);
-        this.add(dibu3);
+        DibujoHabitat dibu1 = addHabitat(new Jaula(100,2));
+        DibujoHabitat dibu2 = addHabitat(new Pecera(200,2));
+        DibujoHabitat dibu3 = addHabitat(new JaulaPajaro(300,2));
+
         Hamster p = new Hamster(60,50,0, TipoColor.NARANJA);
         Gato q = new Gato(60,50,0, TipoColor.BLANCO);
         dibu1.addMascota(p);
@@ -72,10 +67,6 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         player.darMascota(p2);
         player.darMascota(q2);
         player.darMascota(p3);
-
-        player.darHabitat(dibu1.getMe());
-        player.darHabitat(dibu2.getMe());
-        player.darHabitat(dibu3.getMe());
 
         Insumo hypercomida = new Insumo("hypercomida",2,100);
         hypercomida.addDecorator(new ConsumoAlimento(100));
@@ -100,6 +91,18 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
             }
         });
         this.add(goBack,0);
+    }
+
+    public DibujoHabitat addHabitat(Habitat habitat) {
+        DibujoHabitat dibu=new DibujoHabitat(73+250*(habitats.size()/4),350-100*(habitats.size()%4),100*habitat.getSize(),100,habitat);
+        Jugador.getJugador().darHabitat(habitat);
+
+        if (habitats.size()<8) {
+            habitats.add(dibu);
+            this.add(dibu);
+        }
+
+        return dibu;
     }
 
     @Override

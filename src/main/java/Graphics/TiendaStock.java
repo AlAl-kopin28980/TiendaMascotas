@@ -186,6 +186,7 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
             }
             if ((option instanceof Pecera)) {
                 inventario.ComprarPecera((Habitat) option);
+                MiTienda.getInstance().addHabitat((Habitat) option);
                 menu = menu1;
             }
             if (option == "Jaulas") {
@@ -193,6 +194,7 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
             }
             if ((option instanceof Jaula)) {
                 inventario.ComprarJaula((Habitat) option);
+                MiTienda.getInstance().addHabitat((Habitat) option);
                 menu = menu1;
             }
             if (option == "JaulasPajaro") {
@@ -200,6 +202,7 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
             }
             if ((option instanceof JaulaPajaro)) {
                 inventario.ComprarJaulaPajaro((Habitat) option);
+                MiTienda.getInstance().addHabitat((Habitat) option);
                 menu = menu1;
             }
         } catch (DineroInsuficienteException e) {
