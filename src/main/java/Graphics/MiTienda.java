@@ -209,7 +209,7 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
             DibujoHabitat thenew = addHabitat((Habitat) option, i);
             if (thenew!=null) { //si se creo un dibujo nuevo, quita el anterior
                 System.out.println("cambiamos a "+habitatselect+" con "+thenew);
-                for (DibujoMascota dibu : habitatselect.getMascotas()) {
+                for (DibujoMascota dibu : new ArrayList<>(habitatselect.getMascotas())) {
                     dibu.Salir();
                 }
                 this.remove(habitatselect);
