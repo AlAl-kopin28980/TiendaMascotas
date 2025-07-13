@@ -26,7 +26,7 @@ public class TestJugador {
     }
 
     @Test
-    @DisplayName("Test: Compra falla por falta de dinero")
+    @DisplayName("Test: Compra falla por falta de dinero") //compra se hace con perro (mascota) porque todas las compras funcionan igual
     public void testDineroInsuficiente() {
         Exception exception = assertThrows(DineroInsuficienteException.class,
                 ()->{
@@ -36,7 +36,7 @@ public class TestJugador {
     }
 
     @Test
-    @DisplayName("Test: Compra exitosa de mascota")
+    @DisplayName("Test: Compra exitosa de mascota") //compra se hace con perro (mascota) porque todas las compras funcionan igual
     public void testCompraMascota() throws Exception{
         jugador.darDinero(10000);
         jugador.comprarMascota(mascota);
@@ -44,7 +44,7 @@ public class TestJugador {
     }
 
     @Test
-    @DisplayName("Test: se da mascota de forma exitosa")
+    @DisplayName("Test: se da mascota de forma exitosa")  //todo objeto se da de la misma forma, por eso se testea solo mascota
     public void testDarMascota() throws Exception{
         jugador.darMascota(mascota);
         assertEquals(mascota,jugador.getMascotas().getFirst());

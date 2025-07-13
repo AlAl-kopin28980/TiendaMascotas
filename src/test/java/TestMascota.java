@@ -13,7 +13,7 @@ public class TestMascota {
     private Habitat jaula;
     @BeforeEach
     void setUp() {
-        perro= MascotaFactory.createMascota("perro");
+        perro= MascotaFactory.createMascota("perro"); //todas las mascotas funcionan de la misma forma, por eso solo probamos perro
         insumo=new Insumo("insumo",1,0);
         jaula=new Jaula(0,1);
     }
@@ -26,13 +26,15 @@ public class TestMascota {
     }
 
     @Test
-    @DisplayName("Test: Se juega con mascota ")
+    @DisplayName("Test: Se juega con mascota ")  //lo unico que cambia con cada mascota es por cuanto sube el hambre y la felicidad
     public void testJugar(){
         int felicidad=perro.getFelicidad();
         int hambre=perro.getHambre();
         perro.jugar();
         assertTrue(perro.getHambre()>=hambre & perro.getFelicidad()>=felicidad);
     }
+
+    /**todas las mascotas consumen insumos de la misma forma, por eso solo probamos perro*/
 
     @Test
     @DisplayName("Test:mascota consume comida")

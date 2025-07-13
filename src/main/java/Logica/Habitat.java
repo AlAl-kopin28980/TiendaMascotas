@@ -78,9 +78,12 @@ public abstract class Habitat<T extends Mascota> {
     }
 
     public Mascota sacarMascota(int i){
-        Mascota m = mascotas.remove(i);
-        m.Salir();
-        return m;
+        if (i<mascotas.size()) {
+            Mascota m = mascotas.remove(i);
+            m.Salir();
+            return m;
+        }
+        else return null;
     }
     public Mascota sacarMascota(Mascota mascota) throws TipoMascotaIncorrecto{
         if (!tipoMascotaPermitido.isInstance(mascota)) {
