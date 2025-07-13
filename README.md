@@ -6,8 +6,11 @@
 # Casos de uso
 ![img.png](casos.png)
 
+# UML de parte Lógica
+!![img.png](UMLLog.png)
+
 # UML de parte Gráfica
-![img.png](UMLG.png)
+![img.png](UMLGraph.png)
 
 # Prototipo de interfaz
 ![img.png](Prototipo.png)
