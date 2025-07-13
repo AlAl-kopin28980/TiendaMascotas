@@ -338,7 +338,7 @@ public final class Tienda {
     public void ComprarJaula(Habitat jaula) throws DineroInsuficienteException {
         if (jaulas.contains(jaula)){
         Jugador.getJugador().comprarHabitat(jaula);
-        int i = jaulas.indexOf(jaula)+1;
+        int i = jaula.getSize();
         jaulas.remove(jaula);
         jaulas.add(new Jaula(500 * i, i));
         }else{System.out.println("Habitat no está a la venta");}
@@ -347,7 +347,7 @@ public final class Tienda {
     public void ComprarJaulaPajaro(Habitat jaula) throws DineroInsuficienteException {
         if (jaulaspajaro.contains(jaula)){
         Jugador.getJugador().comprarHabitat(jaula);
-        int i = jaulaspajaro.indexOf(jaula)+1;
+        int i = jaula.getSize();
         jaulaspajaro.remove(jaula);
         jaulaspajaro.add(new JaulaPajaro(450 * i, i));
         }else{System.out.println("Habitat no está a la venta");}
@@ -356,7 +356,7 @@ public final class Tienda {
     public void ComprarPecera(Habitat jaula) throws DineroInsuficienteException {
         if (peceras.contains(jaula)){
         Jugador.getJugador().comprarHabitat(jaula);
-        int i = peceras.indexOf(jaula)+1;
+        int i = jaula.getSize();
         peceras.remove(jaula);
         peceras.add(new Pecera(300 * i, i));
         }else{System.out.println("Habitat no está a la venta");}
@@ -365,7 +365,7 @@ public final class Tienda {
     public void ComprarComida(Insumo insumo) throws DineroInsuficienteException {
         if (comida.contains(insumo)){
         Jugador.getJugador().comprarInsumo(insumo);
-        int i = comida.indexOf(insumo)+1;
+        int i = insumo.getContenido()-2;
         comida.remove(insumo);
         comida.add(crearInsumo(1, i));
         }else{System.out.println("Insumo no está a la venta");}
@@ -374,7 +374,7 @@ public final class Tienda {
     public void ComprarMedicina(Insumo insumo) throws DineroInsuficienteException {
         if (medicina.contains(insumo)){
         Jugador.getJugador().comprarInsumo(insumo);
-        int i = medicina.indexOf(insumo)+1;
+        int i = insumo.getContenido()-2;
         medicina.remove(insumo);
         medicina.add(crearInsumo(2, i));
         }else{System.out.println("Insumo no está a la venta");}
@@ -383,7 +383,7 @@ public final class Tienda {
     public void ComprarSuperComida(Insumo insumo) throws DineroInsuficienteException {
         if (comidaenhanced.contains(insumo)){
         Jugador.getJugador().comprarInsumo(insumo);
-        int i = comidaenhanced.indexOf(insumo)+1;
+        int i = insumo.getContenido()-2;
         comidaenhanced.remove(insumo);
         comidaenhanced.add(crearInsumo(3, i));
         }else{System.out.println("Insumo no está a la venta");}
