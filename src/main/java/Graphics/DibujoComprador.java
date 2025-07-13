@@ -10,6 +10,9 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.Objects;
 
+/**
+ * Muestra una puerta, al hacer click entra un comprador y permite aceptar o rechazar la compra
+ */
 public class DibujoComprador extends JPanel implements OptionCall {
     private int x,y,h,w;
     private BufferedImage image;
@@ -21,6 +24,13 @@ public class DibujoComprador extends JPanel implements OptionCall {
 
     private DibujoMascota mascotaelegida;
 
+    /**
+     * Inicia a DibujoComprador
+     * @param x
+     * @param y
+     * @param w
+     * @param h
+     */
     public DibujoComprador(int x, int y, int w, int h) {
         image = Sprites.GetSprite("puerta_cerrada");
         globo = Sprites.GetSprite("globo_texto");
@@ -39,6 +49,9 @@ public class DibujoComprador extends JPanel implements OptionCall {
         this.add(mascotaelegida);
     }
 
+    /**
+     * Crea un Cliente, elige una mascota y añade el prompt para elegir
+     */
     public void EntrarCliente(){
         me = new Cliente();
         Mascota elegida = me.elegirMascota();
@@ -55,6 +68,9 @@ public class DibujoComprador extends JPanel implements OptionCall {
         }else SalirCliente();
     }
 
+    /**
+     * Cierra la puerta y desctiva el prompt
+     */
     public void SalirCliente(){
         me.Salir();
         image = Sprites.GetSprite("puerta_cerrada");
@@ -68,6 +84,9 @@ public class DibujoComprador extends JPanel implements OptionCall {
         this.repaint();
     }
 
+    /**
+     * Acepta la compra de la Mascota elegida
+     */
     public void AceptarCompra(){
         me.Comprar();
         mascotaelegida.getMe().getDibujo().Salir();
@@ -76,6 +95,10 @@ public class DibujoComprador extends JPanel implements OptionCall {
         SalirCliente();
     }
 
+    /**
+     * Al hacer click llama a EntrarCliente()
+     * @param e
+     */
     public void whenClick(MouseEvent e) {
         int relx = e.getX()-x;
         int rely = e.getY()-y;
@@ -86,6 +109,10 @@ public class DibujoComprador extends JPanel implements OptionCall {
         }
     }
 
+    /**
+     * Dibuja las imagenes
+     */
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
@@ -98,6 +125,12 @@ public class DibujoComprador extends JPanel implements OptionCall {
         }
     }
 
+    /**
+     * Toma la opcion elegida en el promt
+     * Si es "Si" llama a AceptarCompra()
+     * Si es "No" llama a SalirCliente()
+     * @param option Opcion elegida
+     */
     @Override
     public void CallBack(String option) {
         if (Objects.equals(option, "Si")){

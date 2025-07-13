@@ -12,6 +12,9 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Donde se hacen las compras para nuestra tienda
+ */
 public final class TiendaStock extends Scene implements ElementMenuCall{
     private static TiendaStock tienda= null;
     private Tienda inventario;
@@ -31,13 +34,19 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
     private final ArrayList<String> mascotas=new ArrayList<String>(Arrays.asList("Perros","Gatos","Hamsters","Aves","Peces"));
     private final ArrayList<String> habitats=new ArrayList<String>(Arrays.asList("Peceras","Jaulas","JaulasPajaro"));
 
+    /**
+     * Devuelve instancia de TiendaStock
+     * @return
+     */
     public static TiendaStock getTiendaStock(){
         if (tienda==null){
             tienda=new TiendaStock();
         }
         return tienda;
     }
-
+    /**
+     * Inicia Tienda
+     */
     private TiendaStock(){
         super(Color.LIGHT_GRAY);
         this.setLayout(null);
@@ -101,6 +110,10 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
         g.fillRect(0,320,window.getWidth(),window.getHeight());
     }
 
+    /**
+     * Navega entre los ElementMenu hasta realizar una compra
+     * @param option elemento elegido en el menu
+     */
     @Override
     public void CallBackElement(Object option) {
         this.remove(menu);

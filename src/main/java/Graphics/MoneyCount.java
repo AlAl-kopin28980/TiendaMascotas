@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Muestra cuanto dinero tiene el Jugador
+ */
 public final class MoneyCount extends JComponent {
     private JLabel texto=new JLabel("inicio");
     private BufferedImage image;
@@ -13,6 +16,10 @@ public final class MoneyCount extends JComponent {
 
     private static MoneyCount instance = null;
 
+    /**
+     * Obtiene la instancia de MoneyCount
+     * @return
+     */
     public static MoneyCount getInstance() {
         if (instance != null){
             return instance;
@@ -21,6 +28,13 @@ public final class MoneyCount extends JComponent {
             return instance;
         }
     }
+    /**
+     * Inicia el contador
+     * @param x
+     * @param y
+     * @param w
+     * @param h
+     */
     private MoneyCount(int x, int y, int w, int h){
         this.setLayout(null);
         this.setBounds(x,y,w,h);
@@ -36,6 +50,9 @@ public final class MoneyCount extends JComponent {
         image=Sprites.GetSprite("moneda");
     }
 
+    /**
+     * Muestra el dinero como texto y una moneda
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

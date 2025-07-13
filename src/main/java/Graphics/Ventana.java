@@ -3,10 +3,19 @@ package Graphics;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Ventana donde ocurre todo
+ * Maneja que Scene esta activa y se muestra
+ */
 public final class Ventana extends JFrame {
     public Scene currentScene;
 
     private static Ventana instance = null;
+
+    /**
+     * Devuelve la instancia de Ventana
+     * @return
+     */
     public static Ventana getInstance(){
         if (instance==null) {
             return new Ventana();
@@ -14,7 +23,9 @@ public final class Ventana extends JFrame {
             return instance;
         }
     }
-
+    /**
+     * Inicia Ventana y Scenes
+     */
     private Ventana() {
         super();
 
@@ -40,6 +51,10 @@ public final class Ventana extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Cambia de Scene
+     * @param next siguiente Scene
+     */
     public void goToScene(Scene next){
         currentScene.setActive(false);
         this.remove(currentScene);

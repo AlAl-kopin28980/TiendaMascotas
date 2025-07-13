@@ -11,6 +11,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * Dibujo que representa a un Habitat
+ */
 public class DibujoHabitat extends JPanel {
     protected int x,y,h,w;
     protected BufferedImage image;
@@ -18,6 +21,14 @@ public class DibujoHabitat extends JPanel {
     private Habitat me;
     ArrayList<DibujoMascota> mascotas;
 
+    /**
+     * Inicia DibujoHabitat
+     * @param x
+     * @param y
+     * @param w
+     * @param h
+     * @param me Habitat que imitar
+     */
     public DibujoHabitat(int x, int y, int w, int h, Habitat me) {
         image=getImage(me);
 
@@ -34,6 +45,11 @@ public class DibujoHabitat extends JPanel {
         this.setBounds(x,y,w,h);
     }
 
+    /**
+     * Obtiene la imagen que corresponde al tipo de Habitat
+     * @param tipo Habitat a representar
+     * @return Imagen correspondiente
+     */
     public static BufferedImage getImage(Habitat tipo) {
         if (tipo instanceof Jaula) {
             return Sprites.GetSprite("jaula");
@@ -45,6 +61,11 @@ public class DibujoHabitat extends JPanel {
         return null;
     }
 
+    /**
+     * Añade una Mascota al Habitat
+     * y crea un DibujoMascota para ella
+     * @param mascota
+     */
     public void addMascota(Mascota mascota){
         me.addMascota(mascota);
         int wm = w/me.getSize();
@@ -58,20 +79,35 @@ public class DibujoHabitat extends JPanel {
         System.out.println("dentro "+mascota);
     }
 
+    /**
+     * Saca a una Mascota del Habitat
+     * @param mascota
+     */
     public void sacarMascota(DibujoMascota mascota){
         me.sacarMascota(mascota.getMe());
         mascotas.remove(mascota);
         this.remove(mascota);
     }
 
+    /**
+     * Devuelve la lista de DibujoMascota contenidos
+     * @return
+     */
     public ArrayList<DibujoMascota> getMascotas(){
         return mascotas;
     }
 
+    /**
+     * Limpia el Habitat
+     */
     public void limpiarHabitat() {
         me.limpiarHabitat();
     }
 
+    /**
+     * Dibuja la imagen
+     */
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
@@ -81,6 +117,10 @@ public class DibujoHabitat extends JPanel {
         }
     }
 
+    /**
+     * Devuelve el Habitat representado
+     * @return
+     */
     public Habitat getMe() {
         return me;
     }
@@ -93,6 +133,10 @@ public class DibujoHabitat extends JPanel {
         this.active=active;
     }
 
+    /**
+     * Al clickear llama a que se muestre el menu de opciones en MiTienda
+     * @param e
+     */
     public void whenClick(MouseEvent e) {
         int relx = e.getX()-x;
         int rely = e.getY()-y;

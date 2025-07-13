@@ -10,6 +10,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Dibujo que representa a una Mascota
+ */
 public class DibujoMascota extends JComponent {
     private int h,w;
     private BufferedImage image;
@@ -18,8 +21,19 @@ public class DibujoMascota extends JComponent {
 
     private DibujoHabitat miHabitat = null;
 
+    /**
+     * Inicia la posicion de la Imagen y que Imagen usar
+     * @param x
+     * @param y
+     * @param w
+     * @param h
+     * @param me Mascota a representar
+     */
     public DibujoMascota(int x, int y, int w, int h, Mascota me) {
         if (me!=null) {
+            //hace que la Mascota tenga una referencia a su Dibujo
+            //si no se quiere esto iniciar con Mascota null y luego usar setMascota
+            //esto se usa para saber cual es el dibujo de la mascota que quiere el Comprador
             setMascota(me);
             me.setDibujo(this);
         }
@@ -28,10 +42,20 @@ public class DibujoMascota extends JComponent {
         this.setBounds(x,y,w,h);
     }
 
+    /**
+     * Cambia la Mascota representada
+     * @param me
+     */
     public void setMascota(Mascota me){
         this.me=me;
         image = getImage(me);
     }
+
+    /**
+     * Devuelve la imagen que representa a una Mascota
+     * @param tipo Mascota a representar
+     * @return Imagen correspondiente
+     */
     public static BufferedImage getImage(Mascota tipo){
         if (tipo instanceof Perro) {
             return switch (tipo.getColor()) {
@@ -78,9 +102,17 @@ public class DibujoMascota extends JComponent {
         }
     }
 
+    /**
+     * Establece una referencia a un DibujoHabitat
+     * @param hogar DibujoHabitat a referencia
+     */
     public void EntrarEn(DibujoHabitat hogar){
         miHabitat = hogar;
     }
+
+    /**
+     * Saca a la mascota de DibujoHabitat donde esta
+     */
     public void Salir(){
         if (miHabitat!=null) {
             miHabitat.sacarMascota(this);
@@ -92,6 +124,10 @@ public class DibujoMascota extends JComponent {
         }
     }
 
+    /**
+     * Muestra la Imagen
+     */
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
@@ -101,6 +137,10 @@ public class DibujoMascota extends JComponent {
         }
     }
 
+    /**
+     * Devuelve la Mascota representada
+     * @return
+     */
     public Mascota getMe() {
         return me;
     }

@@ -12,6 +12,9 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Menu que permite seleccionar un Elemento y devolverlo a Parent
+ */
 public class ElementMenu extends JPanel implements MouseListener {
     ElementMenuCall parent;
 
@@ -21,6 +24,13 @@ public class ElementMenu extends JPanel implements MouseListener {
     ArrayList options;
     ArrayList<BufferedImage> images;
 
+    /**
+     * Inicia el menu
+     * @param parent Objeto que implementa ElementMenuCall, al que se llamara luego de seleccionar
+     * @param options ArrayList con las opciones
+     * @param columns columnas
+     * @param message mensaje que se mostrara arriba
+     */
     public ElementMenu(ElementMenuCall parent, ArrayList options, int columns, String message) {
         super();
 
@@ -50,6 +60,11 @@ public class ElementMenu extends JPanel implements MouseListener {
         addMouseListener(this);
     }
 
+    /**
+     * Obtiene una imagen para representar cada opción
+     * @param obj Objeto a representar
+     * @return Imagen correspondiente
+     */
     private BufferedImage getImage(Object obj) {
         if (obj instanceof Mascota){
             return DibujoMascota.getImage((Mascota) obj);
@@ -91,6 +106,9 @@ public class ElementMenu extends JPanel implements MouseListener {
         }
     }
 
+    /**
+     * Al clickear busca cual fue la opción escogida y la devulve a Parent
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == 1) {
@@ -119,6 +137,9 @@ public class ElementMenu extends JPanel implements MouseListener {
     @Override public void mouseEntered(MouseEvent e) {}
     @Override public void mouseExited(MouseEvent e) {}
 
+    /**
+     * Dibuja todas las opciones y el texto
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

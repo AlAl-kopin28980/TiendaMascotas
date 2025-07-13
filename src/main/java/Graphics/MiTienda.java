@@ -14,6 +14,9 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Tienda manejada por el Jugador
+ */
 public final class MiTienda extends Scene implements OptionCall, ElementMenuCall{
     ArrayList<DibujoHabitat> habitats;
     DibujoComprador puerta;
@@ -34,6 +37,11 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
     private String selectedOption;
     private Mascota mascotaselect;
     private ElementMenu objectmenu;
+
+    /**
+     * Obtiena la unica instancia de MiTienda
+     * @return
+     */
     public static MiTienda getInstance(){
         if (instance!=null)
             return instance;
@@ -41,6 +49,10 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
             instance = new MiTienda();
         return instance;
     }
+
+    /**
+     * Inicia MiTienda
+     */
     private MiTienda(){
         super(Color.DARK_GRAY);
         this.setLayout(null);
@@ -79,9 +91,21 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         this.add(goBack,0);
     }
 
+    /**
+     * Añade un Habitat a la Tienda
+     * @param habitat nuevo Habitat
+     * @return
+     */
     public DibujoHabitat addHabitat(Habitat habitat){
         return addHabitat(habitat,habitats.size());
     }
+
+    /**
+     * Añade un Habitat a la Tienda
+     * @param habitat nuevo Habitat
+     * @param i posición donde dejar el Habitat
+     * @return
+     */
     public DibujoHabitat addHabitat(Habitat habitat, int i) {
         for (DibujoHabitat existente : habitats) {
             if (existente.getMe() == habitat) {
@@ -101,6 +125,9 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         return null;
     }
 
+    /**
+     * Pinta el fondo de la escena
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -109,6 +136,10 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         g.fillRect(0,320,window.getWidth(),window.getHeight());
     }
 
+    /**
+     * Al clickear pasa el evento a la puerta y los habitats
+     * @param e
+     */
     public void whenClick(MouseEvent e) {
         puerta.whenClick(e);
         for (DibujoHabitat habitat : habitats){
@@ -116,6 +147,10 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         }
     }
 
+    /**
+     * Muestra el Menu de Option
+     * @param habitat Habitat seleccionado
+     */
     public void mostrarMenu(DibujoHabitat habitat){
         habitatselect = habitat;
 
@@ -130,6 +165,12 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         this.repaint();
         activeInput(false);
     }
+
+    /**
+     * Dependiendo de la Option elegida realiza una acción
+     * Luego desactiva el menu
+     * @param option texto de la Option seleccionada
+     */
     @Override
     public void CallBack(String option) {
         selectedOption = option;
@@ -169,6 +210,11 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         this.repaint();
     }
 
+    /**
+     * Dependiendo de la opción elegida en el menu anterior y el tipo de elemento elegido ahora
+     * realiza la acción esperada
+     * @param option elemento elegido en el menu
+     */
     @Override
     public void CallBackElement(Object option) {
         this.remove(objectmenu);

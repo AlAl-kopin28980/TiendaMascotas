@@ -5,13 +5,28 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * Clase que permite cargar imagenes de resources una sola vez y luego buscarlas
+ */
 public final class Sprites {
     private static final ArrayList<String> names = new ArrayList<>();
     private static final ArrayList<BufferedImage> img = new ArrayList<>();
 
+    /**
+     * Devuelve una Imagen png
+     * @param name Nombre de la imagen
+     * @return Imagen
+     */
     public static BufferedImage GetSprite(String name){
         return GetSprite(name,"png");
     }
+
+    /**
+     * Devuelve una Imagen de cualquier formato
+     * @param name Nombre de la imagen
+     * @param extension Extension del archivo
+     * @return Imagen
+     */
     public static BufferedImage GetSprite(String name, String extension){
         int index = names.indexOf(name);
 
