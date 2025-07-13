@@ -48,30 +48,15 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
 
         habitats = new ArrayList<>();
         DibujoHabitat dibu1 = addHabitat(new Jaula(100,2));
-        DibujoHabitat dibu2 = addHabitat(new Pecera(200,2));
-        DibujoHabitat dibu3 = addHabitat(new JaulaPajaro(300,2));
 
         Hamster p = new Hamster(60,50,0, TipoColor.NARANJA);
-        Gato q = new Gato(60,50,0, TipoColor.BLANCO);
         dibu1.addMascota(p);
-        dibu1.addMascota(q);
-        Pez p2 = new Pez(60,50,0, TipoColor.NEGRO);
-        Pez q2 = new Pez(60,50,0, TipoColor.GRIS);
-        dibu2.addMascota(p2);
-        dibu2.addMascota(q2);
-        Hamster p3 = new Hamster(60,50,0, TipoColor.PATRON);
-        //dibu3.addMascota(p3);
 
         Jugador player = Jugador.getJugador();
         player.darMascota(p);
-        player.darMascota(q);
-        player.darMascota(p2);
-        player.darMascota(q2);
-        player.darMascota(p3);
 
-        Insumo hypercomida = new Insumo("hypercomida",2,100);
+        Insumo hypercomida = new Insumo("comida",2,100);
         hypercomida.addDecorator(new ConsumoAlimento(100));
-        hypercomida.addDecorator(new ConsumoMedicina(100));
         player.darInsumo(hypercomida);
 
         //jugador

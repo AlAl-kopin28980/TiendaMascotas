@@ -108,7 +108,7 @@ public abstract class Habitat<T extends Mascota> {
     }
 
     public String toString() {
-        String string="Tamaño: apto para "+size+" mascota(s). Precio: $"+precio;
+        String string="Tamaño: "+size+" - $"+precio;
         return string;
     }
 }

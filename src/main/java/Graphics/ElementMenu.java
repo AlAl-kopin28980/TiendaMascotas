@@ -145,7 +145,7 @@ public class ElementMenu extends JPanel implements MouseListener {
                      text = options.get(i).toString();
                     // Calcula el ancho del texto para centrarlo
                     int textWidth = fm.stringWidth(text);
-                    g2d.setFont(new Font("arial",Font.PLAIN,(11*imageSize/textWidth)));
+                    g2d.setFont(new Font("arial",Font.PLAIN,(12*imageSize/textWidth)));
                     int textX = imgX; //+ (imageSize - textWidth) / 2;
                     int textY = imgY + imageSize + fm.getAscent(); // Justo debajo de la imagen
 
@@ -157,8 +157,8 @@ public class ElementMenu extends JPanel implements MouseListener {
                     text = ((Mascota) options.get(i)).toStringExtended();
                     String[] lines = text.split("\n");
 
-                    int textWidth = fm.stringWidth(text);
-                    g2d.setFont(new Font("arial",Font.PLAIN,(16*imageSize/textWidth)));
+                    int textWidth = fm.stringWidth(lines[0]);
+                    g2d.setFont(new Font("arial",Font.PLAIN,(12*imageSize/textWidth)));
                     int textX = imgX; //+ (imageSize - textWidth) / 2;
                     int textY = imgY + imageSize + fm.getAscent();
                     int lineHeight = g2d.getFontMetrics().getHeight(); // Line height based on font
