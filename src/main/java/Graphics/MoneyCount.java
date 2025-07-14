@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 /**
  * Muestra cuanto dinero tiene el Jugador
  */
-public final class MoneyCount extends JComponent {
+public class MoneyCount extends JComponent {
     private JLabel texto=new JLabel("inicio");
     private BufferedImage image;
     private int x,y,w,h;
@@ -17,25 +17,13 @@ public final class MoneyCount extends JComponent {
     private static MoneyCount instance = null;
 
     /**
-     * Obtiene la instancia de MoneyCount
-     * @return
-     */
-    public static MoneyCount getInstance() {
-        if (instance != null){
-            return instance;
-        }else{
-            instance = new MoneyCount(679,10,193,50);
-            return instance;
-        }
-    }
-    /**
      * Inicia el contador
      * @param x
      * @param y
      * @param w
      * @param h
      */
-    private MoneyCount(int x, int y, int w, int h){
+    public MoneyCount(int x, int y, int w, int h){
         this.setLayout(null);
         this.setBounds(x,y,w,h);
         this.add(texto);

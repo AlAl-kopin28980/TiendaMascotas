@@ -90,8 +90,8 @@ public class DibujoComprador extends JPanel implements OptionCall {
     public void AceptarCompra(){
         me.Comprar();
         mascotaelegida.getMe().getDibujo().Salir();
-        MoneyCount.getInstance().revalidate();
-        MoneyCount.getInstance().repaint();
+        MiTienda.getInstance().getMoneyCount().revalidate();
+        MiTienda.getInstance().getMoneyCount().repaint();
         SalirCliente();
     }
 
