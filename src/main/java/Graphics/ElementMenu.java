@@ -91,7 +91,7 @@ public class ElementMenu extends JPanel implements MouseListener {
            else if(obj.equals("Habitats")) {return Sprites.GetSprite("habitats","jpg");}
 
            else if(obj.equals("Peceras")) {return Sprites.GetSprite("pecera","jpg");}
-           else if(obj.equals("Jaulas")) {return Sprites.GetSprite("jaula","jpg");}
+           else if(obj.equals("Jaulas")) {return Sprites.GetSprite("jaula1");}
            else if(obj.equals("JaulasPajaro")) {return Sprites.GetSprite("birdcage","jpg");}
 
            else if(obj.equals("Medicina")) {return Sprites.GetSprite("medicina");}

@@ -31,7 +31,7 @@ public class DibujoHabitat extends JPanel {
      */
     public DibujoHabitat(int x, int y, int w, int h, Habitat me) {
         image=getImage(me);
-
+        me.setDibujoHabitat(this);
         this.me=me;
         mascotas=new ArrayList<>();
 
@@ -43,6 +43,16 @@ public class DibujoHabitat extends JPanel {
         this.w=w;
         this.h=h;
         this.setBounds(x,y,w,h);
+
+    }
+
+    /**
+     * se actualiza la imagen del habitat
+     */
+    public void updateImage(){
+        image=getImage(me);
+        this.revalidate();
+        this.repaint();
     }
 
     /**
@@ -52,11 +62,14 @@ public class DibujoHabitat extends JPanel {
      */
     public static BufferedImage getImage(Habitat tipo) {
         if (tipo instanceof Jaula) {
-            return Sprites.GetSprite("jaula");
+            if(tipo.getLimpieza()>70) return Sprites.GetSprite("jaula1");
+            else return Sprites.GetSprite("jaulasucia");
         } else if (tipo instanceof JaulaPajaro) {
-            return Sprites.GetSprite("birdcage", "jpg");
+            if(tipo.getLimpieza()>70) return Sprites.GetSprite("birdycage");
+            else return Sprites.GetSprite("birdcagesucia");
         } else if (tipo instanceof Pecera) {
-            return Sprites.GetSprite("pecera", "jpg");
+            if(tipo.getLimpieza()>70) return Sprites.GetSprite("peceraa");
+            else return Sprites.GetSprite("pecerasucia");
         }
         return null;
     }
@@ -102,6 +115,7 @@ public class DibujoHabitat extends JPanel {
      */
     public void limpiarHabitat() {
         me.limpiarHabitat();
+        updateImage();
     }
 
     /**

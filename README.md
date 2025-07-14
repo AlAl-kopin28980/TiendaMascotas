@@ -30,7 +30,7 @@
     Esto lo replicamos con un insumo generico que luego es "decorado" con distintos atributos que mejoran la salud, hambre y felicidad de la mascota que los consume.
 
     Singleton: Como hay solo un jugador, es lógico crearlo como un singleton, de forma similar, todas las Tiendas son creadas de la misma forma, y se rellenan de forma automática, por lo que no es necesario tener múltiples.
-    En la parte gráfica, MiTienda es única, junto a MoneyCount (somos sólo un jugador, con una única tienda y un único presupuesto), TiendaStock también es única, siguiendo la idea se su contraparte Lógica. Las ventana y Sprites también son definidos como singleton, ya que es mejor crear uno y tener acceso a este que accidentalmente crear más.
+    En la parte gráfica, MiTienda es única (somos sólo un jugador, con una única tienda), TiendaStock también es única, siguiendo la idea se su contraparte Lógica. Las ventana y Sprites también son definidos como singleton, ya que es mejor crear uno y tener acceso a este que accidentalmente crear más.
 
 
 # Avances 
@@ -68,5 +68,7 @@
     Tener una división clara de tareas.
 
 # Autocrítica
+    Pablo: Siento que durante las dos primeras semanas no avancé como me hubiera gustado.
     Antonella: Personalmente, siento que no siempre manejé mi tiempo de la mejor manera, en vez de tener mini sesiones durante la semana, tendía a hacer avances grandes en una "sentada". También en más de una ocasión me equivoqué manejando git, pero al menos eso me ayudó a ampliar mi conocimiento.
+
     

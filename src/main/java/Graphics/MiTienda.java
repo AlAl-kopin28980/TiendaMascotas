@@ -201,7 +201,7 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
             habitatselect.limpiarHabitat();
             activeInput(true);
         }else if (Objects.equals(option, "Cambiar")) {
-            objectmenu = new ElementMenu(this, Jugador.getJugador().getHabitats(), 6, "Que mascota vas a sacar?");
+            objectmenu = new ElementMenu(this, Jugador.getJugador().getHabitats(), 6, "Que habitat vas a cambiar?");
             this.add(objectmenu, 0);
         } else{
             activeInput(true);

@@ -1,5 +1,6 @@
 package Logica;
 
+import Graphics.DibujoHabitat;
 import Logica.Excepciones.HabitatLlenoException;
 import Logica.Excepciones.TipoMascotaIncorrecto;
 
@@ -20,6 +21,7 @@ public abstract class Habitat<T extends Mascota> {
     Class<T> tipoMascotaPermitido;
 
     private Timer timer;
+    private DibujoHabitat dibujo=null;
 
     /**
      *
@@ -50,6 +52,7 @@ public abstract class Habitat<T extends Mascota> {
                 if(!mascotas.isEmpty()) {
                     if(limpieza>=5)limpieza -= 5;
                     if (limpieza < 70) {
+                        if(dibujo!=null) dibujo.updateImage();
                         for (Mascota mascota : mascotas) {
                             if (mascota.getFelicidad() >= 3) {
                                 mascota.setFelicidad(mascota.getFelicidad() - 3);//cada cinco segundos que la mascota sigue en un habitat sucio su felicidad disminuye en 3
@@ -157,5 +160,12 @@ public abstract class Habitat<T extends Mascota> {
     public String toString() {
         String string="Tamaño: "+size+" - $"+precio;
         return string;
+    }
+
+    /**habitat tiene referencia a su dibujo
+     * @param dibu DibujoHabitat del habitat
+     */
+    public void setDibujoHabitat(DibujoHabitat dibu){
+        dibujo=dibu;
     }
 }
