@@ -53,8 +53,10 @@ public abstract class Mascota {
 
     public void EntrarEn(Habitat hogar){
         try{
-            hogar.addMascota(this);
-            miHabitat = hogar;
+            if (!hogar.getMacotaList().contains(this)) {
+                hogar.addMascota(this);
+                miHabitat = hogar;
+            }
         }
         catch(TipoMascotaIncorrecto | HabitatLlenoException w){
             System.out.println(w.getMessage());

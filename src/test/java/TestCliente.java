@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestCliente {
     private Jugador jugador;
-    private Mascota perrito;
+    private Mascota perrito;  //probamos la compra solo con Perro porque es igual para todo tipo de mascota
     private Cliente cliente;
     private Habitat hogar;
     @BeforeEach

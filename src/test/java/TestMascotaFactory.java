@@ -21,7 +21,7 @@ public class TestMascotaFactory {
     @Test
     @DisplayName("Test: Se crea mascota exitosamente")
     public void testCrearMascota() throws Exception{
-        perro=MascotaFactory.createMascota("perro");
+        perro=MascotaFactory.createMascota("perro"); //probamos perro porque mientras la palabra sea la correcta todas las mascotas se crean igual
         assertTrue(perro instanceof Perro);
     }
 

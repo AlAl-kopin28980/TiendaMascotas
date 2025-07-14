@@ -6,11 +6,20 @@
 # Casos de uso
 ![img.png](casos.png)
 
+# UML de parte Lógica
+!![img.png](UMLLog.png)
+
 # UML de parte Gráfica
-![img.png](UMLG.png)
+![img.png](UMLGraph.png)
+
+# UML 
+![img.png](UML.png)
 
 # Prototipo de interfaz
 ![img.png](Prototipo.png)
+
+# Vista de Interfaz Gráfica
+![img.png](Interfaz_Final.png)
 
 # Patrones utilizados
     Factory: Cada animal tiene un distinto rango de parámetros que simula algunos de la vida real. En la vida real, estos parametros no son decididos por un humano, por lo que es mejor crear una "fábrica" que asigne estos de forma random.
@@ -20,8 +29,8 @@
     Decorator: En la vida real, hay insumos para mascotas que tienen distintos valores nutricionales, medicinales y son más gustados por mascotas.
     Esto lo replicamos con un insumo generico que luego es "decorado" con distintos atributos que mejoran la salud, hambre y felicidad de la mascota que los consume.
 
-    Singleton: Como hay solo un jugador, es lógico crearlo como un singleton, de forma similar, todas las tiendas son creadas de la misma forma, y se rellenan de forma automática, por lo que no es necesario tener múltiples.
-    En la parte gráfica, MiTienda es única, junto a MoneyCount (somos sólo un jugador, con una única tienda y un único presupuesto). Las ventana y Sprites también son definidos como singleton, ya que es mejor crear uno y tener acceso a este que accidentalmente crear más.
+    Singleton: Como hay solo un jugador, es lógico crearlo como un singleton, de forma similar, todas las Tiendas son creadas de la misma forma, y se rellenan de forma automática, por lo que no es necesario tener múltiples.
+    En la parte gráfica, MiTienda es única, junto a MoneyCount (somos sólo un jugador, con una única tienda y un único presupuesto), TiendaStock también es única, siguiendo la idea se su contraparte Lógica. Las ventana y Sprites también son definidos como singleton, ya que es mejor crear uno y tener acceso a este que accidentalmente crear más.
 
 
 # Avances 
@@ -35,14 +44,8 @@
 
     Semana 3: Creación de clase Tienda, encargada de la creación de insumos, mascotas y habitats disponibles para jugador. Implementación de escenas y componentes principales de la interfaz gráfica, comprador puede comprar mascotas y el Jugador puede alimentarlas y jugar con ellas.
 
-# Siguientes pasos
-    Crear interfaz gráfica para Tienda y los hábitats.
-    Seguir evolucionando nuestros gráficos. 
-    Mejorar el sistema de habitats. + Habitats se ensucian y se pueden limpiar.
-    JUnits.
+    Semana 4: Creación de tests unitarios. Se crea TiendaStock, representación gráfica de Tienda. Habitats son ubicados en MiTienda. Mejoras enn otros aspectos de interacción con mascotas.
 
-# Ideas para (posible) futura implementación
-    Agregar un sistema de "upgrades" de habitats, donde se pueden agrandar por algún precio.
     
 # Características de nuestra tienda de mascotas
     Cada cierto tiempo cosas como felicidad, limpieza del habitad y salud disminuyen. Hambre aumenta.
@@ -51,3 +54,19 @@
     Jugador puede rechazar la oferta de un comprador de comprar la mascota. 
     Hay distintos tipos de insumo que mejoran ciertas "stats" de la mascota. 
     Al jugar la felicidad aumenta, pero el hambre también.
+
+# Problemas encontrados y decisiones tomadas
+    Iniciar la parte gráfica fue un desafío, pues hay muchos componentes que podían desarrollarse de distintas formas. Pero esto se resolvió desglozando y escogiendo algo por donde empezar y concentrándose en eso.
+    Cada uno avanzaba por su cuenta, lo que hizo que cada tanto tuvieramos que juntar los avances para poder notar un progreso.
+    Otro punto de decisiones importantes fue como queríamos diferenciar a las mascotas, ya sea con sus habitats o qué podían comer, si sería lo mismo para todos.
+    No siempre comunicamos nuestros avances, así que pasó que nuestro trabajo se intersectaba.
+    
+# Propuestas de mejoras para futuros proyectos
+    Tener claro desde un comienzo las limitaciones de implementaciones gráficas.
+    Mantener en escritura las distintas opciones que se pueden tomar durante el proyecto.
+    Establecer metas a cumplir de forma periódica, para poder dimensionar qué falta y obligarse a cumplir ciertos avances.
+    Tener una división clara de tareas.
+
+# Autocrítica
+    Antonella: Personalmente, siento que no siempre manejé mi tiempo de la mejor manera, en vez de tener mini sesiones durante la semana, tendía a hacer avances grandes en una "sentada". También en más de una ocasión me equivoqué manejando git, pero al menos eso me ayudó a ampliar mi conocimiento.
+    
