@@ -18,10 +18,11 @@ import java.util.Objects;
  * Tienda manejada por el Jugador
  */
 public final class MiTienda extends Scene implements OptionCall, ElementMenuCall{
-    ArrayList<DibujoHabitat> habitats;
-    DibujoComprador puerta;
+    private ArrayList<DibujoHabitat> habitats;
+    private DibujoComprador puerta;
+    private MoneyCount money;
 
-    Ventana window;
+    private Ventana window;
     static MiTienda instance = null;
 
     //OptionMenu
@@ -75,7 +76,8 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         puerta = new DibujoComprador(513,52,362,603);
         this.add(puerta);
 
-        this.add(MoneyCount.getInstance());
+        money = new MoneyCount(679,10,193,50);
+        this.add(money);
 
         //a tienda
         JButton goBack = new JButton("Tienda");
@@ -123,6 +125,14 @@ public final class MiTienda extends Scene implements OptionCall, ElementMenuCall
         }
 
         return null;
+    }
+
+    /**
+     * Devuelve referencia al MoneyCount de MiTienda
+     * @return
+     */
+    public MoneyCount getMoneyCount() {
+        return money;
     }
 
     /**

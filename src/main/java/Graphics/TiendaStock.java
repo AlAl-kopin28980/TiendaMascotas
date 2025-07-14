@@ -96,7 +96,8 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
         menu1.add(goBack,0);
 
         menu=menu1;
-        this.add(menu,0);
+        this.add(new MoneyCount(679,500,193,50),0);
+        this.add(menu,1);
     }
 
     public void whenClick(MouseEvent e){
@@ -229,7 +230,7 @@ public final class TiendaStock extends Scene implements ElementMenuCall{
         }
 
         menu.add(goBack,0);
-        this.add(menu,0);
+        this.add(menu,1);
         this.revalidate();
         this.repaint();
     }
