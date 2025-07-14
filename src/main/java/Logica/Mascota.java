@@ -21,6 +21,15 @@ public abstract class Mascota {
    protected DibujoMascota miDibujo = null;
 
    private Timer timer;
+
+    /**
+     *
+     * @param salud con la que la mascota es creada
+     * @param felicidad con la que la mascota es creada
+     * @param hambre con la que la mascota es creada
+     * @param color de la mascota
+     * @param tope número con el que se calcula el precio máximo de la mascota
+     */
    public Mascota(int salud,int felicidad,int hambre,TipoColor color,int tope){
         this.salud=salud;
         this.felicidad=felicidad;
@@ -30,6 +39,10 @@ public abstract class Mascota {
         this.tope=tope;
         this.startTimer();
    }
+
+    /**
+     * cada 4 segundos el hambre aumenta y la felicidad y salud disminuyen
+     */
    private void startTimer(){
        timer = new Timer();
        TimerTask task = new TimerTask() {
@@ -47,10 +60,16 @@ public abstract class Mascota {
 
     public abstract void jugar();
 
+    /**
+     * @param con insumo a consumir
+     */
     public void consumir(Insumo con){
        con.consumir(this);
     }
 
+    /**
+     * @param hogar habitat al que la mascota está entrando
+     */
     public void EntrarEn(Habitat hogar){
         try{
             if (!hogar.getMacotaList().contains(this)) {
@@ -62,6 +81,10 @@ public abstract class Mascota {
             System.out.println(w.getMessage());
         }
     }
+
+    /**
+     * mascota sale de su habitat
+     */
     public void Salir(){
         if (miHabitat!=null){
             miHabitat.sacarMascota(this);
@@ -97,6 +120,9 @@ public abstract class Mascota {
         return color;
     }
 
+    /**
+     * @return precio calculado en base a su color y "stats"
+     */
     public int getPrecio(){
         precio=(int)(tope*color.getPrecio())-hambre-200+felicidad+salud;
         return precio;}
@@ -107,11 +133,18 @@ public abstract class Mascota {
         String string="Color: "+color+" - Precio: $"+this.getPrecio();
         return string;
     }
+
+    /**
+     * @return string que incluye "stats"
+     */
     public String toStringExtended(){
         String string=this.toString()+"\nHambre: "+hambre+"\nFelicidad: "+felicidad+"\nSalud: "+salud;
         return string;
     }
 
+    /**
+     * @param miDibujo se le da una referencia a su dibujo de interfaz gráfica
+     */
     public void setDibujo(DibujoMascota miDibujo) {
         this.miDibujo = miDibujo;
     }

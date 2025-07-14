@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Habitat en el que las mascotas pueden estar
+ * @param <T> tipo de mascota que puede estar dentro
+ */
 public abstract class Habitat<T extends Mascota> {
     protected ArrayList<T> mascotas;
     protected int limpieza;
@@ -16,6 +20,13 @@ public abstract class Habitat<T extends Mascota> {
     Class<T> tipoMascotaPermitido;
 
     private Timer timer;
+
+    /**
+     *
+     * @param precio del habitat al comprarlo
+     * @param size cantidad de mascotas que pueden estar dentro
+     * @param tipoMascotaPermitido tipo de mascota que puede estar dentro
+     */
     public Habitat(int precio, int size, Class<T> tipoMascotaPermitido){
         limpieza=100;
         this.precio=precio;
@@ -27,6 +38,10 @@ public abstract class Habitat<T extends Mascota> {
 
         this.startTimer();
     }
+
+    /**
+     * cada cinco segundos, si hay una mascota adentro la limpieza del habitat disminuye
+     */
     private void startTimer(){
         timer = new Timer();
         TimerTask task = new TimerTask() {
@@ -51,10 +66,20 @@ public abstract class Habitat<T extends Mascota> {
 
         timer.scheduleAtFixedRate(task, 5000, 5000); //comienza al segundo 5, cada 5 segundos
     }
+
+    /**
+     * la limpieza del habitat es restaurada
+     */
     public void limpiarHabitat(){
         limpieza=100;
     }
 
+    /**
+     *
+     * @param mascota mascota que se desea entrar al habitat
+     * @throws HabitatLlenoException si ya hay la cantidad de mascotas maxima
+     * @throws TipoMascotaIncorrecto si se trata de entrar una mascota no permitida
+     */
     public void addMascota(Mascota mascota) throws HabitatLlenoException,TipoMascotaIncorrecto {
         if (!tipoMascotaPermitido.isInstance(mascota)) {
             throw new TipoMascotaIncorrecto();
@@ -70,13 +95,26 @@ public abstract class Habitat<T extends Mascota> {
             System.out.println("Mascota ya estaba en el habitat");
         }
     }
+
+    /**
+     * @param i indice de la mascota a obtener
+     * @return mascota que se obtuvo
+     */
     public Mascota getMascota(int i){
         return mascotas.get(i);
     }
+
+    /**
+     * @return lista con mascotas adentro del habitat
+     */
     public ArrayList<Mascota> getMacotaList(){
         return (ArrayList<Mascota>) mascotas;
     }
 
+    /**
+     * @param i indice de la mascota a sacar del habitat
+     * @return mascota sacada
+     */
     public Mascota sacarMascota(int i){
         if (i<mascotas.size()) {
             Mascota m = mascotas.remove(i);
@@ -85,6 +123,12 @@ public abstract class Habitat<T extends Mascota> {
         }
         else return null;
     }
+
+    /**
+     * @param mascota mascota a sacar del habitat
+     * @return mascota sacada
+     * @throws TipoMascotaIncorrecto si se trata de sacar un tipo de mascota que no puede estar en el habitat
+     */
     public Mascota sacarMascota(Mascota mascota) throws TipoMascotaIncorrecto{
         if (!tipoMascotaPermitido.isInstance(mascota)) {
             throw new TipoMascotaIncorrecto();

@@ -2,9 +2,18 @@ package Logica;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+
+/**
+ * fabrica de mascotas
+ */
 public class MascotaFactory {
     static Random random = new Random();
     static ArrayList<TipoColor> colores=new ArrayList<TipoColor>(Arrays.asList(TipoColor.NARANJA,TipoColor.NEGRO,TipoColor.BLANCO,TipoColor.GRIS,TipoColor.PATRON));
+
+    /**
+     * @param tipo de mascota a crear
+     * @return mascota con "stats" random
+     */
     public static Mascota createMascota(String tipo){
         switch (tipo) {
             case "perro": return new Perro(random.nextInt(101), random.nextInt(101), random.nextInt(101),colores.get(random.nextInt(5)));
