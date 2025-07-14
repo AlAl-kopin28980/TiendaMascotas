@@ -58,8 +58,11 @@
 # Problemas encontrados y decisiones tomadas
     Iniciar la parte gráfica fue un desafío, pues hay muchos componentes que podían desarrollarse de distintas formas. Pero esto se resolvió desglozando y escogiendo algo por donde empezar y concentrándose en eso.
     Cada uno avanzaba por su cuenta, lo que hizo que cada tanto tuvieramos que juntar los avances para poder notar un progreso.
-    Otro punto de decisiones importantes fue como queríamos diferenciar a las mascotas, ya sea con sus habitats o qué podían comer, si sería lo mismo para todos.
-    No siempre comunicamos nuestros avances, así que pasó que nuestro trabajo se intersectaba.
+    No siempre comunicamos nuestros avances, así que pasó que nuestro trabajo se intersectaba, pero siempre alguno de los dos era capaz de reconciliar ambos avances.
+    Un punto de decisiones importantes fue como queríamos diferenciar a las mascotas, ya sea con sus habitats o qué podían comer, si sería lo mismo para todos. Finalmente decidimos que la comida es universal, pero los habitats personalizados hasta cierto punto.
+    Tratamos de mantener el comportamiento de las mascotas cercano a la realidad, como por ejemplo aumentando hambre al jugar y gastar energía, o disminuyendo su salud cuando se pasa mucho tiempo en algún lugar sucio.
+    Las deciciones de nuestro cliente son randoms porque el la vida real no tenemos control sobre las decisiones de otros (de forma general).
+    
     
 # Propuestas de mejoras para futuros proyectos
     Tener claro desde un comienzo las limitaciones de implementaciones gráficas.
